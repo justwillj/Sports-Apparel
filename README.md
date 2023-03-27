@@ -1,5 +1,11 @@
 # Sports Apparel, Inc.
 
+Authors: Adrienne Whetsell
+         Caleb Presson
+         Charles Knight
+         Isabell Lessley
+         Ty Golson
+
 This is a starter project for a Sports Apparel Company that was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Install Prerequisites
