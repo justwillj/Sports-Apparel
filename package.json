@@ -13,11 +13,12 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "jwt-decode": "^3.1.2",
+    "postcss": "^8.4.21",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-google-login": "^5.2.2",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.2",
+    "react-scripts": "^5.0.1",
     "typescript": "^4.1.3",
     "web-vitals": "^1.1.0"
   },
