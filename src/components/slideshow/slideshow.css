@@ -1,0 +1,13 @@
+.slide {
+    text-align: center;
+    margin: 0 auto;
+    width: 600px;
+    height: 400px;
+}
+
+.slide a {
+    text-decoration: none;
+    vertical-align: bottom;
+    width: 100%;
+    height: 100%;
+}
