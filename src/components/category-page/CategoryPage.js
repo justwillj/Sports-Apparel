@@ -9,9 +9,9 @@
 
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../product-card/ProductCard';
-import styles from './ProductPage.module.css';
+import styles from '../product-page/ProductPage.module.css';
 import Constants from '../../utils/constants';
-import fetchProducts from './ProductPageService';
+import fetchProducts from '../product-page/ProductPageService';
 
 /**
  * @name CategoryPage
@@ -28,6 +28,7 @@ const CategoryPage = () => {
 
   return (
     <div>
+        <h2>Department | Category</h2>
         <h3>SEARCH RESULTS</h3>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <div className={styles.app}>
