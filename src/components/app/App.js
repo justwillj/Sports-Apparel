@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ProductPage from '../product-page/ProductPage';
 import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
+import CategoryPage from '../category-page/CategoryPage';
 import Header from '../header/Header';
 
 /**
@@ -15,6 +16,7 @@ const App = () => (
     <Header />
     <Switch>
       <Route exact path="/" render={() => <ProductPage />} />
+      <Route exact path="/category" render={() => <CategoryPage />} />
       <Route exact path="/checkout" render={() => <CheckoutPage />} />
       <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
     </Switch>
