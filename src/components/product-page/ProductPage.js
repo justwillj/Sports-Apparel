@@ -24,38 +24,21 @@ const ProductPage = () => {
   }, []);
   const newList = [];
   const handleOnClick = () => {
-    console.log(products);
+    if (query === '') {
+      return products;
+    }
     products.filter((product) => {
-      switch (query) {
-        case product.name === query:
-          newList.push(product);
-          break;
-        case product.demographic === query:
-          console.log(product);
-          newList.push(product);
-          break;
-        case product.description === query:
-          newList.push(product);
-          break;
-        case product.catagory === query:
-          newList.push(product);
-          break;
-        case product.type === query:
-          newList.push(product);
-          break;
-        default: return products;
+      if (
+        product.name === query
+        || product.demographic === query
+        || product.description === query
+        || product.catagory === query
+        || product.type === query
+      ) {
+        newList.push(product);
+        return newList;
       }
-      if (newList.length === 0) {
-        return 'Nothing Found';
-      }
-
       return newList;
-
-      // if (product.demographic === query) {
-      //   newList.push(product);
-
-      //   return newList;
-      // }
     });
     console.log(newList);
     return newList;
