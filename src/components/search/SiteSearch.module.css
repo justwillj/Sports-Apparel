@@ -1,0 +1,12 @@
+.topnav input[type=text] {
+
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+  }
+  
+  .topnav .search button:hover {
+    opacity: 60%;
+    background-color: #706262;
+  }

@@ -32,8 +32,4 @@ const searchFilter = (products, query) => {
   return newList;
 };
 
-// const handleOnChange = (e) => {
-//   const userInput = e.target.value;
-//   return userInput;
-// };
 export default searchFilter;

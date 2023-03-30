@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styles from './TestSearchInput.module.css';
 // import ProductCard from '../product-card/ProductCard';
 import Constants from '../../utils/constants';
 import fetchProducts from '../product-page/ProductPageService';
@@ -13,7 +14,7 @@ import MapResults from '../search/MapResults';
  */
 const TestSearchInput = () => {
   const [products, setProducts] = useState([]);
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState(['empty']);
   const [apiError, setApiError] = useState(false);
   const [query, setQuery] = useState('');
 
@@ -29,20 +30,33 @@ const TestSearchInput = () => {
 
   return (
     <div>
-      {apiError && <p data-testid="errMsg">{Constants.API_ERROR}</p>}
+      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <SiteSearch
         value={query}
         handleOnChange={(e) => setQuery(e.target.value)}
         handleOnClick={clickHandler}
       />
       <div>
-        {/* {products.map((product) => (
-          <div key={product.id}>
-            <ProductCard product={product} />
-          </div>
-        ))} */}
-        {searchResults.length > 0
-          ? <MapResults productList={searchResults} /> : <MapResults productList={products} />}
+        {searchResults[0] !== 'empty' && (
+        <h4>
+          Results:
+          {' '}
+          {searchResults.length}
+        </h4>
+        )}
+        {searchResults[0] !== 'empty'
+          ? (
+            <MapResults
+              productList={searchResults}
+              styles={styles.app}
+
+            />
+          ) : (
+            <MapResults
+              productList={products}
+              styles={styles.app}
+            />
+          )}
       </div>
     </div>
   );
