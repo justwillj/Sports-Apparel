@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import Slideshow from "../slideshow/Slideshow";
+import React, { useState } from 'react';
+import styles from './homePage.css';
+import Slideshow from '../slideshow/Slideshow';
+import Constants from '../../utils/constants';
 
 /**
  * @name HomePage
@@ -8,15 +10,14 @@ import Slideshow from "../slideshow/Slideshow";
  * @returns component
  */
 const HomePage = () => {
-    const [apiError, setApiError] = useState(false);
+  const [apiError, setApiError] = useState(false);
 
-    return (
-        
-        <div>
-            {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-            <Slideshow setApiError={() => setApiError} />
-        </div>
-    );
-}
+  return (
+    <div>
+      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
+      <Slideshow setApiError={() => setApiError} />
+    </div>
+  );
+};
 
 export default HomePage;

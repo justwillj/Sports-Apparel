@@ -6,7 +6,7 @@ import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
 import Header from '../header/Header';
 import HomePage from '../home-page/HomePage';
-import Slideshow from '../slideshow/Slideshow';
+import SingleProduct from '../product-page/SingleProduct';
 
 /**
  * @name App
@@ -20,7 +20,7 @@ const App = () => (
       <Route exact path="/checkout" render={() => <CheckoutPage />} />
       <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
       <Route exact path="/home" render={() => <HomePage />} />
-      <Route exact path="/slideshow" render={() => <Slideshow />} />
+      <Route exact path="/products/:id" render={() => <SingleProduct />} />
     </Switch>
   </BrowserRouter>
 );
