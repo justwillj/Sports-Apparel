@@ -1,0 +1,15 @@
+.label{
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.input{
+    /* margin-top: 1.5%; */
+    display: inline-block;
+    text-align: center;
+    width:50%;
+    font-size: xx-large;
+    border-radius: 2%;
+    border: 1px solid black;
+    box-shadow: 3 4 0 0 darkgray;
+}

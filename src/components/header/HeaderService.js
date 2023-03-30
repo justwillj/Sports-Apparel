@@ -6,7 +6,7 @@ import HttpHelper from '../../utils/HttpHelper';
  * @param {String} email Target Email
  * @param {Function} setUser Sets the user state
  */
-const getUserByEmail = async (email, setUser) => {
+export const getUserByEmail = async (email, setUser) => {
   let userByEmailExists;
 
   await HttpHelper(`/users/${email}`, 'GET')
