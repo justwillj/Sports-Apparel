@@ -48,6 +48,7 @@
 
 .slide {
   display: flex;
+  position: relative;
   transition: all 350ms linear;
 }
 
@@ -63,6 +64,14 @@
   color: black;
 }
 
-.slide span {
+.text {
+  position: absolute;
+  width: 60%;
+  z-index: 2;
+  top: 60%;
+  padding-left: 10%;
+}
+
+.text span {
   font-size: 40px;
 }

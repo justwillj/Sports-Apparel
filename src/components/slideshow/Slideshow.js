@@ -31,7 +31,8 @@ const Slideshow = () => {
   useEffect(() => {
     /**
      * @name fetchProducts
-     * @description fetch products gets 3 products and adds a random discount if one is not included
+     * @description fetch products gets 3 products and adds a random discount
+     * and placeholder image if one is not included
      * @returns setProducts
      */
     const fetchProducts = async () => {
@@ -48,13 +49,19 @@ const Slideshow = () => {
             && responses[1].status === 200
             && responses[2].status === 200
           ) {
-            const newProducts = ([]);
+            let newProduct = {};
+            const newProducts = [];
             response.forEach((product) => {
-              if (!product.data.discount) {
-                newProducts.push({ ...product.data, discount: randomDiscount() });
-              } else {
-                newProducts.push({ ...product.data });
+              newProduct = { ...product.data };
+              // checks if product has discount
+              if (!newProduct.discount) {
+                newProduct = ({ ...newProduct, discount: randomDiscount() });
               }
+              // checks if product has image
+              if (!product.data.image) {
+                newProduct = ({ ...newProduct, image: Constants.PLACEHOLDER_IMAGE });
+              }
+              newProducts.push(newProduct);
             });
             setProducts(newProducts);
           }
@@ -116,18 +123,17 @@ const Slideshow = () => {
     }
   };
 
-  /**
-   * @name resetTimer
-   * @description cancels setTimeout
-   */
-  const resetTimer = () => {
-    if (slideTimeRef.current) {
-      clearTimeout(slideTimeRef.current);
-    }
-  };
-
   // handles slideshow timer
   useEffect(() => {
+    /**
+     * @name resetTimer
+     * @description cancels setTimeout
+     */
+    const resetTimer = () => {
+      if (slideTimeRef.current) {
+        clearTimeout(slideTimeRef.current);
+      }
+    };
     // clear timeout, used in case where user clicks prev or next button
     resetTimer();
     // timer moves slideshow to next ad every 10 seconds
@@ -142,8 +148,11 @@ const Slideshow = () => {
           {products.length > 0 && (
             <div className="slide" style={{ transform: `translateX(-${slideIndex * 100}%)` }}>
               {products.map((product) => (
-                <NavLink to={`/products/${product.id}`} key={product.id} style={{ backgroundImage: `url(${Constants.PLACEHOLDER_IMAGE})` }}>
-                  <span>{`${product.name ? product.name : 'Placeholder Name'} ${product.discount}% OFF!`}</span>
+                <NavLink to={`/products/${product.id}`} key={product.id}>
+                  <img width="600" height="400" alt="Advertisement" src={`${product.image}`} />
+                  <div className="text">
+                    <span>{`${product.name ? product.name : 'Placeholder Name'} ${product.discount}% OFF!`}</span>
+                  </div>
                 </NavLink>
               ))}
             </div>
