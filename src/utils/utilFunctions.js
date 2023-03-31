@@ -31,5 +31,4 @@ const searchFilter = (products, query) => {
   console.log(newList);
   return newList;
 };
-
 export default searchFilter;

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import loginUser from '../header/HeaderService';
 import constants from '../../utils/constants';
+import SiteSearch from '../search/SiteSearch';
 
 /**
  * @name TestSearchInHeader
@@ -10,10 +11,24 @@ import constants from '../../utils/constants';
  * @return component
  */
 const TestSearchInHeader = () => {
+  const pathName = window.location.pathname;
   const [user, setUser] = useState('');
   const [googleError, setGoogleError] = useState('');
   const [apiError, setApiError] = useState(false);
+  const [query, setQuery] = useState('');
 
+  const history = useHistory();
+
+  const handleClick = () => {
+    sessionStorage.setItem('userSearch', query);
+    console.log(pathName);
+    if (pathName !== '/search-results') {
+      history.push('/search-results');
+    }
+    if (pathName === '/search-results') {
+      history.push('/');
+    }
+  };
   /**
    * @name handleGoogleLoginSuccess
    * @description Function to run if google login was successful
@@ -54,11 +69,15 @@ const TestSearchInHeader = () => {
   const handleGoogleLogoutFailure = () => {
     setGoogleError('There was a problem logging out with Google. Please wait and try again later.');
   };
-
   return (
     <div>
       <NavLink to="/home">Home</NavLink>
       <NavLink to="/checkout">Cart</NavLink>
+      <SiteSearch
+        value={query}
+        handleOnChange={(e) => setQuery(e.target.value)}
+        handleOnClick={handleClick}
+      />
       {user && <span>{user.firstName}</span>}
       {user && <span>{user.lastName}</span>}
       {googleError && <span>{googleError}</span>}

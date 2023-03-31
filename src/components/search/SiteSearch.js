@@ -1,13 +1,13 @@
 import React from 'react';
-import style from './SiteSearch.module.css';
+import styles from './SiteSearch.module.css';
 /**
  * @name SiteSearch
  * @description Filters products from API
  * @return component
  */
 const SiteSearch = ({ query, handleOnClick, handleOnChange }) => (
-  <div className={style.topnav}>
-    <div className={style.search}>
+  <div className={styles.topnav}>
+    <div className={styles.search}>
       <label htmlFor="q">
         <input type="search" name="q" value={query} onChange={handleOnChange} />
       </label>

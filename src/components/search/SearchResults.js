@@ -1,26 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState
+} from 'react';
+import styles from './SiteSearch.module.css';
 import ProductCard from '../product-card/ProductCard';
 import Constants from '../../utils/constants';
-import fetchProducts from '../product-page/ProductPageService';
+import HttpHelper from '../../utils/HttpHelper';
+import searchFilter from '../../utils/utilFunctions';
 
 /**
- * @name ProductPage
+ * @name SearchResults
  * @description fetches products from API and displays products as product cards
  * @return component
  */
 const SearchResults = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
-
+  const [query, setQuery] = useState('');
   useEffect(() => {
-    fetchProducts(setProducts, setApiError);
+    async function fetchFilteredProducts(prod, error) {
+      await HttpHelper(Constants.RUNNING_SHORTS_ENDPOINT, 'GET')
+        .then((response) => {
+          if (response.ok) {
+            setQuery(sessionStorage.getItem('userSearch'));
+            return response.json();
+          }
+          throw new Error(Constants.API_ERROR);
+        })
+        .then(prod)
+        .catch(() => {
+          error(true);
+        });
+    }
+    fetchFilteredProducts(setProducts, setApiError);
   }, []);
 
   return (
     <div>
-      {apiError && <p data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <div>
-        {products.map((product) => (
+      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
+      <div className={styles.app}>
+        {searchFilter(products, query).map((product) => (
           <div key={product.id}>
             <ProductCard product={product} />
           </div>
