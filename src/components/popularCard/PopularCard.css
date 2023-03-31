@@ -1,0 +1,14 @@
+.card-text {
+    margin-top: -.8rem !important;
+    margin-bottom: -.8rem !important;
+    font-size: 2rem !important;
+}
+
+.text-background {
+
+    /* border: 1px red solid; */
+}
+
+.card-img {
+    max-height: 260px;
+}
