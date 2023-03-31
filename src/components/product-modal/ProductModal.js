@@ -94,7 +94,7 @@ const ProductModal = ({ product }) => {
       
       <div className='bottom-bar'>
         <div className= 'price'>{price}</div>
-        <div className='icon'>Icon</div>
+        <button className='icon' img src={AddShoppingCartIcon}/>
       </div>
     </div>
   </Modal>

@@ -51,7 +51,7 @@
     height: 240px;
   }
   
-  img {
+  .productImg {
     float: left;
     border: 5px solid black;
     width: 65%;
