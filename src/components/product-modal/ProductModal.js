@@ -45,6 +45,7 @@ import '.\ProductModal.css';
  * @return component
  */
 const ProductModal = ({ product }) => {
+    //placeholder data, change values to display from API
     const department = "Women";
     const category = "Running";
     const type = "Short";
