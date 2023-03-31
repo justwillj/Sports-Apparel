@@ -13,8 +13,8 @@ import Constants from '../../utils/constants';
 
 export default async function fetchProductsByCategory(setProducts, setApiError) {
 
-    const [department, setDepartment] = useState('');
-    const [category, setCategory] = useState('');
+    const [department, setDepartment] = useState('men');
+    const [category, setCategory] = useState('running');
     const [endpoint, setEndpoint] = useState('');
 
     //switch statement to set department

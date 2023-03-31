@@ -17,7 +17,9 @@ import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
 import { Modal } from '@material-ui/core';
 import { PLACEHOLDER_IMAGE } from '../../utils/constants';
+import '.\ProductModal.css';
 
+//Design:
 //White Background with darkgrey bar at top, light grey bar at bottom
 //Rounded corners
 //All content justified left except X
@@ -30,33 +32,11 @@ import { PLACEHOLDER_IMAGE } from '../../utils/constants';
 //Price at bottom
 
 
-/**
- * @name useStyles
- * @description Material-ui styling for ProductModal component
- * @return styling
- */
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%'
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)'
-  },
-  avatar: {
-    backgroundColor: red[500]
-  }
-}));
+//TO DO: 
+//Plug in to program, get displaying non-hardcoded data
+//Second swatch display
+//Swatches display colors pulled from API
+//Make sure the css page is properly linked
 
 /**
  * @name ProductModal
@@ -65,7 +45,14 @@ const useStyles = makeStyles((theme) => ({
  * @return component
  */
 const ProductModal = ({ product }) => {
-  const classes = useStyles();
+    const department = "Women";
+    const category = "Running";
+    const type = "Short";
+    const image = {PLACEHOLDER_IMAGE};
+    const primaryColor = "Red"
+    const secondaryColor = "Lilac"
+    const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure"
+    const price = "$19.99"
 
 //   const { dispatch } = useCart();
 
@@ -84,63 +71,32 @@ const ProductModal = ({ product }) => {
 //     );
 //   };
 
-  return (
-    <Modal className='ProductModal'>
-        <img src={PLACEHOLDER_IMAGE}></img>
-        <h2>{product.department} {product.category} {product.type}</h2>
-        <h4>Color Choice</h4>
-        
-        <div className='ProductDescription'>
-            <p>{product.description}</p>
-        </div>
-        <div>
-            <h2>{product.price}</h2>
-        </div>
-    </Modal>
+//API request for modal contents
 
-    // <Modal className={classes.root}>
-    //   <ModalHeader
-    //     avatar={(
-    //       <Avatar aria-label="department" className={classes.avatar}>
-    //         {product.department.charAt(0)}
-    //       </Avatar>
-    //     )}
-    //     action={(
-    //       <IconButton aria-label="settings">
-    //         <MoreVertIcon />
-    //       </IconButton>
-    //     )}
-    //     title={product.name}
-    //     subheader={`${product.department} ${product.category} ${product.type}`}
-    //   />
-    //   <ModalMedia
-    //     className={classes.media}
-    //     image={Constants.PLACEHOLDER_IMAGE}
-    //     title="placeholder"
-    //   />
-    //   <ModalContent>
-    //     <Typography variant="body2" color="textSecondary" component="p">
-    //       {product.description}
-    //     </Typography>
-    //     <br />
-    //     <Typography variant="body2" color="textSecondary" component="p">
-    //       Price: $
-    //       {product.price}
-    //     </Typography>
-    //   </ModalContent>
-    //   <ModalActions disableSpacing>
-    //     <IconButton aria-label="add to favorites">
-    //       <FavoriteIcon />
-    //     </IconButton>
-    //     <IconButton aria-label="share">
-    //       <ShareIcon />
-    //     </IconButton>
-    //     <IconButton aria-label="add to shopping cart" onClick={onAdd}>
-    //       <AddShoppingCartIcon />
-    //     </IconButton>
-    //   </ModalActions>
-    // </Modal>
+  return (
+  <div className="modal">
+    <div className="modal-container">
+      <div className='topContainer'>
+        <div className='top-bar'/>
+        <button className='close' onClick={close}>X</button>
+        <img src= {image}/>
+      </div>
+      <h2 className='name'>{department} {category} {type}</h2>
+      
+      <h4 className='swatchHeader'>Color Choice</h4>
+      <div className='swatchContainer'>
+        <div className= 'colorSwatch' id='primarySwatch' style={{backgroundColor: "Red"}}/>
+        <div className= 'colorSwatch' id='secondarySwatch' style={{backgroundColor: {secondaryColor}}}/>
+      </div>
+      
+      <div className= 'description'>{description}</div>
+      
+      <div className='bottom-bar'>
+        <div className= 'price'>{price}</div>
+      </div>
+    </div>
+  </div>
   );
-};
+}
 
 export default ProductModal;

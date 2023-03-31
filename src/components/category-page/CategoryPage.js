@@ -21,14 +21,18 @@ import fetchProducts from '../product-page/ProductPageService';
 const CategoryPage = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
+  const [department, setDepartment] = useState('Men');
+  const [category, setCategory] = useState('Running');
+
+  //conditional rendering for department and category
 
   useEffect(() => {
-    fetchProducts(setProducts, setApiError);
+    fetchProducts(setProducts, setApiError, setDepartment, setCategory);
   }, []);
 
   return (
     <div>
-        <h2>Department | Category</h2>
+        <h2>{department} | {category}</h2>
         <h3>SEARCH RESULTS</h3>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <div className={styles.app}>
