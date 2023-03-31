@@ -9,7 +9,7 @@ import Constants from '../../utils/constants';
  * @description fetches and displays an advertisement slideshow for 3 products
  * @returns component
  */
-const Slideshow = () => {
+const Slideshow = ({ setApiError }) => {
   const [products, setProducts] = useState([]);
   const [productIds, setProductIds] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
@@ -66,8 +66,8 @@ const Slideshow = () => {
             setProducts(newProducts);
           }
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setApiError(true);
         });
     };
 
@@ -141,24 +141,26 @@ const Slideshow = () => {
   }, [slideIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="slideshow-container">
-      <div className="slideshow-wrapper">
-        <button type="button" className="prev-slide" onClick={prevSlide}>&#10094;</button>
-        <div className="slide-wrapper">
-          {products.length > 0 && (
-            <div className="slide" style={{ transform: `translateX(-${slideIndex * 100}%)` }}>
-              {products.map((product) => (
-                <NavLink to={`/products/${product.id}`} key={product.id}>
-                  <img width="600" height="400" alt="Advertisement" src={`${product.image}`} />
-                  <div className="text">
-                    <span>{`${product.name ? product.name : 'Placeholder Name'} ${product.discount}% OFF!`}</span>
-                  </div>
-                </NavLink>
-              ))}
+    <div className="slideshow-background">
+      <div className="slideshow-container">
+        {products.length > 0 && (
+          <div className="slideshow-wrapper">
+            <button type="button" className="prev-slide" onClick={prevSlide}>&#10094;</button>
+            <div className="slide-wrapper">
+              <div className="slide" style={{ transform: `translateX(-${slideIndex * 100}%)` }}>
+                {products.map((product) => (
+                  <NavLink to={`/products/${product.id}`} key={product.id}>
+                    <img width="600" height="400" alt="Advertisement" src={`${product.image}`} />
+                    <div className="text">
+                      <span>{`${product.name ? product.name : 'Placeholder Name'} ${product.discount}% Off!`}</span>
+                    </div>
+                  </NavLink>
+                ))}
+              </div>
             </div>
-          )}
-        </div>
-        <button type="button" className="next-slide" onClick={nextSlide}>&#10095;</button>
+            <button type="button" className="next-slide" onClick={nextSlide}>&#10095;</button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const HomePage = () => {
   return (
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <Slideshow setApiError={() => setApiError} />
+      <Slideshow setApiError={setApiError} />
     </div>
   );
 };
