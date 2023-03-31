@@ -7,6 +7,7 @@ import ConfirmationPage from '../confirmation-page/ConfirmationPage';
 import Header from '../header/Header';
 import HomePage from '../home-page/HomePage';
 import SingleProduct from '../product-page/SingleProduct';
+import Footer from '../footer/Footer';
 
 /**
  * @name App
@@ -22,6 +23,7 @@ const App = () => (
       <Route exact path="/home" render={() => <HomePage />} />
       <Route exact path="/products/:id" render={() => <SingleProduct />} />
     </Switch>
+    <Footer />
   </BrowserRouter>
 );
 
