@@ -42,7 +42,7 @@
     background-color: #ccd0cf;
     background-position: bottom;
     border: 1px solid #ccd0cf;
-    margin-top: 25px;
+    margin-top: 30px;
     margin-left: -15px;
   }
   
@@ -53,6 +53,7 @@
   
   img {
     float: left;
+    border: 5px solid black;
     width: 65%;
     justify-self: left;
     margin-top: -70px;
@@ -82,11 +83,12 @@
     width: 25px;
     height: 25px;
     padding: 0%;
-    margin-top: 4%;
+    margin-top: 3%;
+    margin-left: 4%;
   }
   
   #secondarySwatch {
-    margin-left: 20px;
+    margin-left: 15px;
   }
   
   .description {
@@ -107,6 +109,10 @@
     float: right;
     margin-right: 30px;
     margin-top: -5%;
+  }
+  
+  .icon:hover {
+    cursor: pointer;
   }
   
   .close {

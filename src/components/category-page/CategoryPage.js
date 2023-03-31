@@ -1,3 +1,10 @@
+import React, { useEffect, useState } from 'react';
+import ProductCard from '../product-card/ProductCard';
+import styles from '../product-page/ProductPage.module.css';
+import Constants from '../../utils/constants';
+import fetchProducts from '../product-page/ProductPageService';
+// import "./CategoryPage.module,css"
+
 //PAGE LAYOUT
 //Determine what Categories exist
 
@@ -6,13 +13,6 @@
 //Search Results
 //API GET by search results (grid)
 //Footer
-
-import React, { useEffect, useState } from 'react';
-import ProductCard from '../product-card/ProductCard';
-import styles from '../product-page/ProductPage.module.css';
-import Constants from '../../utils/constants';
-import fetchProducts from '../product-page/ProductPageService';
-// import "./CategoryPage.module,css"
 
 /**
  * @name CategoryPage
@@ -25,7 +25,27 @@ const CategoryPage = () => {
   const [department, setDepartment] = useState('Men');
   const [category, setCategory] = useState('Running');
 
-  //conditional rendering for department and category
+//   //conditional rendering for department and category
+//   const search = (e) => {
+//     if (api.department == "Men") {
+//         setDepartment("Men");
+//         //Nested if statement to select category
+//         setCategory();
+//     } 
+//     else if (api.department == "Women") {
+//         setDepartment("Women");
+//         //Nested if statement to select category
+//         setCategory();
+//     }
+//     else if (api.department == "Kids") {
+//         setDepartment("Kids");
+//         //Nested if statement to select category
+//         setCategory();
+//     }
+//     else {
+//         return error;
+//     }
+//   };
 
   useEffect(() => {
     fetchProducts(setProducts, setApiError, setDepartment, setCategory);
