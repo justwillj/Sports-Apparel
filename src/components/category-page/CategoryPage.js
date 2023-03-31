@@ -12,6 +12,7 @@ import ProductCard from '../product-card/ProductCard';
 import styles from '../product-page/ProductPage.module.css';
 import Constants from '../../utils/constants';
 import fetchProducts from '../product-page/ProductPageService';
+// import "./CategoryPage.module,css"
 
 /**
  * @name CategoryPage
@@ -31,7 +32,7 @@ const CategoryPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className='page'>
         <h2>{department} | {category}</h2>
         <h3>SEARCH RESULTS</h3>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}

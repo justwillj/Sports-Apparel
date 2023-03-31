@@ -75,7 +75,7 @@ const ProductModal = ({ product }) => {
 //API request for modal contents
 
   return (
-  <div className="modal">
+  <Modal className="modal">
     <div className="modal-container">
       <div className='topContainer'>
         <div className='top-bar'/>
@@ -87,16 +87,17 @@ const ProductModal = ({ product }) => {
       <h4 className='swatchHeader'>Color Choice</h4>
       <div className='swatchContainer'>
         <div className= 'colorSwatch' id='primarySwatch' style={{backgroundColor: "Red"}}/>
-        <div className= 'colorSwatch' id='secondarySwatch' style={{backgroundColor: {secondaryColor}}}/>
+        <div className= 'colorSwatch' id='secondarySwatch' style={{backgroundColor: "Blue"}}/>
       </div>
       
       <div className= 'description'>{description}</div>
       
       <div className='bottom-bar'>
         <div className= 'price'>{price}</div>
+        <div className='icon'>Icon</div>
       </div>
     </div>
-  </div>
+  </Modal>
   );
 }
 

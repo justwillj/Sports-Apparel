@@ -85,6 +85,10 @@
     margin-top: 4%;
   }
   
+  #secondarySwatch {
+    margin-left: 20px;
+  }
+  
   .description {
     width: 300px;
     height: 105px;
@@ -96,6 +100,13 @@
   .price {
     font-weight: bolder;
     margin-left: 20px;
+  }
+  
+  .icon {
+    justify-self: right;
+    float: right;
+    margin-right: 30px;
+    margin-top: -5%;
   }
   
   .close {
