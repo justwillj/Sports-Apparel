@@ -13,7 +13,8 @@ export default function PopularCard({productName, productImg}) {
       <CardActionArea>
         <CardMedia
           component="img"
-          height= "auto"
+          height= "260"
+          width="300"
           image={productImg}
           alt="green iguana"
           className='card-img'

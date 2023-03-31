@@ -16,7 +16,7 @@ const ProductPage = () => {
   useEffect(() => {
     fetchProducts(setProducts, setApiError);
   }, []);
-
+console.log(products);
   return (
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
