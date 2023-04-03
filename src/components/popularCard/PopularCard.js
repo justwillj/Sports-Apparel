@@ -9,12 +9,11 @@ import './PopularCard.css';
 /* eslint-disable */
 export default function PopularCard({productName, productImg}) {
   return (
-    <Card sx={{ maxWidth: 390 }}>
+    <Card sx={{ maxWidth: 450 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height= "260"
-          width="300"
           image={productImg}
           alt="green iguana"
           className='card-img'

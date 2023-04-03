@@ -23,10 +23,8 @@ const HomePage = () => {
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <Slideshow setApiError={() => setApiError} />
-
-      <h1 className="header">Home</h1>
       <div className="popular-main">
-        <h1>Popular Products</h1>
+        <h1>Explore Products</h1>
         <div className="popular-products">
           {products.map((product) => (
             <div className="card" key={product.id}>
@@ -60,7 +58,10 @@ const HomePage = () => {
         </div>
       </div>
       <br />
-
+      <br />
+      <br />
+      <br />
+      <br />
       <div className="new-main">
         <h1>New Products</h1>
         <div className="new-products">
