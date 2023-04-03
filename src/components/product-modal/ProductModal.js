@@ -17,7 +17,7 @@ import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
 import { Modal } from '@material-ui/core';
 import { PLACEHOLDER_IMAGE } from '../../utils/constants';
-import '.\ProductModal.css';
+import './ProductModal.css';
 
 //Design:
 //White Background with darkgrey bar at top, light grey bar at bottom
@@ -46,9 +46,9 @@ import '.\ProductModal.css';
  */
 const ProductModal = ({ product }) => {
     //placeholder data, change values to display from API
-    const department = "Women";
-    const category = "Running";
-    const type = "Short";
+    const department = product.demographic;
+    const category = product.category;
+    const type = product.type;
     const image = {PLACEHOLDER_IMAGE};
     const primaryColor = "Red"
     const secondaryColor = "Lilac"
@@ -71,8 +71,6 @@ const ProductModal = ({ product }) => {
 //       }
 //     );
 //   };
-
-//API request for modal contents
 
   return (
   <Modal className="modal">

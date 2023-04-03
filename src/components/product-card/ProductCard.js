@@ -15,6 +15,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
+import ProductModal from '../product-modal/ProductModal';
 
 /**
  * @name useStyles
@@ -71,7 +72,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} onClick={() => ProductModal({product})}>
       <CardHeader
         avatar={(
           <Avatar aria-label="demographics" className={classes.avatar}>

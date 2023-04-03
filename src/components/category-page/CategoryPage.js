@@ -7,12 +7,11 @@ import fetchProducts from '../product-page/ProductPageService';
 // import "./CategoryPage.module,css"
 
 //PAGE LAYOUT
-//Determine what Categories exist
 
 //Header
 //Breadcrumb: Department | Category
 //Search Results
-//API GET by search results (grid)
+//API GET by search results (utilize searchbar functionality)
 //Footer
 
 /**
@@ -68,6 +67,8 @@ const CategoryPage = () => {
 
   return (
     <div className='page'>
+        <br/>
+        <br/>
         <h2>{department} | {category}</h2>
         <h3>SEARCH RESULTS</h3>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}

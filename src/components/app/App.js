@@ -33,6 +33,7 @@ const App = () => {
         <Route exact path="/home" render={() => <HomePage />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
         <Route exact path="/search-results" render={() => <SearchResults />} />
+        <Route exact path="/men" render={(Men) => <CategoryPage />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
       </Switch>
       <Footer />
