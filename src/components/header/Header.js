@@ -20,10 +20,12 @@ const Header = ({ user, setUser }) => {
 	};
 
 	return (
-		<div style={{ backgroundColor: "darkgrey", position: "sticky", top: 0, zIndex:3 }}>
+		<div style={{ backgroundColor: "#1C2964", position: "sticky", top: 0, zIndex: 3 }}>
 			<Grid container direction="row" spacing={2} justify="space-between">
-            <Grid item>
-					<NavLink to="/home"><img src="https://ibb.co/tPHLLQw" alt="Site logo" /></NavLink>
+				<Grid item>
+					<NavLink to="/home">
+						<img src="https://ibb.co/tPHLLQw" alt="Site logo" />
+					</NavLink>
 				</Grid>
 				<Grid item xs={1}>
 					{user.email ? (
@@ -40,18 +42,24 @@ const Header = ({ user, setUser }) => {
 			</Grid>
 			<Grid container direction="row" spacing={3} justify="center" alignItems="center">
 				<Grid item>
-					<NavLink to="/home"></NavLink>
+					<span>Search</span>
 				</Grid>
 			</Grid>
-			<Grid container direction="row" spacing={9} justify="center">
+			<Grid container direction="row" spacing={10} justify="center">
 				<Grid item>
-					<button>Men</button>
+					<NavLink to="/endpoint">Men</NavLink>
 				</Grid>
 				<Grid item>
-					<button>Women</button>
+					<NavLink to="/endpoint">Women</NavLink>
 				</Grid>
 				<Grid item>
-					<button>Kids</button>
+					<NavLink to="/endpoint">Kids</NavLink>
+				</Grid>
+                <Grid item>
+					<NavLink to="/endpoint">Wish List</NavLink>
+				</Grid>
+                <Grid item>
+					<NavLink to="/endpoint">Cart</NavLink>
 				</Grid>
 			</Grid>
 
