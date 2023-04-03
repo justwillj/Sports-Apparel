@@ -59,7 +59,7 @@ const Slideshow = ({ setApiError }) => {
               }
               // checks if product has image
               if (!product.data.image) {
-                newProduct = ({ ...newProduct, image: Constants.PLACEHOLDER_IMAGE });
+                newProduct = ({ ...newProduct, image: Constants.SLIDESHOW_IMAGE });
               }
               newProducts.push(newProduct);
             });
