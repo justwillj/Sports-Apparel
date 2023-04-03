@@ -4,6 +4,10 @@
   margin: 0px 2px 4px 4px;
 }
 
+link {
+  text-decoration: none;
+}
+
 .popular-products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

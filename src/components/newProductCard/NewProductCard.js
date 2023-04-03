@@ -5,9 +5,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import './NewProduct.css';
+import { NavLink } from 'react-router-dom';
 
 /* eslint-disable */
-export default function NewProductCard({productImg,productName,productCategory, productDepartment,productDes}) {
+export default function NewProductCard({productImg,productName,productCategory, productDepartment,productDes ,link,productId}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
@@ -30,7 +31,9 @@ export default function NewProductCard({productImg,productName,productCategory, 
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
+          <NavLink  style={{ textDecoration: 'none' }} to={`/products/${productId}`} key={productId} >
           View
+          </NavLink>
         </Button>
       </CardActions>
     </Card>
