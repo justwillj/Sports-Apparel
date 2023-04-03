@@ -58,8 +58,8 @@ const Header = ({ user, setUser }) => {
           )}
         </Grid>
       </Grid>
-      <Grid container direction="row" spacing={3} justify="center" alignItems="center">
-        <Grid item>
+      <Grid>
+        <Grid item container direction="row" alignItems="center">
           <SiteSearch
             value={query}
             handleOnChange={(e) => setQuery(e.target.value)}

@@ -39,14 +39,14 @@ const SearchResults = () => {
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <div />
-      {/* <div className="result-counter">
+      <div className="result-counter">
         <h4>
           Results:
           {' '}
-          {searchFilter(products, query).length === 0 ? 'No matches for your search' :
-          searchFilter(products, query).length}
+          {searchFilter(products, query).length === 0 ? 'No matches for your search'
+            : searchFilter(products, query).length}
         </h4>
-      </div> */}
+      </div>
       <div className={styles.app}>
         <h4 className="result-counter">
           Results:
