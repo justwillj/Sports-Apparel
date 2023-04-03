@@ -17,7 +17,7 @@ const ShoppingCart = () => {
     <div className={styles.shoppingCart}>
       <IconButton aria-label="cart">
         <Badge badgeContent={items.length} color="error">
-          <ShoppingCartOutlinedIcon />
+          <ShoppingCartOutlinedIcon color="primary" />
         </Badge>
       </IconButton>
     </div>

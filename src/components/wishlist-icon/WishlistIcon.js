@@ -9,17 +9,14 @@ import styles from './WishlistIcon.module.css';
  * @description displays wishlist icon
  * @return component
  */
-const WishlistIcon = () => {
-  
-    return (
-      <div className={styles.wishlist}>
-        <IconButton aria-label="wishlist">
-            <NavLink to="/wishlist">
-                <FavoriteBorderIcon />
-            </NavLink>
-        </IconButton>
-      </div>
-    );
-  };
-  
-  export default WishlistIcon;
+const WishlistIcon = () => (
+  <div className={styles.wishlist}>
+    <IconButton aria-label="wishlist">
+      <NavLink to="/wishlist">
+        <FavoriteBorderIcon color="primary" />
+      </NavLink>
+    </IconButton>
+  </div>
+);
+
+export default WishlistIcon;

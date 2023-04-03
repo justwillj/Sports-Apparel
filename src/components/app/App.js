@@ -9,7 +9,6 @@ import Header from '../header/Header';
 import HomePage from '../home-page/HomePage';
 import SingleProduct from '../product-page/SingleProduct';
 import Footer from '../footer/Footer';
-import Home from '../home/Home';
 import SearchResults from '../search/SearchResults';
 
 /**
@@ -21,15 +20,16 @@ const App = () => {
   const [wishlist, setWishList] = useState([]);
 
   const updateWishlist = (item) => {
-    setWishList([...wishlist, item]);
-  }
+    if (sessionStorage.getItem('email') !== null) {
+      setWishList([...wishlist, item]);
+    }
+  };
 
   return (
     <BrowserRouter>
       <Header user={user} setUser={setUser} />
       {/* <Header /> */}
       <Switch>
-        <Route exact path="/home" render={() => <Home />} />
         <Route exact path="/" render={() => <ProductPage addToWishlist={updateWishlist} />} />
         <Route exact path="/checkout" render={() => <CheckoutPage />} />
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
@@ -40,7 +40,7 @@ const App = () => {
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
       </Switch>
       <Footer />
-      </BrowserRouter>
+    </BrowserRouter>
   );
 };
 
