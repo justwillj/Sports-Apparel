@@ -1,12 +1,12 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './homePage.css';
 import Slideshow from '../slideshow/Slideshow';
 import Constants from '../../utils/constants';
 import fetchProducts from '../product-page/ProductPageService';
 import PopularCard from '../popularCard/PopularCard';
 import NewProductCard from '../newProductCard/NewProductCard';
-import { NavLink } from 'react-router-dom';
+
 /**
  * @name HomePage
  * @description fetches and displays an advertisement slideshow as well as
@@ -31,33 +31,37 @@ const HomePage = () => {
           {products.map((product) => (
             <div className="card" key={product.id}>
               {product.id === 1 ? (
-                 <NavLink style={{ textDecoration: 'none' }} to={`/products/${product.id}`} key={product.id}>
-                <PopularCard
-                  productName="Nike React Infinity 3"
-                  productImg="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/e98d86bf-ee48-4e93-9e54-4f6aaec4c2d2/quest-4-mens-road-running-shoes-RlpLvS.png"
-                />
-              </NavLink>) : null}
+                <NavLink style={{ textDecoration: 'none' }} to={`/products/${product.id}`} key={product.id}>
+                  <PopularCard
+                    productName="Nike React Infinity 3"
+                    productImg="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/e98d86bf-ee48-4e93-9e54-4f6aaec4c2d2/quest-4-mens-road-running-shoes-RlpLvS.png"
+                  />
+                </NavLink>
+              ) : null}
               {product.id === 2 ? (
-                  <NavLink style={{ textDecoration: 'none' }} to={`/products/${product.id}`} key={product.id}>
-                <PopularCard
-                  productName="Adidas Supernova 2.0"
-                  productImg="https://cdn.shopify.com/s/files/1/0558/4169/products/RSRunners_BlackGum_1500_1000-2_fc7c88f0-77a8-4b06-bb46-924d9fa0b6c8.jpg?v=1625795310"
-                />
-             </NavLink> ) : null}
+                <NavLink style={{ textDecoration: 'none' }} to={`/products/${product.id}`} key={product.id}>
+                  <PopularCard
+                    productName="Adidas Supernova 2.0"
+                    productImg="https://cdn.shopify.com/s/files/1/0558/4169/products/RSRunners_BlackGum_1500_1000-2_fc7c88f0-77a8-4b06-bb46-924d9fa0b6c8.jpg?v=1625795310"
+                  />
+                </NavLink>
+              ) : null}
               {product.id === 3 ? (
-                  <NavLink style={{ textDecoration: 'none' }} to={`/products/${product.id}`} key={product.id}>
-                <PopularCard
-                  productName="Nike Running Pants"
-                  productImg="https://i.ebayimg.com/images/g/TIoAAOSw2UpfrfZ1/s-l1600.jpg"
-                />
-            </NavLink>) : null}
+                <NavLink style={{ textDecoration: 'none' }} to={`/products/${product.id}`} key={product.id}>
+                  <PopularCard
+                    productName="Nike Running Pants"
+                    productImg="https://i.ebayimg.com/images/g/TIoAAOSw2UpfrfZ1/s-l1600.jpg"
+                  />
+                </NavLink>
+              ) : null}
               {product.id === 4 ? (
-                 <NavLink style={{ textDecoration: 'none' }} to={`/products/${product.id}`} key={product.id}>
-                <PopularCard
-                  productName="Running Shirt"
-                  productImg="https://tracksmith-media.imgix.net/Fall21-Mens-VC-Tee-Black_92aa1400-f545-472a-96b7-7e871cdd6db3.png?auto=format,compress&crop=faces&dpr=2&fit=crop&h=640&w=640"
-                />
-             </NavLink>) : null}
+                <NavLink style={{ textDecoration: 'none' }} to={`/products/${product.id}`} key={product.id}>
+                  <PopularCard
+                    productName="Running Shirt"
+                    productImg="https://tracksmith-media.imgix.net/Fall21-Mens-VC-Tee-Black_92aa1400-f545-472a-96b7-7e871cdd6db3.png?auto=format,compress&crop=faces&dpr=2&fit=crop&h=640&w=640"
+                  />
+                </NavLink>
+              ) : null}
             </div>
 
           ))}
