@@ -31,62 +31,57 @@ const Header = ({ user, setUser }) => {
   };
 
   return (
-    <div style={{ backgroundColor: 'darkgrey', position: 'sticky', top: 0 }}>
+    <div style={{
+      backgroundColor: '#1C2964', position: 'sticky', top: 0, zIndex: 3
+    }}
+    >
       <Grid container direction="row" spacing={2} justify="space-between">
-        <Grid item xs={4}>
+        <Grid item>
+          <NavLink to="/home">
+            <img src="https://ibb.co/tPHLLQw" alt="Site logo" />
+          </NavLink>
+        </Grid>
+        <Grid item xs={1}>
+          {user.email ? (
+            <span>
+              <span>
+                (
+                {user.email}
+                )
+              </span>
+              <button type="button" onClick={handleClick}>
+                Logout
+              </button>
+            </span>
+          ) : (
+            <NavLink to="/login">Login</NavLink>
+          )}
+        </Grid>
+      </Grid>
+      <Grid container direction="row" spacing={3} justify="center" alignItems="center">
+        <Grid item>
           <SiteSearch
             value={query}
             handleOnChange={(e) => setQuery(e.target.value)}
             handleOnClick={clickHandlerForSearch}
           />
         </Grid>
-        <Grid item xs={1}>
-          {user.email
-            ? (
-              <span>
-                <span>
-                  (
-                  {user.email}
-                  )
-                </span>
-                <button type="button" onClick={handleClick}>Logout</button>
-              </span>
-            )
-            : <NavLink to="/login">Login</NavLink>}
-        </Grid>
       </Grid>
-      <Grid container direction="row" spacing={3} justify="center" alignItems="center">
+      <Grid container direction="row" spacing={10} justify="center">
         <Grid item>
-          {}
-          <NavLink to="/home">Logo</NavLink>
+          <NavLink to="/endpoint">Men</NavLink>
         </Grid>
-      </Grid>
-      <Grid container direction="row" spacing={9} justify="center">
-        <Grid item className="dropdown">
-          <button className="dropbtn">Men</button>
-          <div className="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
+        <Grid item>
+          <NavLink to="/endpoint">Women</NavLink>
         </Grid>
-        <Grid item className="dropdown">
-          <button className="dropbtn">Women</button>
-          <div className="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
-
+        <Grid item>
+          <NavLink to="/endpoint">Kids</NavLink>
         </Grid>
-        <Grid item className="dropdown">
-          <button className="dropbtn">Kids</button>
-          <div className="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
-
+        <Grid item>
+          <NavLink to="/endpoint">Wish List</NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/endpoint">Cart</NavLink>
         </Grid>
       </Grid>
 
