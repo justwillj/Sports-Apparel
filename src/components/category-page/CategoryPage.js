@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import HttpHelper from '../../utils/HttpHelper';
 import ProductCard from '../product-card/ProductCard';
 import styles from '../product-page/ProductPage.module.css';
 import Constants from '../../utils/constants';
@@ -25,19 +26,33 @@ const CategoryPage = () => {
   const [department, setDepartment] = useState('Men');
   const [category, setCategory] = useState('Running');
 
+  async function fetchProducts(setProducts, setApiError) {
+    await HttpHelper('/products?demographic=Men&category=Running&type=Short', 'GET')
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error(Constants.API_ERROR);
+      })
+      .then(setProducts)
+      .catch(() => {
+        setApiError(true);
+      });
+  }
+
 //   //conditional rendering for department and category
 //   const search = (e) => {
-//     if (api.department == "Men") {
+//     if (product.demographic == "Men") {
 //         setDepartment("Men");
 //         //Nested if statement to select category
 //         setCategory();
 //     } 
-//     else if (api.department == "Women") {
+//     else if (product.department == "Women") {
 //         setDepartment("Women");
 //         //Nested if statement to select category
 //         setCategory();
 //     }
-//     else if (api.department == "Kids") {
+//     else if (product.department == "Kids") {
 //         setDepartment("Kids");
 //         //Nested if statement to select category
 //         setCategory();
