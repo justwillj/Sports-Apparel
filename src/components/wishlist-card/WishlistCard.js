@@ -72,23 +72,23 @@ const WishlistCard = ({ product }) => {
       />
       <CardContent className={classes.row}>
         <div className={classes.column}>
-        <Typography variant="body2" color="textSecondary" component="p">
-        {`${product.demographic} ${product.category} ${product.type}`}
-        </Typography>
-        <br />
-        <Typography variant="body2" color="textSecondary" component="p">
-          Price: $
-          {product.price}
-        </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {`${product.demographic} ${product.category} ${product.type}`}
+          </Typography>
+          <br />
+          <Typography variant="body2" color="textSecondary" component="p">
+            Price: $
+            {product.price}
+          </Typography>
         </div>
         <div className={classes.column}>
-        <div className={classes.icon}>
-        <CardActions disableSpacing>
-        <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
-          <AddShoppingCartIcon />
-        </IconButton>
-        </CardActions>
-        </div>
+          <div className={classes.icon}>
+            <CardActions disableSpacing>
+              <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
+                <AddShoppingCartIcon />
+              </IconButton>
+            </CardActions>
+          </div>
         </div>
       </CardContent>
     </Card>

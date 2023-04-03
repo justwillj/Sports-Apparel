@@ -22,7 +22,7 @@ const App = () => {
 
   const updateWishlist = (item) => {
     setWishList([...wishlist, item]);
-  }
+  };
 
   return (
     <BrowserRouter>
@@ -40,7 +40,7 @@ const App = () => {
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
       </Switch>
       <Footer />
-      </BrowserRouter>
+    </BrowserRouter>
   );
 };
 
