@@ -8,20 +8,17 @@ import ShoppingCart from '../shopping-cart/ShoppingCart';
  * @description displays user's favorite products
  * @return component
  */
-const WishlistPage = ({ list }) => {
-
-  return (
-    <div>
-      <ShoppingCart />
-      <div className={styles.app}>
-        {list.map((item) => (
-          <div key={item.id}>
-            <WishlistCard product={item} />
-          </div>
-        ))}
-      </div>
+const WishlistPage = ({ list }) => (
+  <div>
+    <ShoppingCart />
+    <div className={styles.app}>
+      {list.map((item) => (
+        <div key={item.id}>
+          <WishlistCard product={item} />
+        </div>
+      ))}
     </div>
-  );
-};
+  </div>
+);
 
 export default WishlistPage;

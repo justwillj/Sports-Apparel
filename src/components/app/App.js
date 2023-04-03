@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import ProductPage from '../product-page/ProductPage';
 import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
@@ -18,16 +19,24 @@ import SearchResults from '../search/SearchResults';
 const App = () => {
   const [user, setUser] = useState({});
   const [wishlist, setWishList] = useState([]);
+  const [email, setEmail] = useState('');
+  const history = useHistory();
+ 
+  const logoutForm = () => {
+    sessionStorage.setItem("email","");
+    setEmail("");
+    history.push("/home");
+  } 
 
   const updateWishlist = (item) => {
-    if (sessionStorage.getItem('email') !== null) {
+    if (sessionStorage.getItem('email') !== "") {
       setWishList([...wishlist, item]);
     }
   };
 
   return (
     <BrowserRouter>
-      <Header user={user} setUser={setUser} />
+      <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} />
       {/* <Header /> */}
       <Switch>
         <Route exact path="/" render={() => <ProductPage addToWishlist={updateWishlist} />} />

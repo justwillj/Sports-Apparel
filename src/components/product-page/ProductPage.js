@@ -18,7 +18,7 @@ const ProductPage = ({ addToWishlist }) => {
   useEffect(() => {
     fetchProducts(setProducts, setApiError);
   }, []);
-
+  // console.log(products);
   return (
     <div>
       <WishlistIcon />
