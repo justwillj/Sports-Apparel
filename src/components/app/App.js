@@ -8,7 +8,6 @@ import Header from '../header/Header';
 import HomePage from '../home-page/HomePage';
 import SingleProduct from '../product-page/SingleProduct';
 import Footer from '../footer/Footer';
-import LoginPage from '../login-page/LoginPage';
 import Home from '../home/Home';
 import SearchResults from '../search/SearchResults';
 
@@ -26,7 +25,6 @@ const App = () => {
       <Switch>
         <Route exact path="/home" render={() => <Home />} />
         <Route exact path="/" render={() => <ProductPage />} />
-        <Route exact path="/login" render={() => <LoginPage setUser={setUser} />} />
         <Route exact path="/checkout" render={() => <CheckoutPage />} />
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
         <Route exact path="/home" render={() => <HomePage />} />
