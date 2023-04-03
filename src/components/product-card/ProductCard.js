@@ -14,7 +14,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Constants from '../../utils/constants';
-import { useCart } from '../checkout-page/CartContext';
+import { useCartDispatch } from '../checkout-page/CartContext';
 
 /**
  * @name useStyles
@@ -50,24 +50,14 @@ const useStyles = makeStyles((theme) => ({
  * @param {*} props product
  * @return component
  */
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onClick }) => {
   const classes = useStyles();
 
-  const { dispatch } = useCart();
+  const dispatch = useCartDispatch();
 
-  const onAdd = () => {
-    dispatch(
-      {
-        type: 'add',
-        product: {
-          id: product.id,
-          title: product.name,
-          price: product.price,
-          description: product.description,
-          quantity: 1
-        }
-      }
-    );
+  const addToCart = (item) => {
+    // console.log(item);
+    dispatch({ type: 'add', item });
   };
 
   return (
@@ -102,13 +92,13 @@ const ProductCard = ({ product }) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" onClick={() => onClick(product)}>
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
-        <IconButton aria-label="add to shopping cart" onClick={onAdd}>
+        <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
           <AddShoppingCartIcon />
         </IconButton>
       </CardActions>

@@ -1,0 +1,28 @@
+/* .topnav input[type=text] {
+
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+  } */
+  
+  .topnav .search button:hover {
+    opacity: 60%;
+    background-color: #706262;
+  }
+  .app {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(5, auto);
+    justify-content: space-evenly;
+    margin: 20px;
+  }
+  
+  .errMsg {
+    color: red;
+    font-size: 14px;
+    margin: 0px 2px 4px 4px;
+  }
+  /* .result-counter {
+    padding-top: 100px;
+  } */

@@ -1,12 +1,11 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import axios from 'axios';
 import { NavLink, useHistory } from 'react-router-dom';
-import {
-  Grid, Modal, Box
-} from '@material-ui/core';
+import { Grid,Modal,Box } from '@material-ui/core';
+import SiteSearch from '../search/SiteSearch';
 import './Header.css';
-
+import WishlistIcon from '../wishlist-icon/WishlistIcon';
+import ShoppingCart from '../shopping-cart/ShoppingCart';
 
 // import loginUser from './HeaderService';
 // import constants from '../../utils/constants';
@@ -16,35 +15,27 @@ import './Header.css';
  * @description Displays the navigation header
  * @return component
  */
-const Header = ({ user, setUser,logout,email,setEmail }) => {
+const Header = ({ user, setUser,email,setEmail,logout }) => {
   const [modalOn, setModalOn] = useState(false);
-
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
+  const pathName = window.location.pathname;
+  const [query, setQuery] = useState('');
   const history = useHistory();
-
-
-  const handleClick = (e) => {
-    axios
-      .get(` http://localhost:8085/users/${email}`)
-      .then((response) => {
-        // sessionStorage.setItem('hotelToken', response.data.token);
-        // setToken(response.data.token);
-        // const loggedInUser = jwtDecode(response.data.token);
-        // setUser(loggedInUser);
-        console.log(response);
-        return response.data;
-      })
-      .then((user) => {
-        setUser(user);
-        console.log(user);
-        history.push('/home');
-      })
-      .catch((error) => {
-        console.log(error);
-        setError(true);     
-      });
+  const clickHandlerForSearch = () => {
+    sessionStorage.setItem('userSearch', query);
+    console.log(pathName);
+    if (pathName !== '/search-results') {
+      history.push('/search-results');
+    }
+    if (pathName === '/search-results') {
+      window.location.reload(false);
+    }
+  };
+  const handleClick = () => {
+    setUser({});
+    history.push('/home');
   };
 
   const formCheck = (e)=>{
@@ -72,7 +63,7 @@ const Header = ({ user, setUser,logout,email,setEmail }) => {
 
   return (
     <div>
-      <Modal closeAfterTransition open={modalOn} onClose={()=> setModalOn(false)}>
+       <Modal closeAfterTransition open={modalOn} onClose={()=> setModalOn(false)}>
       <div className='login-main'>
         <Box>
           <form>
@@ -90,59 +81,59 @@ const Header = ({ user, setUser,logout,email,setEmail }) => {
           </Box>
           </div>
       </Modal>
-      <div style={{ backgroundColor: 'darkgrey', position: 'sticky', top: 0 }}>
-        <Grid container direction="row" spacing={2} justify="space-between">
-          <Grid item xs={4}>
-            Search Bar
-          </Grid>
-          <Grid item xs={1}>
-            {sessionStorage.getItem("email") === ""? <button type="button" onClick={()=> setModalOn(true)}>Login</button>: (
+    <div style={{
+      backgroundColor: '#1C2964', position: 'sticky', top: 0, zIndex: 3, marginBottom: 5
+    }}
+    >
+      <Grid container direction="row" spacing={2} justify="space-between" border="2px white">
+        <Grid item>
+          <NavLink to="/home">
+            <img className="logo" src="/Apparel Logo just.png" alt="Site logo" />
+          </NavLink>
+        </Grid>
+        <Grid item xs={1}>
+        {sessionStorage.getItem("email") === ""? <button type="button" onClick={()=> setModalOn(true)}>Login</button>: (
               <div>
-                {sessionStorage.getItem("email")}
+                <p className='login-name'>{sessionStorage.getItem("email")}</p>
+                <br></br>
                 <button type="button" onClick={logout}>Logout</button>
               </div>
             ) }
-          </Grid>
         </Grid>
-        <Grid container direction="row" spacing={3} justify="center" alignItems="center">
-          <Grid item>
-            {}
-            <NavLink to="/home">Logo</NavLink>
-          </Grid>
+      </Grid>
+      <Grid>
+        <Grid item container direction="row" xs={11} spacing={10} justify="flex-end">
+          <SiteSearch
+            value={query}
+            handleOnChange={(e) => setQuery(e.target.value)}
+            handleOnClick={clickHandlerForSearch}
+          />
         </Grid>
-        <Grid container direction="row" spacing={9} justify="center">
-          <Grid item className="dropdown">
-            <button className="dropbtn">Men</button>
-            <div className="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </Grid>
-          <Grid item className="dropdown">
-            <button className="dropbtn">Women</button>
-            <div className="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </Grid>
-          <Grid item className="dropdown">
-            <button className="dropbtn">Kids</button>
-            <div className="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </Grid>
+      </Grid>
+      <Grid container direction="row" spacing={10} justify="center">
+        <Grid item>
+          <NavLink to="/Men" className="department">Men</NavLink>
         </Grid>
+        <Grid item>
+          <NavLink to="/Women" className="department">Women</NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/Kids" className="department">Kids</NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/wishlist"><WishlistIcon /></NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/shoppingcart"><ShoppingCart /></NavLink>
+        </Grid>
+      </Grid>
 
-        {/* <NavLink to="/home">Home</NavLink>
+      {/* <NavLink to="/home">Home</NavLink>
       <NavLink to="/checkout">Cart</NavLink>
       {user && <span>{user.firstName}</span>}
       {user && <span>{user.lastName}</span>}
       {apiError && <span>Api Error</span>} */}
-      </div>
+    </div>
     </div>
   );
 };

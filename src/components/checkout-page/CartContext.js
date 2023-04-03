@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 const CartContext = React.createContext();
+const DispatchContext = React.createContext();
 
 function cartReducer(state, action) {
   switch (action.type) {
@@ -11,10 +12,7 @@ function cartReducer(state, action) {
       };
     }
     case 'add': {
-      return {
-        ...state,
-        products: [...state.products, action.product]
-      };
+      return [...state, action.product];
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -23,33 +21,14 @@ function cartReducer(state, action) {
 }
 
 function CartProvider({ children }) {
-  const initialProducts = {
-    products: [
-      {
-        id: null,
-        title: 'Sport Shoes',
-        price: 49.99,
-        description: 'Sporty shoes for sporty people',
-        quantity: 2
-      },
-      {
-        id: null,
-        title: 'Sport Shorts',
-        price: 39.99,
-        description: 'Sporty shorts for sporty people',
-        quantity: 5
-      }
-    ],
-    setProducts: () => { }
-  };
-  const [state, dispatch] = React.useReducer(cartReducer, initialProducts);
-
-  const value = { state, dispatch };
+  const [state, dispatch] = React.useReducer(cartReducer, []);
 
   return (
-    <CartContext.Provider value={value}>
-      {children}
-    </CartContext.Provider>
+    <DispatchContext.Provider value={dispatch}>
+      <CartContext.Provider value={state}>
+        {children}
+      </CartContext.Provider>
+    </DispatchContext.Provider>
   );
 }
 
@@ -61,4 +40,6 @@ function useCart() {
   return context;
 }
 
-export { CartProvider, useCart };
+const useCartDispatch = () => useContext(DispatchContext);
+
+export { CartProvider, useCart, useCartDispatch };
