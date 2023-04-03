@@ -10,7 +10,6 @@ import Header from '../header/Header';
 import HomePage from '../home-page/HomePage';
 import SingleProduct from '../product-page/SingleProduct';
 import Footer from '../footer/Footer';
-import Home from '../home/Home';
 import SearchResults from '../search/SearchResults';
 
 /**
@@ -38,7 +37,6 @@ const App = () => {
       <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} />
       {/* <Header /> */}
       <Switch>
-        <Route exact path="/home" render={() => <Home />} />
         <Route exact path="/" render={() => <ProductPage addToWishlist={updateWishlist} />} />
         <Route exact path="/checkout" render={() => <CheckoutPage />} />
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
