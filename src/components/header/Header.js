@@ -22,8 +22,7 @@ const Header = ({ user, setUser }) => {
       history.push('/search-results');
     }
     if (pathName === '/search-results') {
-      history.push('/');
-      history.push('/search-results');
+      window.location.reload(false);
     }
   };
   const handleClick = () => {
