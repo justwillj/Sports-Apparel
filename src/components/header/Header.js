@@ -1,84 +1,101 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import GoogleLogin, { GoogleLogout } from 'react-google-login';
-import loginUser from './HeaderService';
-import constants from '../../utils/constants';
+import { NavLink, useHistory } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
+import SiteSearch from '../search/SiteSearch';
+
+// import loginUser from './HeaderService';
+// import constants from '../../utils/constants';
 
 /**
  * @name Header
  * @description Displays the navigation header
  * @return component
  */
-const Header = () => {
-  const [user, setUser] = useState('');
-  const [googleError, setGoogleError] = useState('');
-  const [apiError, setApiError] = useState(false);
-
-  /**
-   * @name handleGoogleLoginSuccess
-   * @description Function to run if google login was successful
-   * @param {Object} response Response object from google
-   */
-  const handleGoogleLoginSuccess = (response) => {
-    sessionStorage.setItem('token', response.getAuthResponse().id_token);
-    const googleUser = {
-      email: response.profileObj.email,
-      firstName: response.profileObj.givenName,
-      lastName: response.profileObj.familyName
-    };
-    loginUser(googleUser, setUser, setApiError);
-    setGoogleError('');
+const Header = ({ user, setUser }) => {
+  const pathName = window.location.pathname;
+  const [query, setQuery] = useState('');
+  const history = useHistory();
+  const clickHandlerForSearch = () => {
+    sessionStorage.setItem('userSearch', query);
+    console.log(pathName);
+    if (pathName !== '/search-results') {
+      history.push('/search-results');
+    }
+    if (pathName === '/search-results') {
+      history.push('/');
+      history.push('/search-results');
+    }
   };
-
-  /**
-   * @name handleGoogleLoginSuccess
-   * @description Function to run if google login was unsuccessful
-   */
-  const handleGoogleLoginFailure = () => {
-    setGoogleError('There was a problem logging in with Google. Please wait and try again later.');
-  };
-
-  /**
-   * @name handleGoogleLogoutSuccess
-   * @description Function to run if google logout was successful
-   */
-  const handleGoogleLogoutSuccess = () => {
-    setUser('');
-    setGoogleError('');
-  };
-
-  /**
-   * @name handleGoogleLogoutFailure
-   * @description Function to run if google logout was unsuccessful
-   */
-  const handleGoogleLogoutFailure = () => {
-    setGoogleError('There was a problem logging out with Google. Please wait and try again later.');
+  const handleClick = () => {
+    setUser({});
+    history.push('/home');
   };
 
   return (
-    <div>
-      <NavLink to="/home">Home</NavLink>
+    <div style={{ backgroundColor: 'darkgrey', position: 'sticky', top: 0 }}>
+      <Grid container direction="row" spacing={2} justify="space-between">
+        <Grid item xs={4}>
+          <SiteSearch
+            value={query}
+            handleOnChange={(e) => setQuery(e.target.value)}
+            handleOnClick={clickHandlerForSearch}
+          />
+        </Grid>
+        <Grid item xs={1}>
+          {user.email
+            ? (
+              <span>
+                <span>
+                  (
+                  {user.email}
+                  )
+                </span>
+                <button type="button" onClick={handleClick}>Logout</button>
+              </span>
+            )
+            : <NavLink to="/login">Login</NavLink>}
+        </Grid>
+      </Grid>
+      <Grid container direction="row" spacing={3} justify="center" alignItems="center">
+        <Grid item>
+          {}
+          <NavLink to="/home">Logo</NavLink>
+        </Grid>
+      </Grid>
+      <Grid container direction="row" spacing={9} justify="center">
+        <Grid item className="dropdown">
+          <button className="dropbtn">Men</button>
+          <div className="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+        </Grid>
+        <Grid item className="dropdown">
+          <button className="dropbtn">Women</button>
+          <div className="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+
+        </Grid>
+        <Grid item className="dropdown">
+          <button className="dropbtn">Kids</button>
+          <div className="dropdown-content">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div>
+
+        </Grid>
+      </Grid>
+
+      {/* <NavLink to="/home">Home</NavLink>
       <NavLink to="/checkout">Cart</NavLink>
       {user && <span>{user.firstName}</span>}
       {user && <span>{user.lastName}</span>}
-      {googleError && <span>{googleError}</span>}
-      {apiError && <span>Api Error</span>}
-      {!user ? (
-        <GoogleLogin
-          clientId={constants.GOOGLE_CLIENT_ID}
-          buttonText="Login"
-          onSuccess={handleGoogleLoginSuccess}
-          onFailure={handleGoogleLoginFailure}
-          cookiePolicy="single_host_origin"
-        />
-      ) : (
-        <GoogleLogout
-          clientId={constants.GOOGLE_CLIENT_ID}
-          buttonText="Logout"
-          onLogoutSuccess={handleGoogleLogoutSuccess}
-          onFailure={handleGoogleLogoutFailure}
-        />
-      )}
+      {apiError && <span>Api Error</span>} */}
     </div>
   );
 };

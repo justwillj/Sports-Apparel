@@ -1,6 +1,7 @@
 module.exports = Object.freeze({
   API_ERROR: 'Oops, something went wrong',
   BASE_URL_API: 'http://localhost:8085',
+  LOGIN_ENDPOINT: '/login',
   PLACEHOLDER_IMAGE: 'https://www.signfix.com.au/wp-content/uploads/2017/09/placeholder-600x400.png',
   PURCHASE_ENDPOINT: '/purchases',
   PRODUCT_ENDPOINT: '/products',
