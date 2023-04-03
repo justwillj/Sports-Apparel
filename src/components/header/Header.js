@@ -3,6 +3,8 @@ import { NavLink, useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 import SiteSearch from '../search/SiteSearch';
 import './Header.css';
+import WishlistIcon from '../wishlist-icon/WishlistIcon';
+import ShoppingCart from '../shopping-cart/ShoppingCart';
 
 // import loginUser from './HeaderService';
 // import constants from '../../utils/constants';
@@ -79,10 +81,10 @@ const Header = ({ user, setUser }) => {
           <NavLink to="/Kids" className="department">Kids</NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/endpoint">Wish List</NavLink>
+          <NavLink to="/wishlist"><WishlistIcon /></NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/endpoint">Cart</NavLink>
+          <NavLink to="/shoppingcart"><ShoppingCart /></NavLink>
         </Grid>
       </Grid>
 
