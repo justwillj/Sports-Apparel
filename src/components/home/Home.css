@@ -1,0 +1,23 @@
+.popular-products {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+.popular-main {
+    height: 18rem;
+    background-color: #1C2964;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    padding-bottom: 1rem;
+    overflow: auto;
+    overflow: hidden;
+}
+
+.popular-main h1 {
+    margin-top: -.4rem;
+    font-size: 2.5rem;
+    text-align: center;
+    background-color: #1C2964;
+}
