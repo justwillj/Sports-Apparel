@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <h2>
-        {`${year}  Sports Apparel `}
+        {`${year}  Sports Apparel Inc `}
         &#169;
       </h2>
     </footer>
