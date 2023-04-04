@@ -95,7 +95,7 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
       </Grid>
       
         
-      <Grid container direction="row" justify="center">
+      <Grid className='department-container' container direction="row" justify="center">
         <Grid item xs={3}></Grid>
         <Grid item xs={6} container spacing={10} justify="center">
           <Grid item>

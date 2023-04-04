@@ -5,19 +5,26 @@
     font-size: 17px;
     border: none;
   } */
-
-  button {
-    width: 60%;
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-bottom: 5%;
+  .search {
+    display: flex;
+  }
+  .searchButton {
+    width: 30%;
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .15rem;
+    padding-right: .15rem;
+    margin-left: 1.5rem;
+    margin-right: 1%;
+    margin-bottom: 30%;
     margin-top: 5%;
-    background-color: antiquewhite;
+    background-color: rgb(237, 235, 231);
     border-radius: 5px;
     opacity: 100%;
   }
-  button:hover {
-    background-color: #706262;
+  .searchButton:hover {
+    background-color: #e5dcdc;
+    opacity: 77%;
   }
   .app {
     display: grid;
