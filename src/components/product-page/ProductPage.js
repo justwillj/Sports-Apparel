@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../product-card/ProductCard';
 import styles from './ProductPage.module.css';

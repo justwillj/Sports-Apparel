@@ -36,6 +36,10 @@ const App = () => {
     }
   };
 
+  const pagePush = () =>{
+    history.push(`/${category}`);
+  }
+
   return (
     <BrowserRouter>
       <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} />
@@ -47,8 +51,8 @@ const App = () => {
         <Route exact path="/home" render={() => <HomePage />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
         <Route exact path="/search-results" render={() => <SearchResults />} />
-        <Route exact path="/men" render={() => <CategoryPage category={"Men"} />} />
-        <Route exact path="/women" render={() => <CategoryPage category={"Women"}/>} />
+        <Route exact path="/Men" render={() => <CategoryPage category={"Men"} />} />
+        <Route exact path="/Women" render={() => <CategoryPage category={"Women"}/>} />
         <Route exact path="/kids" render={() => <CategoryPage category={"Kids"}/>} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}

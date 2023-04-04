@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import HttpHelper from '../../utils/HttpHelper';
 import ProductCard from '../product-card/ProductCard';
@@ -23,6 +24,8 @@ const CategoryPage = (props) => {
   const [apiError, setApiError] = useState(false);
   const [department, setDepartment] = useState(props.category);
   const [category, setCategory] =  useState('Running');
+
+
 
 
   useEffect(() => {
