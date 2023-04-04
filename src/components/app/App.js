@@ -21,6 +21,7 @@ const App = () => {
   const [wishlist, setWishList] = useState([]);
   const [email, setEmail] = useState('');
   const history = useHistory();
+  sessionStorage.setItem("email","");
  
   const logoutForm = () => {
     sessionStorage.setItem("email","");

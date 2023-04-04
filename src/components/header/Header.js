@@ -62,7 +62,71 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
   }
 
   return (
-    <div>
+    <div style={{
+      backgroundColor: '#1C2964', position: 'sticky', top: 0, zIndex: 3, marginBottom: 5, opacity: "0.95"
+    }}
+    >
+        <div style={{
+            position: 'relative'
+        }}>
+            <div 
+            style={{
+            position: 'absolute', top: 0, left:0
+        }}><NavLink to="/home">
+            <img className="logo" src="/Apparel Logo just.png" alt="Site logo" />
+          </NavLink>
+          </div>
+      <Grid container direction="row" spacing={2} justify="flex-end" border="2px white">
+        <Grid item xs={1} container justify="flex-end">
+            <div 
+            style={{
+                display: 'flex',
+                paddingRight: '10px'
+                }}>{sessionStorage.getItem("email") === ""? <button type="button" onClick={()=> setModalOn(true)}>Login</button>: (
+              <div>
+                <p className='login-name'>{sessionStorage.getItem("email")}</p>
+                <br></br>
+                <button type="button" onClick={logout}>Logout</button>
+              </div>
+            ) }
+            </div>
+        
+        </Grid>
+      </Grid>
+      
+        
+      <Grid container direction="row" justify="center">
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6} container spacing={10} justify="center">
+          <Grid item>
+          <NavLink to="/Men" className="department">Men</NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/Women" className="department">Women</NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/Kids" className="department">Kids</NavLink>
+        </Grid>  
+        </Grid>
+        <Grid item xs={3} container justify="flex-end">
+        <Grid item>
+          <SiteSearch
+            value={query}
+            handleOnChange={(e) => setQuery(e.target.value)}
+            handleOnClick={clickHandlerForSearch}
+          />
+      </Grid>
+      <Grid item>
+          <NavLink to="/wishlist"><WishlistIcon /></NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/shoppingcart"><ShoppingCart /></NavLink>
+        </Grid>
+        </Grid>
+
+      </Grid>
+
+      <div>
        <Modal closeAfterTransition open={modalOn} onClose={()=> setModalOn(false)}>
       <div className='login-main'>
         <Box>
@@ -81,52 +145,7 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
           </Box>
           </div>
       </Modal>
-    <div style={{
-      backgroundColor: '#1C2964', position: 'sticky', top: 0, zIndex: 3, marginBottom: 5
-    }}
-    >
-      <Grid container direction="row" spacing={2} justify="space-between" border="2px white">
-        <Grid item>
-          <NavLink to="/home">
-            <img className="logo" src="/Apparel Logo just.png" alt="Site logo" />
-          </NavLink>
-        </Grid>
-        <Grid item xs={1}>
-        {sessionStorage.getItem("email") === ""? <button type="button" onClick={()=> setModalOn(true)}>Login</button>: (
-              <div>
-                <p className='login-name'>{sessionStorage.getItem("email")}</p>
-                <br></br>
-                <button type="button" onClick={logout}>Logout</button>
-              </div>
-            ) }
-        </Grid>
-      </Grid>
-      <Grid>
-        <Grid item container direction="row" xs={11} spacing={10} justify="flex-end">
-          <SiteSearch
-            value={query}
-            handleOnChange={(e) => setQuery(e.target.value)}
-            handleOnClick={clickHandlerForSearch}
-          />
-        </Grid>
-      </Grid>
-      <Grid container direction="row" spacing={10} justify="center">
-        <Grid item>
-          <NavLink to="/Men" className="department">Men</NavLink>
-        </Grid>
-        <Grid item>
-          <NavLink to="/Women" className="department">Women</NavLink>
-        </Grid>
-        <Grid item>
-          <NavLink to="/Kids" className="department">Kids</NavLink>
-        </Grid>
-        <Grid item>
-          <NavLink to="/wishlist"><WishlistIcon /></NavLink>
-        </Grid>
-        <Grid item>
-          <NavLink to="/shoppingcart"><ShoppingCart /></NavLink>
-        </Grid>
-      </Grid>
+      </div>
 
       {/* <NavLink to="/home">Home</NavLink>
       <NavLink to="/checkout">Cart</NavLink>
