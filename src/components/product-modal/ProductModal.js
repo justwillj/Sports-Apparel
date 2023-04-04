@@ -18,6 +18,7 @@ import { useCart } from '../checkout-page/CartContext';
 import { Modal } from '@material-ui/core';
 import { PLACEHOLDER_IMAGE } from '../../utils/constants';
 import './ProductModal.css';
+import { useState } from 'react';
 
 //Design:
 //White Background with darkgrey bar at top, light grey bar at bottom
@@ -44,8 +45,10 @@ import './ProductModal.css';
  * @param {*} props product
  * @return component
  */
-const ProductModal = ({ product }) => {
+const ProductModal = ({ product, handleOpen }) => {
     //placeholder data, change values to display from API
+    handleOpen={open}
+    onClose={handleClose}
     const department = product.demographic;
     const category = product.category;
     const type = product.type;

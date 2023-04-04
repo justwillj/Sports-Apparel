@@ -72,11 +72,7 @@ const Header = ({ user, setUser }) => {
       </Grid>
       <Grid container direction="row" spacing={10} justify="center">
         <Grid item>
-<<<<<<< HEAD
-          <NavLink to="/men">Men</NavLink>
-=======
           <NavLink to="/Men" className="department">Men</NavLink>
->>>>>>> b9c73a54e8ba25eddbb38b76e1f954d62db41c51
         </Grid>
         <Grid item>
           <NavLink to="/Women" className="department">Women</NavLink>

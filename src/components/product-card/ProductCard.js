@@ -63,7 +63,7 @@ const ProductCard = ({ product, onClick }) => {
   };
 
   return (
-    <Card className={classes.root} onClick={() => ProductModal({product})}>
+    <Card className={classes.root} onClick={() => ProductModal({product, handleOpen})}>
       <CardHeader
         avatar={(
           <Avatar aria-label="demographics" className={classes.avatar}>
