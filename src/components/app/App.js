@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import ProductPage from '../product-page/ProductPage';
 import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
@@ -10,8 +11,8 @@ import Header from '../header/Header';
 import HomePage from '../home-page/HomePage';
 import SingleProduct from '../product-page/SingleProduct';
 import Footer from '../footer/Footer';
-import Home from '../home/Home';
 import SearchResults from '../search/SearchResults';
+import AdPage from '../slideshow/AdPage';
 
 /**
  * @name App
@@ -20,17 +21,26 @@ import SearchResults from '../search/SearchResults';
 const App = () => {
   const [user, setUser] = useState({});
   const [wishlist, setWishList] = useState([]);
+  const [email, setEmail] = useState('');
+  const history = useHistory();
+
+  const logoutForm = () => {
+    sessionStorage.setItem("email","");
+    setEmail("");
+    history.push("/home");
+  } 
 
   const updateWishlist = (item) => {
-    setWishList([...wishlist, item]);
+    if (sessionStorage.getItem('email') !== "") {
+      setWishList([...wishlist, item]);
+    }
   };
 
   return (
     <BrowserRouter>
-      <Header user={user} setUser={setUser} />
+      <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} />
       {/* <Header /> */}
       <Switch>
-        <Route exact path="/home" render={() => <Home />} />
         <Route exact path="/" render={() => <ProductPage addToWishlist={updateWishlist} />} />
         <Route exact path="/checkout" render={() => <CheckoutPage />} />
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />

@@ -2,11 +2,11 @@
   height: 70px;
   width: 100%;
   background-color: #fdf5ca;
+  padding-bottom: 20px;
 }
 
 .footer h2 {
   font-size: 30px;
-  padding-top: 15px;
   text-align: center;
   vertical-align: middle;
 }

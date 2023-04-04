@@ -1,8 +1,8 @@
 import React from 'react';
-// eslint-disable-next-line import/no-unresolved
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@mui/material/Badge';
+import { amber } from '@mui/material/colors';
 import { useCart } from '../checkout-page/CartContext';
 import styles from './ShoppingCart.module.css';
 
@@ -18,7 +18,7 @@ const ShoppingCart = () => {
     <div className={styles.shoppingCart}>
       <IconButton aria-label="cart">
         <Badge badgeContent={items.length} color="error">
-          <ShoppingCartOutlinedIcon />
+          <ShoppingCartOutlinedIcon sx={{ color: amber[100] }} />
         </Badge>
       </IconButton>
     </div>
