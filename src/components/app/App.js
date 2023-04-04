@@ -46,6 +46,7 @@ const App = () => {
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
         <Route exact path="/home" render={() => <HomePage />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
+        <Route exact path="/ads/:id" render={() => <AdPage />} />
         <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} />} />
         <Route exact path="/Men" render={() => <CategoryPage category={"Men"} addToWishlist={updateWishlist} />} />
         <Route exact path="/Women" render={() => <CategoryPage category={"Women"} addToWishlist={updateWishlist}/>} />
