@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -18,7 +19,6 @@ import { useCart } from '../checkout-page/CartContext';
 import { Modal } from '@material-ui/core';
 import { PLACEHOLDER_IMAGE } from '../../utils/constants';
 import './ProductModal.css';
-import { useState } from 'react';
 
 //Design:
 //White Background with darkgrey bar at top, light grey bar at bottom
@@ -45,13 +45,11 @@ import { useState } from 'react';
  * @param {*} props product
  * @return component
  */
-const ProductModal = ({ product, handleOpen }) => {
+const ProductModal = ({ props }) => {
     //placeholder data, change values to display from API
-    handleOpen={open}
-    onClose={handleClose}
-    const department = product.demographic;
-    const category = product.category;
-    const type = product.type;
+    const department = props.demographic;
+    const category = props.category;
+    const type = props.type;
     const image = {PLACEHOLDER_IMAGE};
     const primaryColor = "Red"
     const secondaryColor = "Lilac"

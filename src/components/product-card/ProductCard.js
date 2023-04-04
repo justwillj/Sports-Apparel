@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -54,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
  */
 const ProductCard = ({ product, onClick }) => {
   const classes = useStyles();
+  // const [ProductModal, setProductModal] = useState()
 
   const dispatch = useCartDispatch();
 
@@ -63,7 +65,7 @@ const ProductCard = ({ product, onClick }) => {
   };
 
   return (
-    <Card className={classes.root} onClick={() => ProductModal({product, handleOpen})}>
+    <Card className={classes.root} onClick={() => ProductModal(true, props={product})}>
       <CardHeader
         avatar={(
           <Avatar aria-label="demographics" className={classes.avatar}>
