@@ -45,3 +45,18 @@
   font-size: 16px;
   border: none;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 98.5vh;
+}
+
+.footer {
+  margin-top: auto;
+}
+
+body {
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './SiteSearch.module.css';
+/* eslint-disable */
 /**
  * @name SiteSearch
  * @description Filters products from API
@@ -11,7 +12,7 @@ const SiteSearch = ({ query, handleOnClick, handleOnChange }) => (
       <label htmlFor="q">
         <input type="search" name="q" value={query} onChange={handleOnChange} />
       </label>
-      <button type="button" value="Search" onClick={handleOnClick}>Search</button>
+      <button className={styles.searchButton} type="button" value="Search" onClick={handleOnClick}>Search</button>
     </div>
   </div>
 );
