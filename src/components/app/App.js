@@ -46,10 +46,11 @@ const App = () => {
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
         <Route exact path="/home" render={() => <HomePage />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
+        <Route exact path="/ads/:id" render={() => <AdPage />} />
         <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} />} />
-        <Route exact path="/men" render={() => <CategoryPage category={"Men"} />} />
-        <Route exact path="/women" render={() => <CategoryPage category={"Women"}/>} />
-        <Route exact path="/kids" render={() => <CategoryPage category={"Kids"}/>} />
+        <Route exact path="/Men" render={() => <CategoryPage category={"Men"} addToWishlist={updateWishlist} />} />
+        <Route exact path="/Women" render={() => <CategoryPage category={"Women"} addToWishlist={updateWishlist}/>} />
+        <Route exact path="/kids" render={() => <CategoryPage category={"Kids"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
       </Switch>

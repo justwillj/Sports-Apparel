@@ -65,6 +65,7 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
     setEmail("");
     history.push("/home");
   }
+
   return (
     <div style={{
       backgroundColor: '#1C2964', position: 'sticky', top: 0, zIndex: 3, marginBottom: 5, opacity: "0.95"
@@ -85,7 +86,7 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
             <div 
             style={{
                 display: 'flex',
-                paddingRight: '20px'
+                paddingRight: '20px',
                 }}>{sessionStorage.getItem("email") === ""? <button type="button" className="loginButton" onClick={()=> setModalOn(true)}>Login</button>: (
               <div>
                 <p className='login-name'>{sessionStorage.getItem("email")}</p>
@@ -138,9 +139,9 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
             {error? <p className='error'>Incorrect email or password</p>:null }
            
             <div className='input-box'>
-            <input type='email' placeholder='Email Address'  value={email} onChange={(e) => setEmail(e.target.value)}></input>
+            <input className='form-input' type='email' placeholder='Email Address'  value={email} onChange={(e) => setEmail(e.target.value)}></input>
 
-            <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+            <input className='form-input' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
 
             <button className='button-1' onClick={formCheck}>Submit</button>
             </div>

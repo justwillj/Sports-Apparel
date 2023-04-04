@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,6 +19,7 @@ import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
 import ProductModal from '../product-modal/ProductModal';
 import { useCartDispatch } from '../checkout-page/CartContext';
+
 
 /**
  * @name useStyles
