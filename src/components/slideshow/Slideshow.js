@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import './slideshow.css';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-// import Constants from '../../utils/constants';
 
 /**
  * @name Slideshow
@@ -15,19 +14,7 @@ const Slideshow = ({ setApiError }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const slideTimeRef = useRef(null);
 
-  // /**
-  //  * @name randomDiscount
-  //  * @description this method creates a random discount percentage from 15-40
-  //  * used if product doesn't have a discount value
-  //  * @returns random discount
-  //  */
-  // const randomDiscount = () => {
-  //   const discounts = [15, 20, 25, 30, 35, 40];
-
-  //   return discounts[Math.floor(Math.random() * 6)];
-  // };
-
-  // loads 3 products
+  // loads 3 ads
   useEffect(() => {
     /**
      * @name fetchProducts
@@ -45,39 +32,6 @@ const Slideshow = ({ setApiError }) => {
         .catch(() => {
           setApiError(true);
         });
-      // Promise.all([
-      //   axios.get(`http://localhost:8085/products/${productIds[0]}`, { headers: { Authorization: 'Bearer ' } }),
-      //   axios.get(`http://localhost:8085/products/${productIds[1]}`, { headers: { Authorization: 'Bearer ' } }),
-      //   axios.get(`http://localhost:8085/products/${productIds[2]}`, { headers: { Authorization: 'Bearer ' } })
-      // ])
-      //   .then((response) => {
-      //     const responses = [response[0], response[1], response[2]];
-
-      //     if (
-      //       responses[0].status === 200
-      //       && responses[1].status === 200
-      //       && responses[2].status === 200
-      //     ) {
-      //       let newProduct = {};
-      //       const newProducts = [];
-      //       response.forEach((product) => {
-      //         newProduct = { ...product.data };
-      //         // checks if product has discount
-      //         if (!newProduct.discount) {
-      //           newProduct = ({ ...newProduct, discount: randomDiscount() });
-      //         }
-      //         // checks if product has image
-      //         if (!product.data.image) {
-      //           newProduct = ({ ...newProduct, image: Constants.SLIDESHOW_IMAGE });
-      //         }
-      //         newProducts.push(newProduct);
-      //       });
-      //       setProducts(newProducts);
-      //     }
-      //   })
-      //   .catch(() => {
-      //     setApiError(true);
-      //   });
     };
 
     /**
