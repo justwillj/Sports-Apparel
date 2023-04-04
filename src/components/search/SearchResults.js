@@ -21,7 +21,7 @@ const SearchResults = () => {
   useEffect(() => {
     setLoading(true);
     async function fetchFilteredProducts(prod, error) {
-      await HttpHelper(Constants.RUNNING_SHORTS_ENDPOINT, 'GET')
+      await HttpHelper(Constants.PRODUCT_ENDPOINT, 'GET')
         .then((response) => {
           if (response.ok) {
             setQuery(sessionStorage.getItem('userSearch'));

@@ -5,9 +5,18 @@
     font-size: 17px;
     border: none;
   } */
-  
-  .topnav .search button:hover {
-    opacity: 60%;
+
+  button {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 5%;
+    margin-top: 5%;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    opacity: 100%;
+  }
+  button:hover {
     background-color: #706262;
   }
   .app {
