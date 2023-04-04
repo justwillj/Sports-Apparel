@@ -17,17 +17,21 @@ const SearchResults = () => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     async function fetchFilteredProducts(prod, error) {
       await HttpHelper(Constants.RUNNING_SHORTS_ENDPOINT, 'GET')
         .then((response) => {
           if (response.ok) {
             setQuery(sessionStorage.getItem('userSearch'));
+
             return response.json();
           }
           throw new Error(Constants.API_ERROR);
         })
         .then(prod)
+        .then(() => { setLoading(false); })
         .catch(() => {
           error(true);
         });
@@ -39,22 +43,21 @@ const SearchResults = () => {
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <div />
+      {loading === true && (
+      <div className={styles.ldsContainer}>
+        <div className={styles.ldsDualRing} />
+      </div>
+      )}
+      {loading === false && (
       <div className="result-counter">
         <h4>
-          Results:
-          {' '}
           {searchFilter(products, query).length === 0 ? 'No matches for your search'
-            : searchFilter(products, query).length}
+            : `${searchFilter(products, query).length} search results for "${sessionStorage.getItem('userSearch')}"`}
         </h4>
       </div>
+      )}
       <div className={styles.app}>
-        <h4 className="result-counter">
-          Results:
-          {' '}
-          {searchFilter(products, query).length === 0 ? 'No matches for your search'
-            : searchFilter(products, query).length}
-        </h4>
-        {searchFilter(products, query).map((product) => (
+        {loading === false && searchFilter(products, query).map((product) => (
           <div key={product.id}>
             <ProductCard product={product} />
           </div>
