@@ -4,8 +4,6 @@ import ProductCard from '../product-card/ProductCard';
 import styles from '../product-page/ProductPage.module.css';
 import Constants from '../../utils/constants';
 import fetchProducts from '../product-page/ProductPageService';
-import constants, { WOMEN_ENDPOINT, MEN_ENDPOINT, KIDS_ENDPOINT } from '../../utils/constants';
-// import "./CategoryPage.module,css"
 
 //PAGE LAYOUT
 
