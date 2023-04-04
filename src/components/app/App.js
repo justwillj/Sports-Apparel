@@ -30,7 +30,9 @@ const App = () => {
   } 
 
   const updateWishlist = (item) => {
-    setWishList([...wishlist, item]);
+    if (sessionStorage.getItem('email') !== "") {
+      setWishList([...wishlist, item]);
+    }
   };
 
   return (

@@ -23,6 +23,43 @@
     font-size: 14px;
     margin: 0px 2px 4px 4px;
   }
-  /* .result-counter {
-    padding-top: 100px;
-  } */
+  h4{
+    margin-left: 2rem;
+    font-size: large;
+  }
+  .ldsContainer {
+    height: 1000px;
+    width: 100%;
+  }
+  .ldsDualRing {
+    position: fixed;
+    z-index: 999;
+    height: 2em;
+    width: 2em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .ldsDualRing:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #c53737a1;
+    border-color: #3f2eafa1 transparent #2fd0d0a1 transparent;
+    animation: ldsDualRing 1.2s linear infinite;
+  }
+  @keyframes ldsDualRing {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

@@ -3,8 +3,6 @@ import ProductCard from '../product-card/ProductCard';
 import styles from './ProductPage.module.css';
 import Constants from '../../utils/constants';
 import fetchProducts from './ProductPageService';
-import ShoppingCart from '../shopping-cart/ShoppingCart';
-import WishlistIcon from '../wishlist-icon/WishlistIcon';
 
 /**
  * @name ProductPage
@@ -18,11 +16,9 @@ const ProductPage = ({ addToWishlist }) => {
   useEffect(() => {
     fetchProducts(setProducts, setApiError);
   }, []);
-  console.log(products);
+  // console.log(products);
   return (
     <div>
-      <WishlistIcon />
-      <ShoppingCart />
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <div className={styles.app}>
         {products.map((product) => (
