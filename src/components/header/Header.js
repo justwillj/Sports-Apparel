@@ -81,15 +81,14 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
           </NavLink>
           </div>
       <Grid container direction="row" spacing={2} justify="flex-end" border="2px white">
-        <Grid item xs={1} container justify="flex-end">
+        <Grid item xs={1} container justify="flex-end" className='login-gird'>
             <div 
             style={{
                 display: 'flex',
-                paddingRight: '10px'
+                paddingRight: '20px'
                 }}>{sessionStorage.getItem("email") === ""? <button type="button" className="loginButton" onClick={()=> setModalOn(true)}>Login</button>: (
               <div>
                 <p className='login-name'>{sessionStorage.getItem("email")}</p>
-                <br></br>
                 <button type="button" className="loginButton" onClick={logoutButton}>Logout</button>
               </div>
             ) }

@@ -46,7 +46,7 @@
   border: none;
 }
 
-#root{
+#root {
   display: flex;
   flex-direction: column;
   min-height: 98.5vh;
@@ -54,4 +54,9 @@
 
 .footer {
   margin-top: auto;
+}
+
+body {
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar */
 }

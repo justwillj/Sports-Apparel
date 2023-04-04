@@ -69,6 +69,7 @@ input {
   background-color: #1c2964bb;
 }
 
+
 .loginButton {
   background-color: #5681c1;
   border-radius: 8px;
@@ -96,7 +97,8 @@ input {
   touch-action: manipulation;
   width: 92%;
   margin-left: 1rem;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .logo {
@@ -114,6 +116,6 @@ input {
   color: #fdf5ca;
   font-size: large;
   margin-left: -8rem;
-  margin-top: 2rem;
+  margin-top: 1.4rem;
   position: absolute;
 }

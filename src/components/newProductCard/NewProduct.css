@@ -1,8 +1,14 @@
 .category {
     font-size: 1rem;
-    margin-bottom: -.4rem;
+    margin-bottom: -.1rem;
 }
 
 .newCard-img {
     max-height: 290px;
+}
+
+a {
+    font-size: 1rem;
+    font-weight: 5rem;
+    color: #1C2964;
 }
