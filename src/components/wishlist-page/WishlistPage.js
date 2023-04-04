@@ -1,7 +1,6 @@
 import React from 'react';
 import WishlistCard from '../wishlist-card/WishlistCard';
 import styles from './WishlistPage.module.css';
-import ShoppingCart from '../shopping-cart/ShoppingCart';
 
 /**
  * @name WishlistPage
@@ -10,7 +9,6 @@ import ShoppingCart from '../shopping-cart/ShoppingCart';
  */
 const WishlistPage = ({ list }) => (
   <div>
-    <ShoppingCart />
     <div className={styles.app}>
       {list.map((item) => (
         <div key={item.id}>
