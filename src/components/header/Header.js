@@ -87,7 +87,7 @@ const Header = ({ user, setUser }) => {
           <NavLink to="/shoppingcart"><ShoppingCart /></NavLink>
         </Grid>
       </Grid>
-
+      <br />
       {/* <NavLink to="/home">Home</NavLink>
       <NavLink to="/checkout">Cart</NavLink>
       {user && <span>{user.firstName}</span>}
