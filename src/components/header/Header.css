@@ -231,12 +231,18 @@ div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(1) {
 .MuiGrid-spacing-xs-2 {
   height: 1.5rem;
 }
-
+/* Icons for wishlist and shopping cart */
 div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(2)>a:nth-child(1)>div:nth-child(1)>button:nth-child(1) {
+  position:absolute;
+  top: 2.3rem;
+  left: 93.7%;
   padding-top: 2rem;
 }
 
 div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(3)>a:nth-child(1)>div:nth-child(1)>button:nth-child(1) {
+  position:absolute;
+  top: 2.3rem;
+  left: 96.7%;
   padding-top: 2rem;
   padding-right: 2rem;
 }
@@ -247,11 +253,13 @@ div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(3)>a:nth-child(1)>div
 div.MuiGrid-justify-xs-flex-end:nth-child(3) > div:nth-child(1) {
   width: 228px;
 } */
-/* .SiteSearch_search__HrCav {
+/* container for search box and search button */
+.SiteSearch_search__HrCav {
   position:absolute;
-  left: 83.4%;
+  top: 3.3rem;
+  left: 77.4%;
   padding-top: .3rem;
-} */
+}
 .login-name {
   position: absolute;
   margin-left: -8rem;
