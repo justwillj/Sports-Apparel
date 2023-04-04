@@ -6,6 +6,7 @@ import ProductPage from '../product-page/ProductPage';
 import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
 import WishlistPage from '../wishlist-page/WishlistPage';
+import CategoryPage from '../category-page/CategoryPage';
 import Header from '../header/Header';
 import HomePage from '../home-page/HomePage';
 import SingleProduct from '../product-page/SingleProduct';
@@ -45,8 +46,10 @@ const App = () => {
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
         <Route exact path="/home" render={() => <HomePage />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
-        <Route exact path="/ads/:id" render={() => <AdPage />} />
-        <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} />} />
+        <Route exact path="/search-results" render={() => <SearchResults />} />
+        <Route exact path="/men" render={() => <CategoryPage category={"Men"} />} />
+        <Route exact path="/women" render={() => <CategoryPage category={"Women"}/>} />
+        <Route exact path="/kids" render={() => <CategoryPage category={"Kids"}/>} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
       </Switch>

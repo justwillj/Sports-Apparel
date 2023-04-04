@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -14,6 +15,8 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Constants from '../../utils/constants';
+import { useCart } from '../checkout-page/CartContext';
+import ProductModal from '../product-modal/ProductModal';
 import { useCartDispatch } from '../checkout-page/CartContext';
 
 /**
@@ -52,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
  */
 const ProductCard = ({ product, onClick }) => {
   const classes = useStyles();
+  // const [ProductModal, setProductModal] = useState()
 
   const dispatch = useCartDispatch();
 
@@ -59,6 +63,8 @@ const ProductCard = ({ product, onClick }) => {
     // console.log(item);
     dispatch({ type: 'add', item });
   };
+
+  // onClick={() => ProductModal(true, props={product})}
 
   return (
     <Card className={classes.root}>
