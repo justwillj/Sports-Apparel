@@ -25,6 +25,11 @@ const HomePage = () => {
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <Slideshow setApiError={() => setApiError} />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <div className="popular-main">
         <h1>Explore Products</h1>
         <div className="popular-products">

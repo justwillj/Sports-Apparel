@@ -54,7 +54,7 @@ const CategoryPage = (props) => {
       <div className={styles.app}>
         {products.map((product) => (
           <div key={product.id}>
-            <ProductCard product={product} />
+            <ProductCard product={product} onClick={props.addToWishlist}/>
           </div>
         ))}
       </div>

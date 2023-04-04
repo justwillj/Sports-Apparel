@@ -36,10 +36,6 @@ const App = () => {
     }
   };
 
-  const pagePush = () =>{
-    history.push(`/${category}`);
-  }
-
   return (
     <BrowserRouter>
       <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} />
@@ -50,10 +46,10 @@ const App = () => {
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
         <Route exact path="/home" render={() => <HomePage />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
-        <Route exact path="/search-results" render={() => <SearchResults />} />
-        <Route exact path="/Men" render={() => <CategoryPage category={"Men"} />} />
-        <Route exact path="/Women" render={() => <CategoryPage category={"Women"}/>} />
-        <Route exact path="/kids" render={() => <CategoryPage category={"Kids"}/>} />
+        <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} />} />
+        <Route exact path="/Men" render={() => <CategoryPage category={"Men"} addToWishlist={updateWishlist} />} />
+        <Route exact path="/Women" render={() => <CategoryPage category={"Women"} addToWishlist={updateWishlist}/>} />
+        <Route exact path="/kids" render={() => <CategoryPage category={"Kids"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
       </Switch>
