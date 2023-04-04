@@ -85,3 +85,9 @@
 .text span {
   font-size: clamp(40px, 6.75vw, 90px);
 }
+
+.text p {
+  font-size: clamp(40px, 6.75vw, 90px);
+  margin: 0;
+  color: black;
+}
