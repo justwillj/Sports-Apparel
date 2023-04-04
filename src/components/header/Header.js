@@ -53,14 +53,18 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
       setError(true);
       validForm = false;
     }
-    console.log(validForm)
     if(validForm){
       setModalOn(false);
       setError(false);
+      history.push("/home")
       sessionStorage.setItem("email",email);
     }
   }
-
+  const logoutButton = ()=>{
+    sessionStorage.setItem("email","");
+    setEmail("");
+    history.push("/home");
+  }
   return (
     <div style={{
       backgroundColor: '#1C2964', position: 'sticky', top: 0, zIndex: 3, marginBottom: 5, opacity: "0.95"
@@ -77,16 +81,15 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
           </NavLink>
           </div>
       <Grid container direction="row" spacing={2} justify="flex-end" border="2px white">
-        <Grid item xs={1} container justify="flex-end">
+        <Grid item xs={1} container justify="flex-end" className='login-gird'>
             <div 
             style={{
                 display: 'flex',
-                paddingRight: '10px'
-                }}>{sessionStorage.getItem("email") === ""? <button type="button" onClick={()=> setModalOn(true)}>Login</button>: (
+                paddingRight: '20px'
+                }}>{sessionStorage.getItem("email") === ""? <button type="button" className="loginButton" onClick={()=> setModalOn(true)}>Login</button>: (
               <div>
                 <p className='login-name'>{sessionStorage.getItem("email")}</p>
-                <br></br>
-                <button type="button" onClick={logout}>Logout</button>
+                <button type="button" className="loginButton" onClick={logoutButton}>Logout</button>
               </div>
             ) }
             </div>

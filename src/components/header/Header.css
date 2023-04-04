@@ -63,12 +63,43 @@ input {
   width: 92%;
   margin-left: 1rem;
   margin-bottom: 2rem;
-
 }
 
 .button-1:hover,
 .button-1:focus {
   background-color: #1c2964bb;
+}
+
+
+.loginButton {
+  background-color: #5681c1;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: color 100ms;
+  vertical-align: baseline;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 92%;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .logo {
@@ -129,6 +160,87 @@ div.MuiGrid-justify-xs-flex-end:nth-child(3) > div:nth-child(3) > a:nth-child(1)
   padding-top: 2rem;
   padding-right: 2rem;
 }
+/* div.MuiGrid-container:nth-child(1) {
+  padding-top: 1rem;
+}
+div.MuiGrid-justify-xs-flex-end:nth-child(3) > div:nth-child(1) {
+  width: 228px;
+} */
+/* .SiteSearch_search__HrCav {
+  position:absolute;
+  left: 83.4%;
+  padding-top: .3rem;
+} */
+.login-name {
+  color: #fdf5ca;
+  font-size: large;
+  margin-left: -8rem;
+  margin-top: 1.4rem;
+  position: absolute;
+}
+
+.MuiGrid-spacing-xs-10 {
+  padding-top: 3rem;
+  /* background-color: pink; */
+  height: 10.5rem;
+}
+
+.MuiGrid-root .MuiGrid-container .MuiGrid-item {
+  /* background-color: greenyellow; */
+  height: 5.6rem;
+}
+
+div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(1) {
+  padding-top: 1.35rem;
+}
+
+.MuiGrid-spacing-xs-10>div:nth-child(1) {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 1rem;
+  padding-top: 40px;
+}
+
+.MuiGrid-spacing-xs-10>div:nth-child(2) {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 1rem;
+  padding-top: 40px;
+}
+
+.MuiGrid-spacing-xs-10>div:nth-child(3) {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 1rem;
+  padding-top: 40px;
+}
+
+.MuiGrid-item .department {
+  /* background-color: red; */
+  font-size: 27px;
+
+}
+
+.department {
+  color: #fdf5ca;
+  text-decoration: none;
+  font-size: xx-large;
+
+}
+
+.MuiGrid-spacing-xs-2 {
+  height: 1.5rem;
+}
+
+div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(2)>a:nth-child(1)>div:nth-child(1)>button:nth-child(1) {
+  padding-top: 2rem;
+}
+
+div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(3)>a:nth-child(1)>div:nth-child(1)>button:nth-child(1) {
+  padding-top: 2rem;
+  padding-right: 2rem;
+}
+
 /* div.MuiGrid-container:nth-child(1) {
   padding-top: 1rem;
 }

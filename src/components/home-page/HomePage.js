@@ -3,9 +3,9 @@ import { NavLink } from 'react-router-dom';
 import styles from './homePage.css';
 import Slideshow from '../slideshow/Slideshow';
 import Constants from '../../utils/constants';
-import fetchProducts from '../product-page/ProductPageService';
 import PopularCard from '../popularCard/PopularCard';
 import NewProductCard from '../newProductCard/NewProductCard';
+import fetchAllProducts from '../product-page/FetchAllProducts';
 
 /**
  * @name HomePage
@@ -18,7 +18,7 @@ const HomePage = () => {
   const [apiError, setApiError] = useState(false);
 
   useEffect(() => {
-    fetchProducts(setProducts, setApiError);
+    fetchAllProducts(setProducts, setApiError);
   }, []);
 
   return (

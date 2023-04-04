@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './SiteSearch.module.css';
+/* eslint-disable */
 /**
  * @name SiteSearch
  * @description Filters products from API

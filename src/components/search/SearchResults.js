@@ -13,7 +13,7 @@ import searchFilter from '../../utils/utilFunctions';
  * @description fetches products from API and displays products as product cards
  * @return component
  */
-const SearchResults = () => {
+const SearchResults = ({ addToWishlist }) => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [query, setQuery] = useState('');
@@ -59,7 +59,7 @@ const SearchResults = () => {
       <div className={styles.app}>
         {loading === false && searchFilter(products, query).map((product) => (
           <div key={product.id}>
-            <ProductCard product={product} />
+            <ProductCard product={product} onClick={addToWishlist} />
           </div>
         ))}
       </div>
