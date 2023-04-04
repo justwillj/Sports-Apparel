@@ -82,11 +82,11 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
             style={{
                 display: 'flex',
                 paddingRight: '10px'
-                }}>{sessionStorage.getItem("email") === ""? <button type="button" onClick={()=> setModalOn(true)}>Login</button>: (
+                }}>{sessionStorage.getItem("email") === ""? <button type="button" className="loginButton" onClick={()=> setModalOn(true)}>Login</button>: (
               <div>
                 <p className='login-name'>{sessionStorage.getItem("email")}</p>
                 <br></br>
-                <button type="button" onClick={logout}>Logout</button>
+                <button type="button" className="loginButton" onClick={logout}>Logout</button>
               </div>
             ) }
             </div>
