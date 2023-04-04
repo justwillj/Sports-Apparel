@@ -11,6 +11,7 @@ import HomePage from '../home-page/HomePage';
 import SingleProduct from '../product-page/SingleProduct';
 import Footer from '../footer/Footer';
 import SearchResults from '../search/SearchResults';
+import AdPage from '../slideshow/AdPage';
 
 /**
  * @name App
@@ -42,6 +43,7 @@ const App = () => {
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
         <Route exact path="/home" render={() => <HomePage />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
+        <Route exact path="/ads/:id" render={() => <AdPage />} />
         <Route exact path="/search-results" render={() => <SearchResults />} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}

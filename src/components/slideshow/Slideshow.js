@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './slideshow.css';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import Constants from '../../utils/constants';
+// import Constants from '../../utils/constants';
 
 /**
  * @name Slideshow
@@ -15,17 +15,17 @@ const Slideshow = ({ setApiError }) => {
   const [slideIndex, setSlideIndex] = useState(0);
   const slideTimeRef = useRef(null);
 
-  /**
-   * @name randomDiscount
-   * @description this method creates a random discount percentage from 15-40
-   * used if product doesn't have a discount value
-   * @returns random discount
-   */
-  const randomDiscount = () => {
-    const discounts = [15, 20, 25, 30, 35, 40];
+  // /**
+  //  * @name randomDiscount
+  //  * @description this method creates a random discount percentage from 15-40
+  //  * used if product doesn't have a discount value
+  //  * @returns random discount
+  //  */
+  // const randomDiscount = () => {
+  //   const discounts = [15, 20, 25, 30, 35, 40];
 
-    return discounts[Math.floor(Math.random() * 6)];
-  };
+  //   return discounts[Math.floor(Math.random() * 6)];
+  // };
 
   // loads 3 products
   useEffect(() => {
@@ -36,39 +36,48 @@ const Slideshow = ({ setApiError }) => {
      * @returns setProducts
      */
     const fetchProducts = async () => {
-      Promise.all([
-        axios.get(`http://localhost:8085/products/${productIds[0]}`, { headers: { Authorization: 'Bearer ' } }),
-        axios.get(`http://localhost:8085/products/${productIds[1]}`, { headers: { Authorization: 'Bearer ' } }),
-        axios.get(`http://localhost:8085/products/${productIds[2]}`, { headers: { Authorization: 'Bearer ' } })
-      ])
+      axios.get('http://localhost:8085/ads')
         .then((response) => {
-          const responses = [response[0], response[1], response[2]];
-
-          if (
-            responses[0].status === 200
-            && responses[1].status === 200
-            && responses[2].status === 200
-          ) {
-            let newProduct = {};
-            const newProducts = [];
-            response.forEach((product) => {
-              newProduct = { ...product.data };
-              // checks if product has discount
-              if (!newProduct.discount) {
-                newProduct = ({ ...newProduct, discount: randomDiscount() });
-              }
-              // checks if product has image
-              if (!product.data.image) {
-                newProduct = ({ ...newProduct, image: Constants.SLIDESHOW_IMAGE });
-              }
-              newProducts.push(newProduct);
-            });
-            setProducts(newProducts);
+          if (response.status === 200) {
+            setProducts(response.data);
           }
         })
         .catch(() => {
           setApiError(true);
         });
+      // Promise.all([
+      //   axios.get(`http://localhost:8085/products/${productIds[0]}`, { headers: { Authorization: 'Bearer ' } }),
+      //   axios.get(`http://localhost:8085/products/${productIds[1]}`, { headers: { Authorization: 'Bearer ' } }),
+      //   axios.get(`http://localhost:8085/products/${productIds[2]}`, { headers: { Authorization: 'Bearer ' } })
+      // ])
+      //   .then((response) => {
+      //     const responses = [response[0], response[1], response[2]];
+
+      //     if (
+      //       responses[0].status === 200
+      //       && responses[1].status === 200
+      //       && responses[2].status === 200
+      //     ) {
+      //       let newProduct = {};
+      //       const newProducts = [];
+      //       response.forEach((product) => {
+      //         newProduct = { ...product.data };
+      //         // checks if product has discount
+      //         if (!newProduct.discount) {
+      //           newProduct = ({ ...newProduct, discount: randomDiscount() });
+      //         }
+      //         // checks if product has image
+      //         if (!product.data.image) {
+      //           newProduct = ({ ...newProduct, image: Constants.SLIDESHOW_IMAGE });
+      //         }
+      //         newProducts.push(newProduct);
+      //       });
+      //       setProducts(newProducts);
+      //     }
+      //   })
+      //   .catch(() => {
+      //     setApiError(true);
+      //   });
     };
 
     /**
@@ -149,10 +158,11 @@ const Slideshow = ({ setApiError }) => {
             <div className="slide-wrapper">
               <div className="slide" style={{ transform: `translateX(-${slideIndex * 100}%)` }}>
                 {products.map((product) => (
-                  <NavLink to={`/products/${product.id}`} key={product.id}>
-                    <img width="600" height="400" alt="Advertisement" src={`${product.image}`} />
+                  <NavLink to={`/ads/${product.id}`} key={product.id}>
+                    <img width="600" height="400" alt="Advertisement" src={`${product.imageURL}`} />
                     <div className="text">
-                      <span>{`${product.name ? product.name : 'Placeholder Name'} ${product.discount}% Off!`}</span>
+                      <p>{`${product.name ? product.name : 'Placeholder Name'}`}</p>
+                      <p>{`${product.discount}% Off!`}</p>
                     </div>
                   </NavLink>
                 ))}
