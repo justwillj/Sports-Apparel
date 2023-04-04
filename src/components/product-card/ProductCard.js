@@ -64,8 +64,10 @@ const ProductCard = ({ product, onClick }) => {
     dispatch({ type: 'add', item });
   };
 
+  // onClick={() => ProductModal(true, props={product})}
+
   return (
-    <Card className={classes.root} onClick={() => ProductModal(true, props={product})}>
+    <Card className={classes.root}>
       <CardHeader
         avatar={(
           <Avatar aria-label="demographics" className={classes.avatar}>
