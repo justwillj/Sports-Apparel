@@ -102,13 +102,13 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
         <Grid item xs={3}></Grid>
         <Grid item xs={6} container spacing={10} justify="center">
           <Grid item>
-          <NavLink to="/Men" className="department">Men</NavLink>
+          <NavLink to="/men" className="department">Men</NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/Women" className="department">Women</NavLink>
+          <NavLink to="/women" className="department">Women</NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/Kids" className="department">Kids</NavLink>
+          <NavLink to="/kids" className="department">Kids</NavLink>
         </Grid>  
         </Grid>
         <Grid item xs={3} container justify="flex-end">

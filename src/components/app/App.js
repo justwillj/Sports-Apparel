@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useHistory, Router, Link } from 'react-router-dom';
 import ProductPage from '../product-page/ProductPage';
 import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
