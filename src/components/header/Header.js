@@ -81,20 +81,15 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
             <img className="logo" src="/Apparel Logo just.png" alt="Site logo" />
           </NavLink>
           </div>
-      <Grid container direction="row" spacing={2} justify="flex-end" border="2px white">
-        <Grid item xs={1} container justify="flex-end" className='login-gird'>
-            <div 
-            style={{
-                display: 'flex',
-                paddingRight: '20px',
-                }}>{sessionStorage.getItem("email") === ""? <button type="button" className="loginButton" onClick={()=> setModalOn(true)}>Login</button>: (
+      <Grid container direction="row" spacing={2} justify="flex-end" border="2px white" >
+        <Grid item xs={1} container justify="center" className='login-gird'>
+        
+                {sessionStorage.getItem("email") === ""? <button type="button" className="loginButton" onClick={()=> setModalOn(true)}>Login</button>: (
               <div>
                 <p className='login-name'>{sessionStorage.getItem("email")}</p>
                 <button type="button" className="loginButton" onClick={logoutButton}>Logout</button>
               </div>
-            ) }
-            </div>
-        
+            ) }        
         </Grid>
       </Grid>
       
