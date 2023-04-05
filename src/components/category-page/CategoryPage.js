@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import HttpHelper from '../../utils/HttpHelper';
 import ProductCard from '../product-card/ProductCard';
@@ -25,6 +26,8 @@ const CategoryPage = (props) => {
   const [apiError, setApiError] = useState(false);
   const [department, setDepartment] = useState(props.category);
   const [category, setCategory] = useState('Running');
+
+
 
   useEffect(() => {
     async function fetchFilteredProducts(prod, setApiError) {
@@ -58,7 +61,7 @@ const CategoryPage = (props) => {
       <div className={styles.app}>
         {products.map((product) => (
           <div key={product.id}>
-            <ProductCard product={product} />
+            <ProductCard product={product} onClick={props.addToWishlist}/>
           </div>
         ))}
       </div>

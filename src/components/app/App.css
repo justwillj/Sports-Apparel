@@ -49,7 +49,7 @@
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 98.5vh;
+  min-height: 100vh;
 }
 
 .footer {
