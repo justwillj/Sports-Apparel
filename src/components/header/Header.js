@@ -121,7 +121,7 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
           />
       </Grid>
       <Grid item>
-          <WishlistIcon />
+          <NavLink to="/wishlist"><WishlistIcon /></NavLink>
         </Grid>
         <Grid item>
           <NavLink to="/shoppingcart"><ShoppingCart /></NavLink>
