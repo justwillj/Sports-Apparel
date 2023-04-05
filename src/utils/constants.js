@@ -7,5 +7,6 @@ module.exports = Object.freeze({
   PRODUCT_ENDPOINT: '/products',
   RUNNING_SHORTS_ENDPOINT: '/products?category=Running&type=Short',
   GOOGLE_CLIENT_ID: '912899852587-7996nh9mlpvpa2446q0il4f9hj5o492h.apps.googleusercontent.com', // ENTER CLIENT ID HERE
-  SLIDESHOW_IMAGE: 'https://images.pexels.com/photos/3684122/pexels-photo-3684122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+  PRODUCT_PAGE: '/products/productPage',
+  COUNT_PRODUCTS: '/products/count'
 });
