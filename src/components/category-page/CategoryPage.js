@@ -3,15 +3,16 @@ import HttpHelper from '../../utils/HttpHelper';
 import ProductCard from '../product-card/ProductCard';
 import styles from '../product-page/ProductPage.module.css';
 import Constants from '../../utils/constants';
+/* eslint-disable */
 import fetchProducts from '../product-page/ProductPageService';
 
-//PAGE LAYOUT
+// PAGE LAYOUT
 
-//Header
-//Breadcrumb: Department | Category
-//Search Results
-//API GET by search results (utilize searchbar functionality)
-//Footer
+// Header
+// Breadcrumb: Department | Category
+// Search Results
+// API GET by search results (utilize searchbar functionality)
+// Footer
 
 /**
  * @name CategoryPage
@@ -19,11 +20,11 @@ import fetchProducts from '../product-page/ProductPageService';
  * @return component
  */
 const CategoryPage = (props) => {
+  
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [department, setDepartment] = useState(props.category);
-  const [category, setCategory] =  useState('Running');
-
+  const [category, setCategory] = useState('Running');
 
   useEffect(() => {
     async function fetchFilteredProducts(prod, setApiError) {
@@ -43,10 +44,16 @@ const CategoryPage = (props) => {
   }, []);
 
   return (
-    <div className='page'>
-        <br/>
-        <h2>{department} | {category}</h2>
-        <h3>SEARCH RESULTS</h3>
+    <div className="page">
+      <br />
+      <h2>
+        {department}
+        {' '}
+        |
+        {' '}
+        {category}
+      </h2>
+      <h3>SEARCH RESULTS</h3>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <div className={styles.app}>
         {products.map((product) => (
