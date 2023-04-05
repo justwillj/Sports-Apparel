@@ -65,6 +65,7 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
     setEmail("");
     history.push("/home");
   }
+
   return (
     <div style={{
       backgroundColor: '#1C2964', position: 'sticky', top: 0, zIndex: 3, marginBottom: 5, opacity: "0.95"
@@ -80,25 +81,20 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
             <img className="logo" src="/Apparel Logo just.png" alt="Site logo" />
           </NavLink>
           </div>
-      <Grid container direction="row" spacing={2} justify="flex-end" border="2px white">
-        <Grid item xs={1} container justify="flex-end" className='login-gird'>
-            <div 
-            style={{
-                display: 'flex',
-                paddingRight: '20px'
-                }}>{sessionStorage.getItem("email") === ""? <button type="button" className="loginButton" onClick={()=> setModalOn(true)}>Login</button>: (
+      <Grid container direction="row" spacing={2} justify="flex-end" border="2px white" >
+        <Grid item xs={1} container justify="center" className='login-gird'>
+        
+                {sessionStorage.getItem("email") === ""? <button type="button" className="loginButton" onClick={()=> setModalOn(true)}>Login</button>: (
               <div>
                 <p className='login-name'>{sessionStorage.getItem("email")}</p>
                 <button type="button" className="loginButton" onClick={logoutButton}>Logout</button>
               </div>
-            ) }
-            </div>
-        
+            ) }        
         </Grid>
       </Grid>
       
         
-      <Grid container direction="row" justify="center">
+      <Grid className='department-container' container direction="row" justify="center">
         <Grid item xs={3}></Grid>
         <Grid item xs={6} container spacing={10} justify="center">
           <Grid item>
@@ -138,9 +134,9 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
             {error? <p className='error'>Incorrect email or password</p>:null }
            
             <div className='input-box'>
-            <input type='email' placeholder='Email Address'  value={email} onChange={(e) => setEmail(e.target.value)}></input>
+            <input className='form-input' type='email' placeholder='Email Address'  value={email} onChange={(e) => setEmail(e.target.value)}></input>
 
-            <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+            <input className='form-input' type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
 
             <button className='button-1' onClick={formCheck}>Submit</button>
             </div>

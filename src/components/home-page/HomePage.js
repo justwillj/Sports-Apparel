@@ -25,6 +25,11 @@ const HomePage = () => {
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <Slideshow setApiError={() => setApiError} />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <div className="popular-main">
         <h1>Explore Products</h1>
         <div className="popular-products">
@@ -57,7 +62,7 @@ const HomePage = () => {
               {product.id === 4 ? (
                 <NavLink style={{ textDecoration: 'none' }} to={`/products/${product.id}`} key={product.id}>
                   <PopularCard
-                    productName="Running Shirt"
+                    productName="Nike Shirt"
                     productImg="https://tracksmith-media.imgix.net/Fall21-Mens-VC-Tee-Black_92aa1400-f545-472a-96b7-7e871cdd6db3.png?auto=format,compress&crop=faces&dpr=2&fit=crop&h=640&w=640"
                   />
                 </NavLink>

@@ -10,6 +10,19 @@
 }
 
 input {
+  padding-top: .5rem;
+  margin-top: .6rem;
+  margin-bottom: .9rem;
+  margin-left: 1rem;
+  margin-right: 0;
+  width: 100%;
+  border-radius: 8px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: rgb(236, 236, 236);
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.form-input {
   padding: 1rem 1rem 1rem 1rem;
   margin-top: .5rem;
   margin-bottom: 2rem;
@@ -95,29 +108,14 @@ input {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 92%;
+  width: 70%;
   margin-left: 2rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
 .logo {
-  width: 10rem;
-  margin-top: -1rem;
-}
-
-.department {
-  color: #fdf5ca;
-  text-decoration: none;
-  font-size: xx-large;
-}
-
-.login-name {
-  color: #fdf5ca;
-  font-size: large;
-  margin-left: -8rem;
-  margin-top: 1.4rem;
-  position: absolute;
+  width: 8rem;
 }
 
 .MuiGrid-spacing-xs-10 {
@@ -194,6 +192,102 @@ div.MuiGrid-justify-xs-flex-end:nth-child(3) > div:nth-child(1) {
   padding-top: .3rem;
 } */
 .login-name {
+  color: #fdf5ca;
+  font-size: large;
+  margin-left: -8rem;
+  margin-top: 1.4rem;
+  position: absolute;
+}
+
+.MuiGrid-spacing-xs-10 {
+  padding-top: 3rem;
+  /* background-color: pink; */
+  height: 10.5rem;
+}
+
+.MuiGrid-root .MuiGrid-container .MuiGrid-item {
+  /* background-color: greenyellow; */
+  height: 5.6rem;
+}
+
+div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(1) {
+  padding-top: 1.35rem;
+}
+
+.MuiGrid-spacing-xs-10>div:nth-child(1) {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 1rem;
+  padding-top: 40px;
+}
+
+.MuiGrid-spacing-xs-10>div:nth-child(2) {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 1rem;
+  padding-top: 40px;
+}
+
+.MuiGrid-spacing-xs-10>div:nth-child(3) {
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 1rem;
+  padding-top: 40px;
+}
+
+.MuiGrid-item .department {
+  /* background-color: red; */
+  font-size: 27px;
+
+}
+
+.department {
+  color: #fdf5ca;
+  text-decoration: none;
+  font-size: xx-large;
+
+}
+
+.MuiGrid-spacing-xs-2 {
+  height: 1.5rem;
+}
+
+/* Icons for wishlist and shopping cart */
+div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(2)>a:nth-child(1)>div:nth-child(1)>button:nth-child(1) {
+  position: absolute;
+  top: 2.3rem;
+  left: 93.7%;
+  padding-top: 2rem;
+}
+
+div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(3)>a:nth-child(1)>div:nth-child(1)>button:nth-child(1) {
+  position: absolute;
+  top: 2.3rem;
+  left: 96.7%;
+  padding-top: 2rem;
+  padding-right: 2rem;
+}
+
+/* div.MuiGrid-container:nth-child(1) {
+  padding-top: 1rem;
+}
+div.MuiGrid-justify-xs-flex-end:nth-child(3) > div:nth-child(1) {
+  width: 228px;
+} */
+/* container for search box and search button */
+.SiteSearch_search__HrCav {
+  position: absolute;
+  top: 3.3rem;
+  left: 77.4%;
+  padding-top: .3rem;
+}
+
+.login-name {
   position: absolute;
   margin-left: -8rem;
+}
+
+.MuiGrid-grid-xs-3 {
+  margin-left: -8rem !important;
+  margin-top: 1.1rem !important;
 }
