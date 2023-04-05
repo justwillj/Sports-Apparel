@@ -4,31 +4,23 @@ const searchFilter = (products, query) => {
     return products;
   }
   products.filter((product) => {
+    const prodNameToLower = product.name.toLowerCase();
+    const prodDemToLower = product.demographic.toLowerCase();
+    const prodCatToLower = product.category.toLowerCase();
+    const prodDescToLower = product.description.toLowerCase();
+    const prodTypeToLower = product.type.toLowerCase();
+    const queryToLower = query.toLowerCase();
     if (
-      product.name === query
-        || product.demographic.localeCompare(
-          query,
-          undefined,
-          { sensitivity: 'base' }
-        ) === 0
-        || product.description === query
-        || product.category.localeCompare(
-          query,
-          undefined,
-          { sensitivity: 'base' }
-        ) === 0
-        || product.type.localeCompare(
-          query,
-          undefined,
-          { sensitivity: 'base' }
-        ) === 0
+      prodNameToLower.match(queryToLower)
+      || prodDemToLower.match(queryToLower)
+      || prodCatToLower.match(queryToLower)
+      || prodDescToLower.match(queryToLower)
+      || prodTypeToLower.match(queryToLower)
     ) {
       newList.push(product);
-      return newList;
     }
     return newList;
   });
-  console.log(newList);
   return newList;
 };
 export default searchFilter;
