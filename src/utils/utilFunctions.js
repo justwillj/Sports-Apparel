@@ -8,6 +8,7 @@ const searchFilter = (products, query) => {
     products.filter((product) => {
       const prodNameToLower = product.name.toLowerCase();
       const prodDemToLower = product.demographic.toLowerCase();
+      // const prodBreedToLower = product.breed.toLowerCase();
       const prodCatToLower = product.category.toLowerCase();
       const prodDescToLower = product.description.toLowerCase();
       const prodTypeToLower = product.type.toLowerCase();
@@ -15,6 +16,7 @@ const searchFilter = (products, query) => {
       if (
         prodNameToLower.match(element)
       || prodDemToLower === element
+      // || prodBreedToLower === element
       || prodCatToLower.match(element)
       || prodDescToLower.match(element)
       || prodTypeToLower.match(element)
