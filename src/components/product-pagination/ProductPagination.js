@@ -36,7 +36,7 @@ const ProductPagination = ({
        * @returns - setsProducts
        */
       const fetchProductPage = async () => {
-        await HttpHelper(`${Constants.PRODUCT_PAGE}/${startIndex}${query && query}`, 'GET')
+        await HttpHelper(`${Constants.PRODUCT_PAGE}/${startIndex}${query || ''}`, 'GET')
           .then((response) => {
             if (response.ok) {
               return response.json();
@@ -58,7 +58,7 @@ const ProductPagination = ({
       * @returns - setsTotalProducts
       */
       const countProducts = async () => {
-        await HttpHelper(`${Constants.COUNT_PRODUCTS}${query && query}`, 'GET')
+        await HttpHelper(`${Constants.COUNT_PRODUCTS}${query || ''}`, 'GET')
           .then((response) => {
             if (response.ok) {
               return response.json();
