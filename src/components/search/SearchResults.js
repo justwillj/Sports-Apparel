@@ -3,10 +3,11 @@ import React, {
   useState
 } from 'react';
 import styles from './SiteSearch.module.css';
-import ProductCard from '../product-card/ProductCard';
+// import ProductCard from '../product-card/ProductCard';
 import Constants from '../../utils/constants';
 import HttpHelper from '../../utils/HttpHelper';
 import searchFilter from '../../utils/utilFunctions';
+import ProductPagination from '../product-pagination/ProductPagination';
 
 /**
  * @name SearchResults
@@ -56,13 +57,14 @@ const SearchResults = ({ addToWishlist }) => {
         </h4>
       </div>
       )}
-      <div className={styles.app}>
-        {loading === false && searchFilter(products, query).map((product) => (
-          <div key={product.id}>
-            <ProductCard product={product} onClick={addToWishlist} />
-          </div>
-        ))}
-      </div>
+      {products.length > 0 && (
+        <ProductPagination
+          addToWishlist={addToWishlist}
+          setApiError={setApiError}
+          searchResults={products}
+          query={query}
+        />
+      )}
     </div>
   );
 };
