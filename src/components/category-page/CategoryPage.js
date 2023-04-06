@@ -5,6 +5,7 @@ import ProductCard from '../product-card/ProductCard';
 import styles from '../product-page/ProductPage.module.css';
 import Constants from '../../utils/constants';
 import fetchProducts from '../product-page/ProductPageService';
+import ProductPagination from '../product-pagination/ProductPagination';
 
 //PAGE LAYOUT
 
@@ -25,39 +26,12 @@ const CategoryPage = (props) => {
   const [department, setDepartment] = useState(props.category);
   const [category, setCategory] =  useState('Running');
 
-
-
-
-  useEffect(() => {
-    async function fetchFilteredProducts(prod, setApiError) {
-      await HttpHelper(`/products?demographic=${props.category}&category=Running`, 'GET')
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error(Constants.API_ERROR);
-        })
-        .then(prod)
-        .catch(() => {
-          apiError(true);
-        });
-    }
-    fetchFilteredProducts(setProducts, setApiError);
-  }, []);
-
   return (
     <div className='page'>
         <br/>
         <h2>{department} | {category}</h2>
-        <h3>SEARCH RESULTS</h3>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <div className={styles.app}>
-        {products.map((product) => (
-          <div key={product.id}>
-            <ProductCard product={product} onClick={props.addToWishlist}/>
-          </div>
-        ))}
-      </div>
+      <ProductPagination addToWishlist={props.addToWishlist} setApiError={setApiError} query={`?demographic=${props.category}&category=Running`} />
     </div>
   );
 };
