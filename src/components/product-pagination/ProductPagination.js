@@ -12,6 +12,7 @@ import searchFilter from '../../utils/utilFunctions';
  * @param query - query value to filter products
  * @param setApiError - function passthrough to set error message
  * @param addToWishlist - fuction passthrough to ProductCard
+ * @param searchResults - products passed from SearchResults
  * @returns - a div of product cards with UI to navigate back and forth
  * between pages of products
  */
