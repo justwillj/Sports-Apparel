@@ -103,14 +103,14 @@ input {
 }
 
 .logo {
-  width: 11.5rem;
+  width: 11rem;
 }
 .MuiGrid-root .MuiGrid-container .MuiGrid-item {
-  height: 5.6rem;
+  height: 7.6rem;
 }
 
 div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(1) {
-  padding-top: 1.35rem;
+  padding-top: 2.35rem;
 }
 
 .login-name {
