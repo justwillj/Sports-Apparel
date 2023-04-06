@@ -23,6 +23,7 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
   const pathName = window.location.pathname;
   const [query, setQuery] = useState('');
   const history = useHistory();
+  
   const clickHandlerForSearch = () => {
     sessionStorage.setItem('userSearch', query);
     console.log(pathName);

@@ -4,6 +4,7 @@ import ProductCard from '../product-card/ProductCard';
 import styles from './ProductPage.module.css';
 import Constants from '../../utils/constants';
 import fetchProducts from './ProductPageService';
+import ProductPagination from '../product-pagination/ProductPagination';
 
 /**
  * @name ProductPage
@@ -11,23 +12,12 @@ import fetchProducts from './ProductPageService';
  * @return component
  */
 const ProductPage = ({ addToWishlist }) => {
-  const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
 
-  useEffect(() => {
-    fetchProducts(setProducts, setApiError);
-  }, []);
-  // console.log(products);
   return (
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <div className={styles.app}>
-        {products.map((product) => (
-          <div key={product.id}>
-            <ProductCard product={product} onClick={addToWishlist} />
-          </div>
-        ))}
-      </div>
+      <ProductPagination addToWishlist={addToWishlist} setApiError={setApiError} />
     </div>
   );
 };
