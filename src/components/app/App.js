@@ -13,6 +13,7 @@ import SingleProduct from '../product-page/SingleProduct';
 import Footer from '../footer/Footer';
 import SearchResults from '../search/SearchResults';
 import AdPage from '../slideshow/AdPage';
+import ProductPagination from '../product-pagination/ProductPagination';
 
 /**
  * @name App
@@ -23,7 +24,6 @@ const App = () => {
   const [wishlist, setWishList] = useState([]);
   const [email, setEmail] = useState('');
   const history = useHistory();
-  sessionStorage.setItem("email","");
 
   const logoutForm = () => {
     sessionStorage.setItem("email","");
@@ -54,6 +54,7 @@ const App = () => {
         <Route exact path="/kids" render={() => <CategoryPage category={"Kids"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
+        <Route exact path="/pageTest" render={() => <ProductPagination addToWishlist={updateWishlist} />} />
       </Switch>
       <Footer />
     </BrowserRouter>
