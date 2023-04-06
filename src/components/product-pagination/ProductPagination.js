@@ -12,6 +12,7 @@ import searchFilter from '../../utils/utilFunctions';
  * @param query - query value to filter products
  * @param setApiError - function passthrough to set error message
  * @param addToWishlist - fuction passthrough to ProductCard
+ * @param searchResults - products passed from SearchResults
  * @returns - a div of product cards with UI to navigate back and forth
  * between pages of products
  */
@@ -36,7 +37,7 @@ const ProductPagination = ({
        * @returns - setsProducts
        */
       const fetchProductPage = async () => {
-        await HttpHelper(`${Constants.PRODUCT_PAGE}/${startIndex}${query && query}`, 'GET')
+        await HttpHelper(`${Constants.PRODUCT_PAGE}/${startIndex}${query || ''}`, 'GET')
           .then((response) => {
             if (response.ok) {
               return response.json();
@@ -58,7 +59,7 @@ const ProductPagination = ({
       * @returns - setsTotalProducts
       */
       const countProducts = async () => {
-        await HttpHelper(`${Constants.COUNT_PRODUCTS}${query && query}`, 'GET')
+        await HttpHelper(`${Constants.COUNT_PRODUCTS}${query || ''}`, 'GET')
           .then((response) => {
             if (response.ok) {
               return response.json();
