@@ -84,10 +84,10 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
           </div>
       <Grid container direction="row" spacing={2} justify="flex-end">
         <Grid item xs={1} container justify="center" className='login-gird'>
-                {sessionStorage.getItem("email") === ""? <a className="loginButton" onClick={()=> setModalOn(true)}>Login</a>: (
+                {sessionStorage.getItem("email") === ""? <a className="loginButton" onClick={()=> setModalOn(true)}>[Login]</a>: (
               <div>
-                <p className='login-name'>{sessionStorage.getItem("email")}</p>
-                <button type="button" className="loginButton" onClick={logoutButton}>Logout</button>
+                <span className='login-name'>{sessionStorage.getItem("email")}</span>
+                <a className="loginButton" onClick={logoutButton}>[Logout]</a>
               </div>
             ) }        
         </Grid>

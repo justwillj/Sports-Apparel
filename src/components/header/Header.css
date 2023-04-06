@@ -83,7 +83,7 @@ input {
 }
 
 
-.loginButton {
+.loginButton { 
   color: #FFFFFF;
   cursor: pointer;
   font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -103,7 +103,7 @@ input {
 }
 
 .logo {
-  width: 12rem;
+  width: 11.5rem;
 }
 .MuiGrid-root .MuiGrid-container .MuiGrid-item {
   height: 5.6rem;
@@ -115,10 +115,6 @@ div.MuiGrid-justify-xs-flex-end:nth-child(3)>div:nth-child(1) {
 
 .login-name {
   color: #fdf5ca;
-  font-size: large;
-  margin-left: -8rem;
-  margin-top: 1.4rem;
-  position: absolute;
 }
 
 .department {
