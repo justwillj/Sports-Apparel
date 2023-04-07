@@ -54,6 +54,7 @@
     border: 1px solid #ccd0cf;
     margin-top: 30px;
     margin-left: -46px;
+    margin-bottom: -45px;
   }
   
   .topContainer {
@@ -63,8 +64,8 @@
   
   .productImg {
     float: left;
-    border: 5px solid black;
-    width: 65%;
+    border: 1px solid black;
+    width: 75%;
     justify-self: left;
     margin-top: -70px;
     z-index: 2;
@@ -138,8 +139,8 @@
     font-size: large;
     color: #ccd0cf;
     font-weight: bold;
-    margin-right: 40px;
-    margin-top: -65px;
+    margin-right: 0px;
+    margin-top: -70px;
   }
   
   .close:hover {
