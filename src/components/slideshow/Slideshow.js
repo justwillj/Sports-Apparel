@@ -2,17 +2,22 @@ import React, { useEffect, useRef, useState } from 'react';
 import './slideshow.css';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+/* eslint-disable */
 
 /**
  * @name Slideshow
  * @description fetches and displays an advertisement slideshow for 3 products
  * @returns component
  */
-const Slideshow = ({ setApiError }) => {
+const Slideshow = ({ setApiError, addErrorLog }) => {
   const [products, setProducts] = useState([]);
   const [productIds, setProductIds] = useState([]);
   const [slideIndex, setSlideIndex] = useState(0);
   const slideTimeRef = useRef(null);
+
+  // Used to get the time for the error logs
+  const currDate = new Date().toLocaleDateString();
+  const currTime = new Date().toLocaleTimeString();
 
   // loads 3 ads
   useEffect(() => {
@@ -29,7 +34,8 @@ const Slideshow = ({ setApiError }) => {
             setProducts(response.data);
           }
         })
-        .catch(() => {
+        .catch((err) => {
+          addErrorLog(currDate +" "+  currTime + " " + err.code +" " + err.message)
           setApiError(true);
         });
     };

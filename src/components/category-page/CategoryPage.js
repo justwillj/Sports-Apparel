@@ -33,7 +33,7 @@ const CategoryPage = (props) => {
         <br/>
         <h2>{department} | {category}</h2>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <ProductPagination addToWishlist={props.addToWishlist} setApiError={setApiError} query={`?demographic=${props.category}&category=Running`} />
+      <ProductPagination addToWishlist={props.addToWishlist} setApiError={setApiError} query={`?demographic=${props.category}&category=Running`} addErrorLog={props.addErrorLog} />
     </div>
   );
 };

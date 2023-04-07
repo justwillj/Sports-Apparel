@@ -24,7 +24,7 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
   const [query, setQuery] = useState('');
   const history = useHistory();
 
-  //Used to get the time for the error logs
+  // Used to get the time for the error logs
   const currDate = new Date().toLocaleDateString();
   const currTime = new Date().toLocaleTimeString();
 

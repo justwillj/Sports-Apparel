@@ -8,11 +8,9 @@ const currTime = new Date().toLocaleTimeString();
 return(
   <div>
     <h1>Error Logging Page</h1>
-    {list.slice(0).reverse().map((error)=>(
-        <div className='logging-error'>
+    {list.slice(0).reverse().map((error,index)=>(
+        <div key={index} className='logging-error'>
         <h1>{error}</h1>
-        <h1>{error.time}</h1>
-        <h1>{error.message}</h1>
         </div>
     
     ))}
