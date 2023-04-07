@@ -5,6 +5,7 @@ import HttpHelper from '../../utils/HttpHelper';
 import Constants from '../../utils/constants';
 import PaginationInterface from './PaginationInterface';
 import searchFilter from '../../utils/utilFunctions';
+/* eslint-disable */
 
 /**
  * @name ProductPagination
@@ -20,11 +21,12 @@ const ProductPagination = ({
   query,
   setApiError,
   addToWishlist,
-  searchResults
+  searchResults,
 }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
   const [products, setProducts] = useState([]);
+
 
   useEffect(() => {
     // used for deprtment/category/type/etc pages

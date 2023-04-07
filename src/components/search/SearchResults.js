@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {
   useEffect,
   useState
@@ -14,11 +15,16 @@ import ProductPagination from '../product-pagination/ProductPagination';
  * @description fetches products from API and displays products as product cards
  * @return component
  */
-const SearchResults = ({ addToWishlist }) => {
+const SearchResults = ({ addToWishlist, addErrorLog }) => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
+
+  // Used to get the time for the error logs
+  const currDate = new Date().toLocaleDateString();
+  const currTime = new Date().toLocaleTimeString();
+
   useEffect(() => {
     setLoading(true);
     async function fetchFilteredProducts(prod, error) {
@@ -33,7 +39,8 @@ const SearchResults = ({ addToWishlist }) => {
         })
         .then(prod)
         .then(() => { setLoading(false); })
-        .catch(() => {
+        .catch((err) => {
+          addErrorLog(currDate +" "+  currTime + " " + err)
           error(true);
         });
     }

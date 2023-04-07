@@ -30,6 +30,7 @@ const App = () => {
   //Used to store the errors that happen while using the app
   const [errorLog, setErrorLog] = useState([]);
 
+
   const logoutForm = () => {
     sessionStorage.setItem("email","");
     setEmail("");
