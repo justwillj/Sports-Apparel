@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -45,10 +46,10 @@ import './ProductModal.css';
  * @param {*} product product
  * @return component
  */
-const ProductModal = (open,  product ) => {
+const ProductModal = ({ open,  product, close }) => {
     //placeholder data, change values to display from API
-    console.log(product);
-    console.log("Here I am")
+    // console.log(product);
+    // console.log("Here I am")
 
     const department = product.demographic;
     const category = product.category;
@@ -78,12 +79,12 @@ const ProductModal = (open,  product ) => {
 //   };
 
   return (
-  <Modal className="modal">
+  <Modal open={open} onClose={close}>
     <div className="modal-container">
       <div className='topContainer'>
         <div className='top-bar'/>
         <button className='close' onClick={close}>X</button>
-        <img src= {image}/>
+        <img alt="Product Image" src={`${image}`} />
       </div>
       <h2 className='name'>{department} {category} {type}</h2>
       
