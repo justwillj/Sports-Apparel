@@ -14,12 +14,9 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { RemoveRedEyeRounded } from '@material-ui/icons';
-import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Constants from '../../utils/constants';
-import { useCart } from '../checkout-page/CartContext';
 import ProductModal from '../product-modal/ProductModal';
-import { Modal } from '@material-ui/core';
 import { useCartDispatch } from '../checkout-page/CartContext';
 
 
@@ -59,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
  */
 const ProductCard = ({ product, onClick }) => {
   const classes = useStyles();
-  const [modalOn, setModalOn] = useState(false);
+  const [productModal, setProductModal] = useState(false)
 
   const dispatch = useCartDispatch();
 
@@ -68,59 +65,59 @@ const ProductCard = ({ product, onClick }) => {
     dispatch({ type: 'add', item });
   };
 
-  const openProductModal = (item) => {
-    return(
-      <Modal>
-      {ProductModal(modalOn, product={item})}
-      </Modal>
-    )
+  const openProductModal = () => {
+    setProductModal(true);
+  }
+  const closeProductModal = () => {
+    setProductModal(false);
   }
 
-  // onClick={() => ProductModal(true, product={product})}
-
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={(
-          <Avatar aria-label="demographics" className={classes.avatar}>
-            {product.demographic.charAt(0)}
-          </Avatar>
-        )}
-        action={(
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
+    <div>
+      <ProductModal open={productModal} product={product} close={closeProductModal} />
+      <Card className={classes.root}>
+        <CardHeader
+          avatar={(
+            <Avatar aria-label="demographics" className={classes.avatar}>
+              {product.demographic.charAt(0)}
+            </Avatar>
+          )}
+          action={(
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          )}
+          title={product.name}
+          subheader={`${product.demographic} ${product.category} ${product.type}`}
+        />
+        <CardMedia
+          className={classes.media}
+          image={Constants.PLACEHOLDER_IMAGE}
+          title="placeholder"
+        />
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {product.description}
+          </Typography>
+          <br />
+          <Typography variant="body2" color="textSecondary" component="p">
+            $
+            {product.price}
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+        <IconButton aria-label="open modal" onClick={openProductModal}>
+            <RemoveRedEyeRounded />
           </IconButton>
-        )}
-        title={product.name}
-        subheader={`${product.demographic} ${product.category} ${product.type}`}
-      />
-      <CardMedia
-        className={classes.media}
-        image={Constants.PLACEHOLDER_IMAGE}
-        title="placeholder"
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {product.description}
-        </Typography>
-        <br />
-        <Typography variant="body2" color="textSecondary" component="p">
-          $
-          {product.price}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-      <IconButton aria-label="open modal" onClick={() => openProductModal(product)}>
-          <RemoveRedEyeRounded />
-        </IconButton>
-        <IconButton aria-label="add to favorites" onClick={() => onClick(product)}>
-          <FavoriteIcon />
-        </IconButton>
+          <IconButton aria-label="add to favorites" onClick={() => onClick(product)}>
+            <FavoriteIcon />
+          </IconButton>
         <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
-          <AddShoppingCartIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
+            <AddShoppingCartIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
+    </div>
   );
 };
 

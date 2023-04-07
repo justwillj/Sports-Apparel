@@ -1,5 +1,15 @@
 .modal-container {
     color: #2d3e50;
+    background-color: white;
+    border: 3px solid #2d3e50;
+    border-radius: 10px;
+    height: 550px;
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
     font-size: x-large;
@@ -7,7 +17,7 @@
     padding: 3%;
   }
   
-  .modal {
+  /* .modal {
     background-color: white;
     border: 3px solid #2d3e50;
     border-radius: 10px;
@@ -19,31 +29,32 @@
     transform: translate(-50%, -50%);
     width: 500px;
     z-index: 1000;
-  }
+  } */
   
   .top-bar {
-    width: 498.5px;
-    height: 85px;
+    width: 590px;
+    height: 100px;
     border-top-right-radius: 7px;
     border-top-left-radius: 7px;
     background-color: #7F7F7F;
     background-position: top;
     border: 1px solid #7F7F7F;
     z-index: 10;
-    margin-left: -15px;
-    margin-top: -15px;
+    margin-left: -46px;
+    margin-top: -45.5px;
   }
   
   .bottom-bar {
-    width: 498.5px;
-    height: 70px;
+    width: 590px;
+    height: 80px;
     border-bottom-right-radius: 7px;
     border-bottom-left-radius: 7px;
     background-color: #ccd0cf;
     background-position: bottom;
     border: 1px solid #ccd0cf;
     margin-top: 30px;
-    margin-left: -15px;
+    margin-left: -46px;
+    margin-bottom: -45px;
   }
   
   .topContainer {
@@ -53,8 +64,8 @@
   
   .productImg {
     float: left;
-    border: 5px solid black;
-    width: 65%;
+    border: 1px solid black;
+    width: 75%;
     justify-self: left;
     margin-top: -70px;
     z-index: 2;
@@ -64,12 +75,13 @@
     color: #1C2964;
     font-weight: 500;
     margin-top: 0%;
+    margin-left: -5px;
   }
   
   .swatchContainer {
     display: flex;
     padding: 0%;
-    margin-top: -9%;
+    margin-top: -6%;
   }
   
   .swatchHeader {
@@ -92,10 +104,10 @@
   }
   
   .description {
-    width: 300px;
+    width: 500px;
     height: 105px;
     font-size: medium;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
     margin-top: 5%;
   }
   
@@ -114,6 +126,17 @@
   .icon:hover {
     cursor: pointer;
   }
+
+  .wishlist {
+    justify-self: right;
+    float: right;
+    margin-right: 30px;
+    margin-top: -5%;
+  }
+
+  .wishlist:hover {
+    cursor: pointer;
+  }
   
   .close {
     border-radius: 100%;
@@ -127,8 +150,8 @@
     font-size: large;
     color: #ccd0cf;
     font-weight: bold;
-    margin-right: 40px;
-    margin-top: -65px;
+    margin-right: 0px;
+    margin-top: -70px;
   }
   
   .close:hover {

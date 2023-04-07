@@ -20,7 +20,7 @@ import Constants, { PLACEHOLDER_IMAGE } from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
 /* eslint-disable */
 import './ProductModal.css';
-import ShoppingCart from '../shopping-cart/ShoppingCart';
+import { useCartDispatch } from '../checkout-page/CartContext';
 
 // Design:
 // White Background with darkgrey bar at top, light grey bar at bottom
@@ -46,51 +46,60 @@ import ShoppingCart from '../shopping-cart/ShoppingCart';
  * @param {*} product product
  * @return component
  */
-const ProductModal = ( open,  product ) => {
+const ProductModal = ({ open,  product, close }) => {
     //placeholder data, change values to display from API
-    console.log(product);
-    console.log(open);
-    console.log("Here I am");
+    // console.log(product);
+    // console.log("Here I am")
 
     const department = product.demographic;
     const category = product.category;
     const type = product.type;
     const image = {PLACEHOLDER_IMAGE};
-    const primaryColor = "Red";
-    const secondaryColor = "Lilac";
-    const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure";
-    const price = "$19.99";
+    const primaryColor = "Red"
+    const secondaryColor = "Blue"
+    const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure"
+    const price = "$19.99"
+
+
+    const dispatch = useCartDispatch();
+
+    const addToCart = (item) => {
+      dispatch({ type: 'add', item });
+    };
 
   return (
-    <Modal open={open}>
-      <div className="modal-container">
-        <div className="topContainer">
-          <div className="top-bar" />
-          <button className="close" onClick={close}>X</button>
-          <img src={image} />
-        </div>
-        <h2 className="name">
-          {department}
-          {' '}
-          {category}
-          {' '}
-          {type}
-        </h2>
-
-        <h4 className="swatchHeader">Color Choice</h4>
-        <div className="swatchContainer">
-          <div className="colorSwatch" id="primarySwatch" style={{ backgroundColor: 'Red' }} />
-          <div className="colorSwatch" id="secondarySwatch" style={{ backgroundColor: 'Blue' }} />
-        </div>
-
-        <div className="description">{description}</div>
-
-        <div className="bottom-bar">
-          <div className="price">{price}</div>
-          <div className="icon"><ShoppingCart /></div>
-        </div>
+  <Modal open={open} onClose={close}>
+    <div className="modal-container">
+      <div className='topContainer'>
+        <div className='top-bar'/>
+        <button className='close' onClick={close}>X</button>
+        <img className='productImg' alt="Product Image" src={PLACEHOLDER_IMAGE} />
       </div>
-    </Modal>
+      <h2 className='name'>{department} {category} {type}</h2>
+      
+      <h3 className='swatchHeader'>Color Choice</h3>
+      <div className='swatchContainer'>
+        <div className= 'colorSwatch' id='primarySwatch' style={{backgroundColor: "Red"}}/>
+        <div className= 'colorSwatch' id='secondarySwatch' style={{backgroundColor: "Blue"}}/>
+      </div>
+      
+      <div className= 'description'>{description}</div>
+      
+      <div className='bottom-bar'>
+        <div className= 'price'>{price}</div>
+        <div className='icon'>
+          <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
+            <AddShoppingCartIcon />
+          </IconButton>
+        </div>
+        {/* <div className='wishlist'>
+        <IconButton aria-label="add to favorites" onClick={() => onClick(product)}>
+          <FavoriteIcon />
+        </IconButton>
+        </div> */}
+      </div>
+    </div>
+  </Modal>
   );
 };
 
