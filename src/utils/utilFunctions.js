@@ -43,7 +43,6 @@ const searchFilter = (products, query) => {
     return newList;
   });
   // });
-  console.log(newList);
   return newList;
 };
 export default searchFilter;
