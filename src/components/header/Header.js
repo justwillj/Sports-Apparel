@@ -38,6 +38,24 @@ const Header = ({ user, setUser, email, setEmail, logout }) => {
     history.push('/home');
   };
 
+  const refresh = (dept) => {
+    switch (dept){
+      case 'Men' :
+        history.push('/results/Men');
+        window.location.reload(true);
+        break;
+      case 'Women':
+        history.push('/results/Women');
+        window.location.reload(true);
+        break;
+      case 'Kids':
+        history.push('/results/Kids');
+        window.location.reload(true);
+        break;
+      default:
+    }
+  }
+
   const formCheck = (e)=>{
     let validForm = true;
     setError(false);
@@ -98,13 +116,13 @@ const Header = ({ user, setUser, email, setEmail, logout }) => {
         <Grid item xs={3}></Grid>
         <Grid item xs={6} container spacing={10} justify="center">
           <Grid item>
-          <NavLink to="/results/Men" className="department">Men</NavLink>
+          <NavLink to="/results/Men" className="department" onClick={() => refresh("Men")}>Men</NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/results/Women" className="department">Women</NavLink>
+          <NavLink to="/results/Women" className="department" onClick={() => refresh("Women")}>Women</NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/results/Kids" className="department">Kids</NavLink>
+          <NavLink to="/results/Kids" className="department" onClick={() => refresh("Kids")}>Kids</NavLink>
         </Grid>  
         </Grid>
         <Grid item xs={3} container justify="flex-end">
