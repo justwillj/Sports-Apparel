@@ -114,13 +114,14 @@
   .price {
     font-weight: bolder;
     margin-left: 20px;
+    margin-top: 10px;
   }
   
   .icon {
     justify-self: right;
     float: right;
     margin-right: 30px;
-    margin-top: -5%;
+    margin-top: -38px;
   }
   
   .icon:hover {
