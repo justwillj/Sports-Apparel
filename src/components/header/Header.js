@@ -15,7 +15,7 @@ import ShoppingCart from '../shopping-cart/ShoppingCart';
  * @description Displays the navigation header
  * @return component
  */
-const Header = ({ user, setUser,email,setEmail,logout }) => {
+const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
   const [modalOn, setModalOn] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
@@ -23,6 +23,11 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
   const pathName = window.location.pathname;
   const [query, setQuery] = useState('');
   const history = useHistory();
+
+  //Used to get the time for the error logs
+  const currDate = new Date().toLocaleDateString();
+  const currTime = new Date().toLocaleTimeString();
+
   const clickHandlerForSearch = () => {
     sessionStorage.setItem('userSearch', query);
     console.log(pathName);
@@ -45,7 +50,9 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
     if(password !== "password"){
       e.preventDefault();
       setError(true);
+      addErrorLog(currDate +" "+  currTime + " " + "You have entered a invalid email or password!")
       validForm = false;
+
     }
 
     if(email !== "amir@amir.com"){
