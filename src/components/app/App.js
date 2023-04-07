@@ -13,6 +13,7 @@ import SingleProduct from '../product-page/SingleProduct';
 import Footer from '../footer/Footer';
 import SearchResults from '../search/SearchResults';
 import AdPage from '../slideshow/AdPage';
+import ProductPagination from '../product-pagination/ProductPagination';
 
 /**
  * @name App
@@ -54,6 +55,7 @@ const App = () => {
         <Route exact path="/pets" render={() => <CategoryPage category={"Pets"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
+        <Route exact path="/pageTest" render={() => <ProductPagination addToWishlist={updateWishlist} />} />
       </Switch>
       <Footer />
     </BrowserRouter>
