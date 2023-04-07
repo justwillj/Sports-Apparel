@@ -42,15 +42,15 @@ const Header = ({ user, setUser, email, setEmail, logout }) => {
     switch (dept){
       case 'Men' :
         history.push('/results/Men');
-        window.location.reload(true);
+        window.location.reload();
         break;
       case 'Women':
         history.push('/results/Women');
-        window.location.reload(true);
+        window.location.reload();
         break;
       case 'Kids':
         history.push('/results/Kids');
-        window.location.reload(true);
+        window.location.reload();
         break;
       default:
     }

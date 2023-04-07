@@ -18,8 +18,9 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Modal } from '@material-ui/core';
 import Constants, { PLACEHOLDER_IMAGE } from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
-
+/* eslint-disable */
 import './ProductModal.css';
+import ShoppingCart from '../shopping-cart/ShoppingCart';
 
 // Design:
 // White Background with darkgrey bar at top, light grey bar at bottom
@@ -42,39 +43,26 @@ import './ProductModal.css';
 /**
  * @name ProductModal
  * @description displays single product modal component
- * @param {*} props product
+ * @param {*} product product
  * @return component
  */
-const ProductModal = ({ props }) => {
-  // placeholder data, change values to display from API
-  const department = props.demographic;
-  const { category } = props;
-  const { type } = props;
-  const image = { PLACEHOLDER_IMAGE };
-  const primaryColor = 'Red';
-  const secondaryColor = 'Lilac';
-  const description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure';
-  const price = '$19.99';
+const ProductModal = ( open,  product ) => {
+    //placeholder data, change values to display from API
+    console.log(product);
+    console.log(open);
+    console.log("Here I am");
 
-  //   const { dispatch } = useCart();
-
-  //   const onAdd = () => {
-  //     dispatch(
-  //       {
-  //         type: 'add',
-  //         product: {
-  //           id: product.id,
-  //           title: product.name,
-  //           price: product.price,
-  //           description: product.description,
-  //           quantity: 1
-  //         }
-  //       }
-  //     );
-  //   };
+    const department = product.demographic;
+    const category = product.category;
+    const type = product.type;
+    const image = {PLACEHOLDER_IMAGE};
+    const primaryColor = "Red";
+    const secondaryColor = "Lilac";
+    const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure";
+    const price = "$19.99";
 
   return (
-    <Modal className="modal">
+    <Modal open={open}>
       <div className="modal-container">
         <div className="topContainer">
           <div className="top-bar" />
@@ -99,7 +87,7 @@ const ProductModal = ({ props }) => {
 
         <div className="bottom-bar">
           <div className="price">{price}</div>
-          <button className="icon" img src={AddShoppingCartIcon} />
+          <div className="icon"><ShoppingCart /></div>
         </div>
       </div>
     </Modal>
