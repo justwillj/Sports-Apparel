@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import ProductPage from '../product-page/ProductPage';
@@ -13,6 +13,7 @@ import SingleProduct from '../product-page/SingleProduct';
 import Footer from '../footer/Footer';
 import SearchResults from '../search/SearchResults';
 import AdPage from '../slideshow/AdPage';
+import LoggingErrorPage from '../loggingErrorPage/LoggingErrorPage';
 import ProductPagination from '../product-pagination/ProductPagination';
 
 /**
@@ -24,6 +25,9 @@ const App = () => {
   const [wishlist, setWishList] = useState([]);
   const [email, setEmail] = useState('');
   const history = useHistory();
+
+  //Used to store the errors that happen while using the app
+  const [errorLog, setErrorLog] = useState([]);
 
   const logoutForm = () => {
     sessionStorage.setItem("email","");
@@ -37,15 +41,34 @@ const App = () => {
     }
   };
 
+  useEffect(() => {
+   const data =localStorage.getItem('error-log');
+   if (data){
+    setErrorLog(JSON.parse(data));
+  }
+   },[]);
+
+    /**
+  * Also the login state to be saved on refresh
+  */
+ useEffect(() => {
+  window.localStorage.setItem("error-log",JSON.stringify(errorLog));
+ }, [errorLog]);
+
+ 
+const addErrorLog = (message) =>{
+  setErrorLog([...errorLog,message ])
+}
+
   return (
     <BrowserRouter>
-      <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} />
+      <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} addErrorLog={addErrorLog} />
       {/* <Header /> */}
       <Switch>
         <Route exact path="/" render={() => <ProductPage addToWishlist={updateWishlist} />} />
         <Route exact path="/checkout" render={() => <CheckoutPage />} />
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
-        <Route exact path="/home" render={() => <HomePage />} />
+        <Route exact path="/home" render={() => <HomePage addErrorLog={addErrorLog} />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
         <Route exact path="/ads/:id" render={() => <AdPage />} />
         <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} />} />
@@ -54,6 +77,8 @@ const App = () => {
         <Route exact path="/kids" render={() => <CategoryPage category={"Kids"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/pets" render={() => <CategoryPage category={"Pets"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
+        <Route exact path="/error-logging" render={() => <LoggingErrorPage list={errorLog} />} />
+
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
         <Route exact path="/pageTest" render={() => <ProductPagination addToWishlist={updateWishlist} />} />
       </Switch>
