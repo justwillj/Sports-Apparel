@@ -14,6 +14,8 @@ import Footer from '../footer/Footer';
 import SearchResults from '../search/SearchResults';
 import AdPage from '../slideshow/AdPage';
 import ProductPagination from '../product-pagination/ProductPagination';
+import DepartmentPage from '../department-page/DepartmentPage';
+import ShoppingCartPage from '../shopping-cart-page/ShoppingCartPage';
 
 /**
  * @name App
@@ -53,6 +55,8 @@ const App = () => {
         <Route exact path="/Women" render={() => <CategoryPage category={"Women"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/kids" render={() => <CategoryPage category={"Kids"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
+        <Route exact path="/shoppingcart" render={() => <ShoppingCartPage />} />
+        <Route exact path="/results/:dept" render={() => <DepartmentPage addToWishlist={updateWishlist} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
         <Route exact path="/pageTest" render={() => <ProductPagination addToWishlist={updateWishlist} />} />
       </Switch>

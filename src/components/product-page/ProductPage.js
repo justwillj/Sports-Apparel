@@ -1,9 +1,7 @@
 /* eslint-disable */
-import React, { useEffect, useState } from 'react';
-import ProductCard from '../product-card/ProductCard';
+import React, { useState } from 'react';
 import styles from './ProductPage.module.css';
 import Constants from '../../utils/constants';
-import fetchProducts from './ProductPageService';
 import ProductPagination from '../product-pagination/ProductPagination';
 
 /**

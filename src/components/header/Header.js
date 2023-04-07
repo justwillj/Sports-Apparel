@@ -15,11 +15,10 @@ import ShoppingCart from '../shopping-cart/ShoppingCart';
  * @description Displays the navigation header
  * @return component
  */
-const Header = ({ user, setUser,email,setEmail,logout }) => {
+const Header = ({ user, setUser, email, setEmail, logout }) => {
   const [modalOn, setModalOn] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-
   const pathName = window.location.pathname;
   const [query, setQuery] = useState('');
   const history = useHistory();
@@ -99,13 +98,13 @@ const Header = ({ user, setUser,email,setEmail,logout }) => {
         <Grid item xs={3}></Grid>
         <Grid item xs={6} container spacing={10} justify="center">
           <Grid item>
-          <NavLink to="/Men" className="department">Men</NavLink>
+          <NavLink to="/results/Men" className="department">Men</NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/Women" className="department">Women</NavLink>
+          <NavLink to="/results/Women" className="department">Women</NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/Kids" className="department">Kids</NavLink>
+          <NavLink to="/results/Kids" className="department">Kids</NavLink>
         </Grid>  
         </Grid>
         <Grid item xs={3} container justify="flex-end">
