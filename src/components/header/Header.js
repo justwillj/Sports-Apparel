@@ -15,14 +15,18 @@ import ShoppingCart from '../shopping-cart/ShoppingCart';
  * @description Displays the navigation header
  * @return component
  */
-const Header = ({ user, setUser, email, setEmail, logout }) => {
+const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
   const [modalOn, setModalOn] = useState(false);
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const pathName = window.location.pathname;
   const [query, setQuery] = useState('');
   const history = useHistory();
-  
+
+  //Used to get the time for the error logs
+  const currDate = new Date().toLocaleDateString();
+  const currTime = new Date().toLocaleTimeString();
+
   const clickHandlerForSearch = () => {
     sessionStorage.setItem('userSearch', query);
     console.log(pathName);
@@ -52,6 +56,10 @@ const Header = ({ user, setUser, email, setEmail, logout }) => {
         history.push('/results/Kids');
         window.location.reload();
         break;
+      case 'Pets':
+        history.push('/results/Pets');
+        window.location.reload();
+        break;
       default:
     }
   }
@@ -63,7 +71,9 @@ const Header = ({ user, setUser, email, setEmail, logout }) => {
     if(password !== "password"){
       e.preventDefault();
       setError(true);
+      addErrorLog(currDate +" "+  currTime + " " + "You have entered a invalid email or password!")
       validForm = false;
+
     }
 
     if(email !== "amir@amir.com"){
@@ -90,7 +100,8 @@ const Header = ({ user, setUser, email, setEmail, logout }) => {
     }}
     >
         <div style={{
-            position: 'relative'
+            position: 'relative',
+            minHeight: '160px'
         }}>
             <div 
             style={{
@@ -99,20 +110,19 @@ const Header = ({ user, setUser, email, setEmail, logout }) => {
             <img className="logo" src="/Apparel Logo just.png" alt="Site logo" />
           </NavLink>
           </div>
-      <Grid container direction="row" spacing={2} justify="flex-end" border="2px white" >
+      <Grid container direction="row" spacing={2} justify="flex-end">
         <Grid item xs={1} container justify="center" className='login-gird'>
-        
-                {sessionStorage.getItem("email") === ""? <button type="button" className="loginButton" onClick={()=> setModalOn(true)}>Login</button>: (
+                {sessionStorage.getItem("email") === ""? <a className="loginButton" onClick={()=> setModalOn(true)}>[Login]</a>: (
               <div>
-                <p className='login-name'>{sessionStorage.getItem("email")}</p>
-                <button type="button" className="loginButton" onClick={logoutButton}>Logout</button>
+                <span className='login-name'>{sessionStorage.getItem("email")}</span>
+                <a className="loginButton" onClick={logoutButton}>[Logout]</a>
               </div>
             ) }        
         </Grid>
       </Grid>
       
         
-      <Grid className='department-container' container direction="row" justify="center">
+      <Grid className='department-container' container direction="row" justify="center" alignItems="center">
         <Grid item xs={3}></Grid>
         <Grid item xs={6} container spacing={10} justify="center">
           <Grid item>
@@ -123,9 +133,12 @@ const Header = ({ user, setUser, email, setEmail, logout }) => {
         </Grid>
         <Grid item>
           <NavLink to="/results/Kids" className="department" onClick={() => refresh("Kids")}>Kids</NavLink>
+        </Grid>
+        <Grid item>
+          <NavLink to="/results/Pets" className="department" onClick={() => refresh("Pets")}>Pets</NavLink>
         </Grid>  
         </Grid>
-        <Grid item xs={3} container justify="flex-end">
+        <Grid item xs={3} container justify="flex-end" alignItems="center">
         <Grid item>
           <SiteSearch
             value={query}
@@ -133,10 +146,10 @@ const Header = ({ user, setUser, email, setEmail, logout }) => {
             handleOnClick={clickHandlerForSearch}
           />
       </Grid>
-      <Grid item>
+      <Grid item className="iconWrapper">
           <NavLink to="/wishlist"><WishlistIcon /></NavLink>
         </Grid>
-        <Grid item>
+        <Grid item className="iconWrapper">
           <NavLink to="/shoppingcart"><ShoppingCart /></NavLink>
         </Grid>
         </Grid>
