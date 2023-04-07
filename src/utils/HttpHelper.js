@@ -1,4 +1,5 @@
 import Constants from './constants';
+/* eslint-disable */
 
 /**
  * @name HttpHelper

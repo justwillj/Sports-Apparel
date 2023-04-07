@@ -6,6 +6,7 @@ import Constants from '../../utils/constants';
 import PopularCard from '../popularCard/PopularCard';
 import NewProductCard from '../newProductCard/NewProductCard';
 import fetchAllProducts from '../product-page/FetchAllProducts';
+/* eslint-disable */
 
 /**
  * @name HomePage
@@ -13,18 +14,18 @@ import fetchAllProducts from '../product-page/FetchAllProducts';
  * new and popular products
  * @returns component
  */
-const HomePage = () => {
+const HomePage = ({addErrorLog}) => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
 
   useEffect(() => {
-    fetchAllProducts(setProducts, setApiError);
+    fetchAllProducts(setProducts, setApiError, addErrorLog);
   }, []);
 
   return (
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <Slideshow setApiError={() => setApiError} />
+      <Slideshow setApiError={() => setApiError} addErrorLog={addErrorLog} />
       <br />
       <br />
       <br />

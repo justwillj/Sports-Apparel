@@ -29,6 +29,7 @@ const App = () => {
   //Used to store the errors that happen while using the app
   const [errorLog, setErrorLog] = useState([]);
 
+
   const logoutForm = () => {
     sessionStorage.setItem("email","");
     setEmail("");
@@ -71,8 +72,8 @@ const addErrorLog = (message) =>{
         <Route exact path="/home" render={() => <HomePage addErrorLog={addErrorLog} />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
         <Route exact path="/ads/:id" render={() => <AdPage />} />
-        <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} />} />
-        <Route exact path="/Men" render={() => <CategoryPage category={"Men"} addToWishlist={updateWishlist} />} />
+        <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} />
+        <Route exact path="/Men" render={() => <CategoryPage category={"Men"} addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} />
         <Route exact path="/Women" render={() => <CategoryPage category={"Women"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/kids" render={() => <CategoryPage category={"Kids"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/pets" render={() => <CategoryPage category={"Pets"} addToWishlist={updateWishlist}/>} />
