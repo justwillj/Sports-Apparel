@@ -48,6 +48,7 @@ import './ProductModal.css';
 const ProductModal = (open,  product ) => {
     //placeholder data, change values to display from API
     console.log(product);
+    console.log("Here I am")
 
     const department = product.demographic;
     const category = product.category;
