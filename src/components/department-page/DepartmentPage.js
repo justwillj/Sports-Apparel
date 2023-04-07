@@ -1,5 +1,6 @@
 /* eslint-disable */
-import "./CategoryPage.module.css"
+import "./DepartmentPage.module.css"
+import { NavLink, useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import HttpHelper from '../../utils/HttpHelper';
 import ProductCard from '../product-card/ProductCard';
@@ -13,26 +14,25 @@ import fetchProducts from '../product-page/ProductPageService';
 //MAKE BREADCRUMBS CLICKABLE
 
 //Header
-//Breadcrumb: Department | Category
+//Breadcrumb: Department
 //Search Results
 //API GET by search results (utilize searchbar functionality)
 //Footer
 
 /**
- * @name CategoryPage
+ * @name DepartmentPage
  * @description fetches products from API based on department and category and displays products as product cards
  * @return component
  */
-const CategoryPage = (props) => {
+const DepartmentPage = (props) => {
   const [products, setProducts] = useState([]);
   const [apiError, setApiError] = useState(false);
   const [department, setDepartment] = useState(props.department);
-  const [category, setCategory] =  useState(props.category);
 
 
   useEffect(() => {
     async function fetchFilteredProducts(prod, setApiError) {
-      await HttpHelper(`/products?demographic=${props.department}&category=${props.category}`, 'GET')
+      await HttpHelper(`/products?demographic=${props.department}`, 'GET')
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -50,7 +50,8 @@ const CategoryPage = (props) => {
   return (
     <div className='page'>
         <br/>
-        <h2>{department} | {category}</h2>
+        <h2>{department}</h2>
+        <NavLink to="/Men/Running">Running</NavLink>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
       <div className={styles.app}>
         {products.map((product) => (
@@ -63,4 +64,4 @@ const CategoryPage = (props) => {
   );
 };
 
-export default CategoryPage;
+export default DepartmentPage;

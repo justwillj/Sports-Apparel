@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -43,19 +42,22 @@ import './ProductModal.css';
 /**
  * @name ProductModal
  * @description displays single product modal component
- * @param {*} props product
+ * @param {*} product product
  * @return component
  */
-const ProductModal = ({ props }) => {
+const ProductModal = (open,  product ) => {
     //placeholder data, change values to display from API
-    const department = props.demographic;
-    const category = props.category;
-    const type = props.type;
+    console.log(product);
+
+    const department = product.demographic;
+    const category = product.category;
+    const type = product.type;
     const image = {PLACEHOLDER_IMAGE};
     const primaryColor = "Red"
     const secondaryColor = "Lilac"
     const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure"
     const price = "$19.99"
+
 
 //   const { dispatch } = useCart();
 

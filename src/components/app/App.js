@@ -7,6 +7,7 @@ import CheckoutPage from '../checkout-page/CheckoutPage';
 import ConfirmationPage from '../confirmation-page/ConfirmationPage';
 import WishlistPage from '../wishlist-page/WishlistPage';
 import CategoryPage from '../category-page/CategoryPage';
+import DepartmentPage from '../department-page/DepartmentPage';
 import Header from '../header/Header';
 import HomePage from '../home-page/HomePage';
 import SingleProduct from '../product-page/SingleProduct';
@@ -48,9 +49,10 @@ const App = () => {
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
         <Route exact path="/ads/:id" render={() => <AdPage />} />
         <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} />} />
-        <Route exact path="/Men" render={() => <CategoryPage category={"Men"} addToWishlist={updateWishlist} />} />
-        <Route exact path="/Women" render={() => <CategoryPage category={"Women"} addToWishlist={updateWishlist}/>} />
-        <Route exact path="/kids" render={() => <CategoryPage category={"Kids"} addToWishlist={updateWishlist}/>} />
+        <Route exact path="/Men" render={() => <DepartmentPage department={"Men"} addToWishlist={updateWishlist} />} />
+        <Route exact path="/Men/Running" render={() => <CategoryPage department={"Men"} category={"Running"} addToWishlist={updateWishlist} />} />
+        <Route exact path="/Women" render={() => <DepartmentPage department={"Women"} addToWishlist={updateWishlist}/>} />
+        <Route exact path="/kids" render={() => <DepartmentPage department={"Kids"} addToWishlist={updateWishlist}/>} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
       </Switch>

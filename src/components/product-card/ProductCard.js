@@ -13,11 +13,13 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import { RemoveRedEyeRounded } from '@material-ui/icons';
 import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Constants from '../../utils/constants';
 import { useCart } from '../checkout-page/CartContext';
 import ProductModal from '../product-modal/ProductModal';
+import { Modal } from '@material-ui/core';
 import { useCartDispatch } from '../checkout-page/CartContext';
 
 
@@ -66,7 +68,14 @@ const ProductCard = ({ product, onClick }) => {
     dispatch({ type: 'add', item });
   };
 
-  // onClick={() => ProductModal(true, props={product})}
+  const openProductModal = (item) => {
+    return(
+      <Modal>
+      {ProductModal(open=true, product={item})}
+      </Modal>
+    )
+  }
+  // onClick={() => ProductModal(true, product={product})}
 
   return (
     <Card className={classes.root}>
@@ -95,16 +104,16 @@ const ProductCard = ({ product, onClick }) => {
         </Typography>
         <br />
         <Typography variant="body2" color="textSecondary" component="p">
-          Price: $
+          $
           {product.price}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
+      <IconButton aria-label="open modal" onClick={() => openProductModal(product)}>
+          <RemoveRedEyeRounded />
+        </IconButton>
         <IconButton aria-label="add to favorites" onClick={() => onClick(product)}>
           <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
         </IconButton>
         <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
           <AddShoppingCartIcon />
