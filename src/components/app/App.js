@@ -13,8 +13,9 @@ import SingleProduct from '../product-page/SingleProduct';
 import Footer from '../footer/Footer';
 import SearchResults from '../search/SearchResults';
 import AdPage from '../slideshow/AdPage';
+import DepartmentPage from '../department-page/DepartmentPage';
+import ShoppingCartPage from '../shopping-cart-page/ShoppingCartPage';
 import LoggingErrorPage from '../loggingErrorPage/LoggingErrorPage';
-import ProductPagination from '../product-pagination/ProductPagination';
 
 /**
  * @name App
@@ -72,14 +73,13 @@ const addErrorLog = (message) =>{
         <Route exact path="/home" render={() => <HomePage addErrorLog={addErrorLog} />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
         <Route exact path="/ads/:id" render={() => <AdPage />} />
-        <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} />
-        <Route exact path="/Men" render={() => <CategoryPage category={"Men"} addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} />
-        <Route exact path="/Women" render={() => <CategoryPage category={"Women"} addToWishlist={updateWishlist}/>} />
-        <Route exact path="/kids" render={() => <CategoryPage category={"Kids"} addToWishlist={updateWishlist}/>} />
-        <Route exact path="/pets" render={() => <CategoryPage category={"Pets"} addToWishlist={updateWishlist}/>} />
+        <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} />} />
+        <Route exact path="/Men/Running" render={() => <CategoryPage department={"Men"} category={"Running"} addToWishlist={updateWishlist} />} />
+        <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
+        <Route exact path="/shoppingcart" render={() => <ShoppingCartPage />} />
+        <Route exact path="/results/:dept" render={() => <DepartmentPage addToWishlist={updateWishlist} />} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         <Route exact path="/error-logging" render={() => <LoggingErrorPage list={errorLog} />} />
-
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
         {/* <Route exact path="/pageTest" render={() => <ProductPagination addToWishlist={updateWishlist} />} /> */}
       </Switch>

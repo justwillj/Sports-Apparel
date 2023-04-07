@@ -56,6 +56,10 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
         history.push('/results/Kids');
         window.location.reload();
         break;
+      case 'Pets':
+        history.push('/results/Pets');
+        window.location.reload();
+        break;
       default:
     }
   }
@@ -128,10 +132,10 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
           <NavLink to="/results/Women" className="department" onClick={() => refresh("Women")}>Women</NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/Kids" className="department">Kids</NavLink>
+          <NavLink to="/results/Kids" className="department" onClick={() => refresh("Kids")}>Kids</NavLink>
         </Grid>
         <Grid item>
-          <NavLink to="/Pets" className="department">Pets</NavLink>
+          <NavLink to="/results/Pets" className="department" onClick={() => refresh("Pets")}>Pets</NavLink>
         </Grid>  
         </Grid>
         <Grid item xs={3} container justify="flex-end" alignItems="center">
