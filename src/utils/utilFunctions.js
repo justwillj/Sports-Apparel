@@ -10,6 +10,7 @@ const searchFilter = (products, query) => {
   if (query === '') {
     return products;
   }
+  // commented out for advanced search
   // const queryToLower = query.toLowerCase().split(' ');
   // queryToLower.forEach((element) => {
   products.filter((product) => {
@@ -20,6 +21,7 @@ const searchFilter = (products, query) => {
     const prodDescToLower = product.description.toLowerCase();
     const prodTypeToLower = product.type.toLowerCase();
     const queryToLower = query.toLowerCase();
+
     // if (
     //   prodNameToLower.match(element)
     //   || prodDemToLower === element
