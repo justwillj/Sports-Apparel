@@ -21,7 +21,8 @@ const ProductPagination = ({
   query,
   setApiError,
   addToWishlist,
-  searchResults
+  searchResults,
+  addErrorLog
 }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
@@ -50,7 +51,8 @@ const ProductPagination = ({
             throw new Error(Constants.API_ERROR);
           })
           .then(setProducts)
-          .catch(() => {
+          .catch((err) => {
+            addErrorLog(currDate +" "+  currTime + " " + err.message)
             setApiError(true);
           });
       };

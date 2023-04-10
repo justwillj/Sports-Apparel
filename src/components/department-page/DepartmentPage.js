@@ -9,7 +9,7 @@ import ProductPagination from '../product-pagination/ProductPagination';
  * @description fetches products from API based on department and displays products
  * @return component
  */
-const DepartmentPage = ({ addToWishlist }) => {
+const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
   const [apiError, setApiError] = useState(false);
   const { dept } = useParams();
 
@@ -18,7 +18,7 @@ const DepartmentPage = ({ addToWishlist }) => {
       <br />
       <h2 className={styles.name}>{dept}</h2>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <ProductPagination addToWishlist={addToWishlist} setApiError={setApiError} query={`?demographic=${dept}`} />
+      <ProductPagination addToWishlist={addToWishlist} addErrorLog={addErrorLog} setApiError={setApiError} query={`?demographic=${dept}`} />
     </div>
   );
 };
