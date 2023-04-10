@@ -1,8 +1,6 @@
-/* eslint-disable */
 import React from 'react';
 import './paginationInterface.css';
 import { ButtonGroup, Button } from '@material-ui/core';
-
 
 /**
  * @name PaginationInterface

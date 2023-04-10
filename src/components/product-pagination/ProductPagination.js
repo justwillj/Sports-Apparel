@@ -21,12 +21,15 @@ const ProductPagination = ({
   query,
   setApiError,
   addToWishlist,
-  searchResults,
+  searchResults
 }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
   const [products, setProducts] = useState([]);
 
+  // Used to get the time for the error logs
+  const currDate = new Date().toLocaleDateString();
+  const currTime = new Date().toLocaleTimeString();
 
   useEffect(() => {
     // used for deprtment/category/type/etc pages
