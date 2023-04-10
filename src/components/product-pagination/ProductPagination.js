@@ -83,7 +83,7 @@ const ProductPagination = ({
       setProducts(searchFilter(searchResults, query).slice(startIndex, startIndex + 20));
       setTotalProducts(searchFilter(searchResults, query).length);
     }
-  }, [startIndex]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [startIndex, query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
    * @name prevPage
