@@ -61,7 +61,7 @@ const App = () => {
 const addErrorLog = (message) =>{
   setErrorLog([...errorLog , message ])
 }
-console.log(errorLog);
+
   return (
     <BrowserRouter>
       <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} addErrorLog={addErrorLog} />
