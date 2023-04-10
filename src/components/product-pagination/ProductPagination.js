@@ -22,11 +22,15 @@ const ProductPagination = ({
   setApiError,
   addToWishlist,
   searchResults,
+  addErrorLog
 }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
   const [products, setProducts] = useState([]);
 
+  // Used to get the time for the error logs
+  const currDate = new Date().toLocaleDateString();
+  const currTime = new Date().toLocaleTimeString();
 
   useEffect(() => {
     // used for deprtment/category/type/etc pages
@@ -47,7 +51,8 @@ const ProductPagination = ({
             throw new Error(Constants.API_ERROR);
           })
           .then(setProducts)
-          .catch(() => {
+          .catch((err) => {
+            addErrorLog(currDate +" "+  currTime + " " + err.message)
             setApiError(true);
           });
       };
@@ -80,7 +85,7 @@ const ProductPagination = ({
       setProducts(searchFilter(searchResults, query).slice(startIndex, startIndex + 20));
       setTotalProducts(searchFilter(searchResults, query).length);
     }
-  }, [startIndex]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [startIndex, query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
    * @name prevPage

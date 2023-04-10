@@ -14,7 +14,7 @@ import Constants from '../../utils/constants';
 // Used to get the time for the error logs
 const currDate = new Date().toLocaleDateString();
 const currTime = new Date().toLocaleTimeString();
-export default async function fetchAllProducts(setProducts, setApiError ,addErrorLog) {
+export default async function fetchAllProducts(setProducts, setApiError, addErrorLog) {
   await HttpHelper(Constants.PRODUCT_ENDPOINT, 'GET')
     .then((response) => {
       if (response.ok) {
@@ -25,7 +25,6 @@ export default async function fetchAllProducts(setProducts, setApiError ,addErro
     .then(setProducts)
     .catch((err) => {
       addErrorLog(currDate +" "+  currTime + " " +" " + err.message)
-      console.log(err)
       setApiError(true);
     });
 }

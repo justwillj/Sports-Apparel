@@ -59,7 +59,7 @@ const App = () => {
 
  
 const addErrorLog = (message) =>{
-  setErrorLog([...errorLog,message ])
+  setErrorLog([...errorLog , message ])
 }
 
   return (
@@ -73,11 +73,11 @@ const addErrorLog = (message) =>{
         <Route exact path="/home" render={() => <HomePage addErrorLog={addErrorLog} />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
         <Route exact path="/ads/:id" render={() => <AdPage />} />
-        <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} />} />
-        <Route exact path="/Men/Running" render={() => <CategoryPage department={"Men"} category={"Running"} addToWishlist={updateWishlist} />} />
+        <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} />
+        <Route exact path="/Men/Running" render={() => <CategoryPage department={"Men"} category={"Running"} />} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         <Route exact path="/shoppingcart" render={() => <ShoppingCartPage />} />
-        <Route exact path="/results/:dept" render={() => <DepartmentPage addToWishlist={updateWishlist} />} />
+        <Route exact path="/results/:dept" render={() => <DepartmentPage addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         <Route exact path="/error-logging" render={() => <LoggingErrorPage list={errorLog} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
