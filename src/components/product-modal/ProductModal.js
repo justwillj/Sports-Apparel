@@ -57,7 +57,7 @@ const ProductModal = ({ open,  product, close }) => {
     const image = {PLACEHOLDER_IMAGE};
     const primaryColor = "Red"
     const secondaryColor = "Blue"
-    const description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure"
+    const description = product.description;
     const price = "$19.99"
 
 
