@@ -106,7 +106,7 @@
   .description {
     width: 500px;
     height: 105px;
-    font-size: medium;
+    font-size: large;
     /* overflow-y: scroll; */
     margin-top: 5%;
   }
