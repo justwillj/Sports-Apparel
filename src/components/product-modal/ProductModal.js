@@ -46,7 +46,7 @@ import { useCartDispatch } from '../checkout-page/CartContext';
  * @param {*} product product
  * @return component
  */
-const ProductModal = ({ open,  product, close }) => {
+const ProductModal = ({ open,  product, close, onClick }) => {
     //placeholder data, change values to display from API
     // console.log(product);
     // console.log("Here I am")
@@ -92,11 +92,11 @@ const ProductModal = ({ open,  product, close }) => {
             <AddShoppingCartIcon />
           </IconButton>
         </div>
-        {/* <div className='wishlist'>
+        <div className='wishlist'>
         <IconButton aria-label="add to favorites" onClick={() => onClick(product)}>
           <FavoriteIcon />
         </IconButton>
-        </div> */}
+        </div>
       </div>
     </div>
   </Modal>

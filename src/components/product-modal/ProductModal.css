@@ -132,8 +132,8 @@
   .wishlist {
     justify-self: right;
     float: right;
-    margin-right: 30px;
-    margin-top: -5%;
+    margin-right: 10px;
+    margin-top: -38px;
   }
 
   .wishlist:hover {
