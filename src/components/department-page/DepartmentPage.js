@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import styles from './DepartmentPage.module.css';
 import Constants from '../../utils/constants';
 import ProductPagination from '../product-pagination/ProductPagination';
+import { Button, ButtonGroup } from '@material-ui/core';
 
 /**
  * @name DepartmentPage
@@ -11,14 +13,109 @@ import ProductPagination from '../product-pagination/ProductPagination';
  */
 const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
   const [apiError, setApiError] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [query, setQuery] = useState({ department: '', categories: [], types: [] });
   const { dept } = useParams();
+
+  /**
+   * useEffect sets the department name when switching params
+   */
+  useEffect(() => {
+    setQuery({ ...query, department: `?demographic=${dept}` });
+  },[dept]);
+
+  /**
+   * @name addCategory
+   * @description this method adds a category to filter by to the query object
+   * used in categories list
+   * @param {*} category - category to filter results by
+   */
+  const addCategory = (category) => {
+    const newCategories = query.categories;
+    newCategories.push(category);
+    setQuery({...query, categories: newCategories});
+  }
+
+  /**
+   * @name addType
+   * @description this method adds a type to filter by to the query object
+   * used in types list
+   * @param {*} type - type to filter results by
+   */
+  const addType = (type) => {
+    const newTypes = query.types;
+    newTypes.push(type);
+    setQuery({...query, types: newTypes});
+  }
+
+  /**
+   * @name selectCategory
+   * @description this method sets category filter to only this category
+   * used in breadcrumb buttons
+   * @param {*} category - category to filter results by
+   */
+  const selectCategory = (category) => {
+    setQuery({ ...query, categories: [category]});
+  }
+
+  /**
+   * @name selectType
+   * @description this method sets type filter to only this type
+   * used in breadcrumb buttons
+   * @param {*} type - type to filter results by
+   */
+  const selectType = (type) => {
+    setQuery({ ...query, types: [type]});
+  }
+
+  /**
+   * @name resetFilter
+   * @description this method clears category and type filters
+   * used in department breadcrumb
+   */
+  const resetFilter = () => {
+    setQuery({ ...query, types: [], categories: []});
+  }
 
   return (
     <div className={styles.page}>
       <br />
-      <h2 className={styles.name}>{dept}</h2>
-      {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <ProductPagination addToWishlist={addToWishlist} addErrorLog={addErrorLog} setApiError={setApiError} query={`?demographic=${dept}`} />
+      <div className={styles.filterList}>
+        <h2>{dept === 'Pets' ? 'Breed' : 'Categories'}</h2>
+        {categories && categories.map((category, index) => (
+          <div key={index}>
+            <Button variant="text" onClick={() => addCategory(category)}>{category}</Button>
+          </div>
+        ))}
+        <h2>Types</h2>
+        {types && types.map((type, index) => (
+          <div key={index}>
+            <Button variant="text" onClick={() => addType(type)}>{type}</Button>
+          </div>
+        ))}
+      </div>
+      <div className={styles.products}>
+        {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
+        <ButtonGroup variant='text' className='breadcrumb'>
+          <Button variant='text' onClick={resetFilter}>{dept}</Button>
+          {query.categories.length > 0 && query.categories.map((category, index) => (
+          <Button key={index} variant='text' onClick={() => selectCategory(category)}>{category}</Button>
+          ))}
+          {query.types.length > 0 && query.types.map((type, index) => (
+          <Button key={index} variant='text' onClick={() => selectType(type)}>{type}</Button>
+          ))}
+        </ButtonGroup>
+        <ProductPagination
+          addToWishlist={addToWishlist}
+          addErrorLog={addErrorLog}
+          setApiError={setApiError}
+          setCategories={setCategories}
+          setTypes={setTypes}
+          deptIndex={0}
+          query={query}
+        />
+      </div>
     </div>
   );
 };

@@ -22,6 +22,10 @@ const ProductPagination = ({
   setApiError,
   addToWishlist,
   searchResults,
+  searchQuery,
+  setCategories,
+  setTypes,
+  deptIndex,
   addErrorLog
 }) => {
   const [startIndex, setStartIndex] = useState(0);
@@ -33,6 +37,116 @@ const ProductPagination = ({
   const currTime = new Date().toLocaleTimeString();
 
   useEffect(() => {
+    setStartIndex(deptIndex);
+  },[query])
+
+  useEffect(() => {
+
+    /**
+     * @name setCategoriesAndTypes
+     * @description this method sets all possible category and type filters
+     * @param {*} array - array of products
+     */
+    const setCategoriesAndTypes = (array) => {
+      const tempCategories = [];
+      const tempTypes = [];
+      
+      array.forEach(product => {
+        if (!tempCategories.includes(product.category)) {
+          tempCategories.push(product.category);
+        }
+        if (!tempTypes.includes(product.type)) {
+          tempTypes.push(product.type);                
+        }
+      });
+
+      tempCategories.sort();
+      tempTypes.sort();
+      setCategories(tempCategories);
+      setTypes(tempTypes)
+    };
+
+    /**
+     * @name sliceProducts
+     * @description this method slices a product array into a page of 20 products
+     * @param {*} array - filtered array of products
+     */
+    const sliceProducts = (array) => {
+      setProducts(array.slice(startIndex, startIndex + 20));
+    };
+
+    /**
+     * @name filterProducts
+     * @description this method takes a product array and filters by any
+     * query.categories or query.types. If no filters are included, returns all products.
+     * @param {*} array - array of objects
+     */
+    const filterProducts = (array) => {
+      const tempProducts = [];
+      const finalProducts = [];
+
+      // check for search
+      if (searchQuery) {
+        array = searchFilter(array, searchQuery);
+      }
+
+      // check for category filters
+      if (query.categories.length > 0) {
+        array.forEach(product => {
+          if (query.categories.includes(product.category)) {
+            tempProducts.push(product);
+          }
+        });
+      }
+
+      // check for type filters
+      if (query.types.length > 0) {
+        tempProducts.forEach(product => {
+          if(query.types.includes(product.type)) {
+            finalProducts.push(product);
+          }
+        });
+        // pagination
+        sliceProducts(finalProducts);
+        setTotalProducts(finalProducts.length);
+      } else if (query.categories.length > 0) {
+        sliceProducts(tempProducts);
+        setTotalProducts(tempProducts.length);
+      } else {
+        sliceProducts(array);
+        setTotalProducts(array.length);
+      }
+
+      // sets possible category and type filters on deptartment page
+      setCategoriesAndTypes(array);
+    }
+
+    /**
+     * @name fetchDeptProducts
+     * @description this method fetches all products by query department
+     * and filters by any category or type included in query object
+     */
+    const fetchDeptProducts = async () => {
+      await HttpHelper(`${Constants.PRODUCT_ENDPOINT}/${query.department || ''}`, 'GET')
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error(Constants.API_ERROR);
+        })
+        // filter by category or type
+        .then(filterProducts)
+        .catch((err) => {
+          addErrorLog(currDate +" "+  currTime + " " + err.message)
+          setApiError(true);
+        });
+    }
+    // function call
+    fetchDeptProducts();
+
+    /**
+     * all old below here, not used, need to replace search functionality
+     */
     // used for deprtment/category/type/etc pages
     if (!searchResults) {
       /**
@@ -43,21 +157,23 @@ const ProductPagination = ({
        * @returns - setsProducts
        */
       const fetchProductPage = async () => {
-        await HttpHelper(`${Constants.PRODUCT_PAGE}/${startIndex}${query || ''}`, 'GET')
+        // await HttpHelper(`${Constants.PRODUCT_PAGE}/${startIndex}${query || ''}`, 'GET')
+        await HttpHelper(`${Constants.PRODUCT_ENDPOINT}/${query || ''}`, 'GET')
           .then((response) => {
             if (response.ok) {
               return response.json();
             }
             throw new Error(Constants.API_ERROR);
           })
-          .then(setProducts)
+          // .then(setProducts)
+          .then(sliceProducts)
           .catch((err) => {
             addErrorLog(currDate +" "+  currTime + " " + err.message)
             setApiError(true);
           });
       };
       // call to fetch products
-      fetchProductPage();
+      // fetchProductPage();
 
       /**
       * @name countProducts
@@ -79,7 +195,7 @@ const ProductPagination = ({
           });
       };
       // call to count products
-      countProducts();
+      // countProducts();
     } else {
       // used for SearchResults
       setProducts(searchFilter(searchResults, query).slice(startIndex, startIndex + 20));
