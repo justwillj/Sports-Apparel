@@ -93,9 +93,10 @@ const ProductCard = ({ product, onClick }) => {
         />
         <CardMedia
           className={classes.media}
-          image={Constants.PLACEHOLDER_IMAGE}
+          image={product.imageUrl}
           title="placeholder"
         />
+           {console.log(product.imageUrl)}
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             {product.description}

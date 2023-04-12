@@ -6,6 +6,7 @@ import SiteSearch from '../search/SiteSearch';
 import './Header.css';
 import WishlistIcon from '../wishlist-icon/WishlistIcon';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
+import SideNavBar from '../sideNavBar/SideNavBar';
 
 // import loginUser from './HeaderService';
 // import constants from '../../utils/constants';
@@ -115,6 +116,7 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
                 {sessionStorage.getItem("email") === ""? <a className="loginButton" onClick={()=> setModalOn(true)}>[Login]</a>: (
               <div>
                 <span className='login-name'>{sessionStorage.getItem("email")}</span>
+                <SideNavBar></SideNavBar>
                 <a className="loginButton" onClick={logoutButton}>[Logout]</a>
               </div>
             ) }        
@@ -155,7 +157,6 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
         </Grid>
 
       </Grid>
-
       <div>
        <Modal closeAfterTransition open={modalOn} onClose={()=> setModalOn(false)}>
       <div className='login-main'>
