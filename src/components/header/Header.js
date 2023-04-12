@@ -96,7 +96,7 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
 
   return (
     <div style={{
-      backgroundColor: '#1C2964', position: 'sticky', top: 0, zIndex: 3, marginBottom: 5, opacity: "0.95"
+      backgroundColor: '#1C2964', top: 0, zIndex: 3, marginBottom: 5, opacity: "0.95"
     }}
     >
         <div style={{
@@ -114,7 +114,7 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
         <Grid item xs={1} container justify="center" className='login-gird'>
                 {sessionStorage.getItem("email") === ""? <a className="loginButton" onClick={()=> setModalOn(true)}>[Login]</a>: (
               <div>
-                <span className='login-name'>{sessionStorage.getItem("email")}</span>
+                <span className='login-name'>Welcome Amir!</span>
                 <a className="loginButton" onClick={logoutButton}>[Logout]</a>
               </div>
             ) }        
