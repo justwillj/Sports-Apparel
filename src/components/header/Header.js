@@ -116,6 +116,7 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
                 {sessionStorage.getItem("email") === ""? <a className="loginButton" onClick={()=> setModalOn(true)}>[Login]</a>: (
               <div>
                 <span className='login-name'>Welcome Amir!</span>
+                <SideNavBar></SideNavBar>
                 <a className="loginButton" onClick={logoutButton}>[Logout]</a>
               </div>
             ) }        
