@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './productPagination.css';
+import styles from '../search/SiteSearch.module.css';
 import ProductCard from '../product-card/ProductCard';
 import HttpHelper from '../../utils/HttpHelper';
 import Constants from '../../utils/constants';
@@ -13,7 +14,9 @@ import searchFilter from '../../utils/utilFunctions';
  * @param query - query value to filter products
  * @param setApiError - function passthrough to set error message
  * @param addToWishlist - fuction passthrough to ProductCard
- * @param searchResults - products passed from SearchResults
+ * @param setCategories - function to set available category filters
+ * @param setTypes - function to set available type filters
+ * @param addErrorLog - function to log front end errors
  * @returns - a div of product cards with UI to navigate back and forth
  * between pages of products
  */
@@ -23,26 +26,29 @@ const ProductPagination = ({
   addToWishlist,
   setCategories,
   setTypes,
-  deptIndex,
   addErrorLog
 }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState([]);
 
   // Used to get the time for the error logs
   const currDate = new Date().toLocaleDateString();
   const currTime = new Date().toLocaleTimeString();
 
+  // resets startIndex when changing filters/departments
   useEffect(() => {
     // lets "/" page load
     if (query) {
-      setStartIndex(deptIndex);
+      setStartIndex(0);
     }
   },[query]);
 
+  // sets filtered products
   useEffect(() => {
-
+    setLoading(true);
     /**
      * @name setCategoriesAndTypes
      * @description this method sets all possible category and type filters
@@ -70,6 +76,7 @@ const ProductPagination = ({
       // keeps filter lists looking organized
       tempCategories.sort();
       tempTypes.sort();
+      
       // sets available filters
       setCategories(tempCategories);
       setTypes(tempTypes)
@@ -81,73 +88,75 @@ const ProductPagination = ({
      * @param {*} array - filtered array of products
      */
     const sliceProducts = (array) => {
-      setProducts(array.slice(startIndex, startIndex + 20));
+      setPage(array.slice(startIndex, startIndex + 20));
       setTotalProducts(array.length);
     };
 
     /**
      * @name categoryFilter
      * @description this method takes a product array and filters it by query.categories
-     * @param {*} array - product array
+     * @param productArray - product array
      * @returns - filtered product array
      */
-    const categoryFilter = (array) => {
+    const categoryFilter = (productArray) => {
       const tempProducts = [];
 
       if (query.categories.length > 0) {
-        array.forEach(product => {
+        productArray.forEach(product => {
           if (query.categories.includes(product.category)) {
             tempProducts.push(product);
           }
         });
         return tempProducts;
       }
-    return array;
+    return productArray;
     }
 
     /**
      * @name typeFilter
      * @description this method takes a product array and filters it by query.types
-     * @param {*} array - product array
+     * @param productArray - product array
      * @returns - filtered product array
      */
-    const typeFilter = (array) => {
+    const typeFilter = (productArray) => {
       const finalProducts = [];
 
       if (query.types.length > 0) {
-        array.forEach(product => {
+        productArray.forEach(product => {
           if(query.types.includes(product.type)) {
             finalProducts.push(product);
           }
         });
         return finalProducts;
       }
-    return array;
+      return productArray;
     }
 
     /**
      * @name filterProducts
      * @description this method takes a product array and filters by any
      * query.categories or query.types. If no filters are included, returns all products.
-     * @param {*} array - array of objects
+     * @param productArray - array of objects
      */
-    const filterProducts = (array) => {
+    const filterProducts = (productArray) => {
       // so "/" page still loads
       if (!query) {
-        sliceProducts(array);
+        console.log('huh');
+        sliceProducts(productArray);
+        setLoading(false);
       } else {
-        let productArray = [];
+        let searchArray = [];
         let tempProducts = [];
         let finalProducts = [];
 
         if (query.department === '?demographic=Search') {
-          productArray = searchFilter(array, sessionStorage.getItem('userSearch'));
+          searchArray = searchFilter(productArray, sessionStorage.getItem('userSearch'));
         } else {
-          productArray = [...array];
+          searchArray = [...productArray];
         }
   
         // check for category filters
-        tempProducts = categoryFilter(productArray);
+        tempProducts = categoryFilter(searchArray);
   
         // check for type filters
         finalProducts = typeFilter(tempProducts);
@@ -156,7 +165,8 @@ const ProductPagination = ({
         sliceProducts(finalProducts);
   
         // sets possible category and type filters on deptartment page
-        setCategoriesAndTypes(productArray, tempProducts);
+        setCategoriesAndTypes(searchArray, tempProducts);
+        setLoading(false);
       }
     }
 
@@ -168,8 +178,8 @@ const ProductPagination = ({
     const fetchDeptProducts = async () => {
       await HttpHelper(`${query ? `${Constants.PRODUCT_ENDPOINT}${query.department !== '?demographic=Search' ? query.department : ''}` : `${Constants.PRODUCT_ENDPOINT}`}`, 'GET')
         .then((response) => {
-          console.log(response);
           if (response.ok) {
+            console.log(response);
             return response.json();
           }
           throw new Error(Constants.API_ERROR);
@@ -207,30 +217,39 @@ const ProductPagination = ({
    * @returns - setsStartIndex to next page if able
    */
   const nextPage = () => {
-    if (!(startIndex + products.length === totalProducts)) {
+    if (!(startIndex + page.length === totalProducts)) {
       setStartIndex(startIndex + 20);
     }
   };
 
   return (
-    <div className="productPage">
-      <PaginationInterface
-        startIndex={startIndex}
-        totalProducts={totalProducts}
-        nextButton={nextPage}
-        prevButton={prevPage}
-      />
-      <div className="cards">
-        {products.length > 0 && products.map((product) => (
-          <ProductCard key={product.id} product={product} onClick={addToWishlist} />
-        ))}
+    <div>
+    {loading && (
+      <div className={styles.ldsContainer}>
+        <div className={styles.ldsDualRing} />
       </div>
-      <PaginationInterface
-        startIndex={startIndex}
-        totalProducts={totalProducts}
-        nextButton={nextPage}
-        prevButton={prevPage}
-      />
+    )}
+    {!loading && (
+      <div className="productPage">
+        <PaginationInterface
+          startIndex={startIndex}
+          totalProducts={totalProducts}
+          nextButton={nextPage}
+          prevButton={prevPage}
+        />
+        <div className="cards">
+          {page.length > 0 && page.map((product) => (
+            <ProductCard key={product.id} product={product} onClick={addToWishlist} />
+          ))}
+        </div>
+        <PaginationInterface
+          startIndex={startIndex}
+          totalProducts={totalProducts}
+          nextButton={nextPage}
+          prevButton={prevPage}
+        />
+      </div>
+    )}
     </div>
   );
 };

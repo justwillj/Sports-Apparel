@@ -24,7 +24,7 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    * useEffect sets the department name when switching params
    */
   useEffect(() => {
-    setQuery({ ...query, department: `?demographic=${dept}` });
+    setQuery({ ...query, department: `?demographic=${dept}`, categories: [], types: [] });
   },[dept]);
 
   /**
@@ -35,7 +35,9 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    */
   const addCategory = (category) => {
     const newCategories = query.categories;
-    newCategories.push(category);
+    if (!query.categories.includes(category)) {
+      newCategories.push(category);
+    }
     setQuery({...query, categories: newCategories});
   }
 
@@ -47,7 +49,9 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    */
   const addType = (type) => {
     const newTypes = query.types;
-    newTypes.push(type);
+    if (!query.types.includes(type)) {
+      newTypes.push(type);
+    }
     setQuery({...query, types: newTypes});
   }
 
@@ -99,8 +103,8 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
       </div>
       <div className={styles.products}>
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-        <div className='breadcrumb'>
-          <Button variant='text' onClick={resetFilter}>{dept}</Button>
+        <div className={styles.breadcrumb}>
+          <Button variant='text' onClick={resetFilter}>{dept === 'Search' ? `${dept} results for ${sessionStorage.getItem('userSearch')}` : dept }</Button>
           {query.categories.length > 0 && <span>|</span>}
           {query.categories.length > 0 && query.categories.map((category, index) => (
           <Button key={index} variant='text' onClick={() => selectCategory(category)}>{category}</Button>
@@ -116,7 +120,6 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
           setApiError={setApiError}
           setCategories={setCategories}
           setTypes={setTypes}
-          deptIndex={0}
           query={query}
         />}
       </div>

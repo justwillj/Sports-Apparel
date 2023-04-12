@@ -92,7 +92,7 @@ const ProductCard = ({ product, onClick }) => {
           image={product.imageUrl}
           title="placeholder"
         />
-           {console.log(product.imageUrl)}
+           {/* {console.log(product.imageUrl)} */}
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             {product.description}

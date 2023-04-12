@@ -12,3 +12,30 @@
   font-size: 14px;
   margin: 0px 2px 4px 4px;
 }
+
+.filterList {
+  width: 175px;
+}
+
+.filterList h2 {
+  margin-left: 10px;
+}
+
+.filterList button {
+  margin-left: 30px;
+  padding-left: 0;
+}
+
+.filterList button span {
+  justify-content: left;
+}
+
+.breadcrumb {
+  margin-top: 2em;
+  margin-left: 15px;
+}
+
+.breadcrumb span {
+  font-weight: bolder;
+  font-size: large;
+}
