@@ -61,8 +61,18 @@ const ProductCard = ({ product, onClick }) => {
   const dispatch = useCartDispatch();
 
   const addToCart = (item) => {
-    // console.log(item);
-    dispatch({ type: 'add', item });
+    console.log(item);
+    dispatch({ type: 'add', product: {
+      id: item.id,
+      name: item.name,
+      description: item.description,
+      demographic: item.demographic,
+      category: item.category,
+      type: item.type,
+      price: item.price,
+      quantity: 1
+      }
+    });
   };
 
   const openProductModal = () => {

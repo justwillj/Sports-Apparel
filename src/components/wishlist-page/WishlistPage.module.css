@@ -1,7 +1,13 @@
 .app {
-    display: grid;
-    grid-gap: 15px;
-    grid-template-columns: repeat(4, auto);
-    justify-content: stretch;
-    margin: 20px;
-  }
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(4, auto);
+  justify-content: stretch;
+  margin: 20px;
+}
+
+.body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

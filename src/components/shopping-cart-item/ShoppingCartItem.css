@@ -1,0 +1,13 @@
+.photo {
+    float: left;
+    padding: 10px;
+    width: 150px;
+}
+
+.text {
+    padding-left: 10px;
+}
+
+.item-name {
+    font-size: 75%;
+}

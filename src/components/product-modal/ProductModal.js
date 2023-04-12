@@ -64,8 +64,18 @@ const ProductModal = ({ open,  product, close, onClick }) => {
     const dispatch = useCartDispatch();
 
     const addToCart = (item) => {
-      dispatch({ type: 'add', item });
-    };
+      dispatch({ type: 'add', product: {
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        demographic: item.demographic,
+        category: item.category,
+        type: item.type,
+        price: item.price,
+        quantity: 1
+      }
+    });
+  };
 
   return (
   <Modal open={open} onClose={close}>
