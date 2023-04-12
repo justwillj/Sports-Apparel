@@ -15,7 +15,7 @@ const ProductPage = ({ addToWishlist, addErrorLog }) => {
   return (
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <ProductPagination addToWishlist={addToWishlist} setApiError={setApiError} addErrorLog={addErrorLog} />
+      <ProductPagination addToWishlist={addToWishlist} setApiError={setApiError} addErrorLog={addErrorLog} deptIndex={0} />
     </div>
   );
 };

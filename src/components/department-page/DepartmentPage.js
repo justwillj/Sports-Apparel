@@ -110,7 +110,7 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
           <Button key={index} variant='text' onClick={() => selectType(type)}>{type}</Button>
           ))}
         </div>
-        <ProductPagination
+        {query.department && <ProductPagination
           addToWishlist={addToWishlist}
           addErrorLog={addErrorLog}
           setApiError={setApiError}
@@ -118,7 +118,7 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
           setTypes={setTypes}
           deptIndex={0}
           query={query}
-        />
+        />}
       </div>
     </div>
   );

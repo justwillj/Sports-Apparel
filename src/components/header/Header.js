@@ -29,13 +29,14 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
 
   const clickHandlerForSearch = () => {
     sessionStorage.setItem('userSearch', query);
-    console.log(pathName);
-    if (pathName !== '/search-results') {
-      history.push('/search-results');
-    }
-    if (pathName === '/search-results') {
-      window.location.reload(false);
-    }
+    // console.log(pathName);
+    // if (pathName !== '/search-results') {
+    //   history.push('/search-results');
+    // }
+    // if (pathName === '/search-results') {
+    //   window.location.reload(false);
+    // }
+    history.push('/results/Search');
   };
   const handleClick = () => {
     setUser({});

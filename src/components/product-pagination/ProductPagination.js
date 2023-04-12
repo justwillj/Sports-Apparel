@@ -21,8 +21,6 @@ const ProductPagination = ({
   query,
   setApiError,
   addToWishlist,
-  searchResults,
-  searchQuery,
   setCategories,
   setTypes,
   deptIndex,
@@ -41,7 +39,7 @@ const ProductPagination = ({
     if (query) {
       setStartIndex(deptIndex);
     }
-  },[query])
+  },[query]);
 
   useEffect(() => {
 
@@ -135,19 +133,21 @@ const ProductPagination = ({
      */
     const filterProducts = (array) => {
       // so "/" page still loads
-      if (!query && !searchQuery) {
+      if (!query) {
         sliceProducts(array);
       } else {
+        let productArray = [];
         let tempProducts = [];
         let finalProducts = [];
-  
-        // check for search
-        if (searchQuery) {
-          array = searchFilter(array, searchQuery);
+
+        if (query.department === '?demographic=Search') {
+          productArray = searchFilter(array, sessionStorage.getItem('userSearch'));
+        } else {
+          productArray = [...array];
         }
   
         // check for category filters
-        tempProducts = categoryFilter(array);
+        tempProducts = categoryFilter(productArray);
   
         // check for type filters
         finalProducts = typeFilter(tempProducts);
@@ -156,7 +156,7 @@ const ProductPagination = ({
         sliceProducts(finalProducts);
   
         // sets possible category and type filters on deptartment page
-        setCategoriesAndTypes(array, tempProducts);
+        setCategoriesAndTypes(productArray, tempProducts);
       }
     }
 
@@ -166,8 +166,9 @@ const ProductPagination = ({
      * and filters by any category or type included in query object
      */
     const fetchDeptProducts = async () => {
-      await HttpHelper(`${Constants.PRODUCT_ENDPOINT}${query ? query.department : ''}`, 'GET')
+      await HttpHelper(`${query ? `${Constants.PRODUCT_ENDPOINT}${query.department !== '?demographic=Search' ? query.department : ''}` : `${Constants.PRODUCT_ENDPOINT}`}`, 'GET')
         .then((response) => {
+          console.log(response);
           if (response.ok) {
             return response.json();
           }
@@ -183,7 +184,7 @@ const ProductPagination = ({
     // function call
     fetchDeptProducts();
 
-  }, [startIndex, query]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [startIndex, sessionStorage.getItem('userSearch'), query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
    * @name prevPage
