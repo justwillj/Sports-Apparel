@@ -67,7 +67,7 @@ const addErrorLog = (message) =>{
       <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} addErrorLog={addErrorLog} />
       {/* <Header /> */}
       <Switch>
-        <Route exact path="/" render={() => <ProductPage addToWishlist={updateWishlist} />} />
+        <Route exact path="/" render={() => <ProductPage addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} />
         <Route exact path="/checkout" render={() => <CheckoutPage />} />
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
         <Route exact path="/home" render={() => <HomePage addErrorLog={addErrorLog} />} />

@@ -6,6 +6,7 @@ import SiteSearch from '../search/SiteSearch';
 import './Header.css';
 import WishlistIcon from '../wishlist-icon/WishlistIcon';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
+import SideNavBar from '../sideNavBar/SideNavBar';
 
 // import loginUser from './HeaderService';
 // import constants from '../../utils/constants';
@@ -43,21 +44,25 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
   };
 
   const refresh = (dept) => {
-    switch (dept){
-      case 'Men' :
-        history.push('/results/Men');
-        break;
-      case 'Women':
-        history.push('/results/Women');
-        break;
-      case 'Kids':
-        history.push('/results/Kids');
-        break;
-      case 'Pets':
-        history.push('/results/Pets');
-        break;
-      default:
-    }
+    // switch (dept){
+    //   case 'Men' :
+    //     history.push('/results/Men');
+    //     window.location.reload();
+    //     break;
+    //   case 'Women':
+    //     history.push('/results/Women');
+    //     window.location.reload();
+    //     break;
+    //   case 'Kids':
+    //     history.push('/results/Kids');
+    //     window.location.reload();
+    //     break;
+    //   case 'Pets':
+    //     history.push('/results/Pets');
+    //     window.location.reload();
+    //     break;
+    //   default:
+    // }
   }
 
   const formCheck = (e)=>{
@@ -92,7 +97,7 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
 
   return (
     <div style={{
-      backgroundColor: '#1C2964', position: 'sticky', top: 0, zIndex: 3, marginBottom: 5, opacity: "0.95"
+      backgroundColor: '#1C2964', top: 0, zIndex: 3, marginBottom: 5, opacity: "0.95"
     }}
     >
         <div style={{
@@ -110,7 +115,7 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
         <Grid item xs={1} container justify="center" className='login-gird'>
                 {sessionStorage.getItem("email") === ""? <a className="loginButton" onClick={()=> setModalOn(true)}>[Login]</a>: (
               <div>
-                <span className='login-name'>{sessionStorage.getItem("email")}</span>
+                <span className='login-name'>Welcome Amir!</span>
                 <a className="loginButton" onClick={logoutButton}>[Logout]</a>
               </div>
             ) }        
@@ -151,7 +156,6 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
         </Grid>
 
       </Grid>
-
       <div>
        <Modal closeAfterTransition open={modalOn} onClose={()=> setModalOn(false)}>
       <div className='login-main'>
