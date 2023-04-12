@@ -73,7 +73,7 @@ const ProductModal = ({ open,  product, close }) => {
       <div className='topContainer'>
         <div className='top-bar'/>
         <button className='close' onClick={close}>X</button>
-        <img className='productImg' alt="Product Image" src={PLACEHOLDER_IMAGE} />
+        <img className='productImg' alt="Product Image" src={product.imageUrl} />
       </div>
       <h2 className='name'>{department} {category} {type}</h2>
       

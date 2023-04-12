@@ -18,6 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Constants from '../../utils/constants';
 import ProductModal from '../product-modal/ProductModal';
 import { useCartDispatch } from '../checkout-page/CartContext';
+import './ProductCard.css';
 
 
 /**
@@ -82,19 +83,16 @@ const ProductCard = ({ product, onClick }) => {
               {product.demographic.charAt(0)}
             </Avatar>
           )}
-          action={(
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          )}
+      
           title={product.name}
           subheader={`${product.demographic} ${product.category} ${product.type}`}
         />
         <CardMedia
           className={classes.media}
-          image={Constants.PLACEHOLDER_IMAGE}
+          image={product.imageUrl}
           title="placeholder"
         />
+           {console.log(product.imageUrl)}
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             {product.description}
@@ -109,7 +107,7 @@ const ProductCard = ({ product, onClick }) => {
         <IconButton aria-label="open modal" onClick={openProductModal}>
             <RemoveRedEyeRounded />
           </IconButton>
-          <IconButton aria-label="add to favorites" onClick={() => onClick(product)}>
+          <IconButton className='wishlist' aria-label="add to favorites" onClick={() => onClick(product)}>
             <FavoriteIcon />
           </IconButton>
         <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
