@@ -9,13 +9,13 @@ import ProductPagination from '../product-pagination/ProductPagination';
  * @description fetches products from API and displays products as product cards
  * @return component
  */
-const ProductPage = ({ addToWishlist }) => {
+const ProductPage = ({ addToWishlist, addErrorLog }) => {
   const [apiError, setApiError] = useState(false);
 
   return (
     <div>
       {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-      <ProductPagination addToWishlist={addToWishlist} setApiError={setApiError} />
+      <ProductPagination addToWishlist={addToWishlist} setApiError={setApiError} addErrorLog={addErrorLog} />
     </div>
   );
 };
