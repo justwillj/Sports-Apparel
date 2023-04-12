@@ -83,11 +83,7 @@ const ProductCard = ({ product, onClick }) => {
               {product.demographic.charAt(0)}
             </Avatar>
           )}
-          action={(
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          )}
+      
           title={product.name}
           subheader={`${product.demographic} ${product.category} ${product.type}`}
         />
