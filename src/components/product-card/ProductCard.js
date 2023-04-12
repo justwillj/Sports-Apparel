@@ -18,6 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Constants from '../../utils/constants';
 import ProductModal from '../product-modal/ProductModal';
 import { useCartDispatch } from '../checkout-page/CartContext';
+import './ProductCard.css';
 
 
 /**

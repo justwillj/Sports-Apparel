@@ -1,0 +1,25 @@
+span.MuiTypography-displayBlock {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   width: 170px;
+}
+
+.makeStyles-root-1 {
+    width: 290px;
+    margin-bottom: 1.5rem;
+}
+
+/* @media screen and (max-width:1300px) {
+    .makeStyles-root-1 {
+    width: 290px;
+    height: 400px;
+}
+span.MuiTypography-displayBlock {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 170px;
+ }
+} */
+
