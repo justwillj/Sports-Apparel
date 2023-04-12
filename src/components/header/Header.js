@@ -6,6 +6,7 @@ import SiteSearch from '../search/SiteSearch';
 import './Header.css';
 import WishlistIcon from '../wishlist-icon/WishlistIcon';
 import ShoppingCart from '../shopping-cart/ShoppingCart';
+import SideNavBar from '../sideNavBar/SideNavBar';
 
 // import loginUser from './HeaderService';
 // import constants from '../../utils/constants';
@@ -43,25 +44,25 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
   };
 
   const refresh = (dept) => {
-    switch (dept){
-      case 'Men' :
-        history.push('/results/Men');
-        // window.location.reload(false);
-        break;
-      case 'Women':
-        history.push('/results/Women');
-        // window.location.reload(false);
-        break;
-      case 'Kids':
-        history.push('/results/Kids');
-        // window.location.reload(false);
-        break;
-      case 'Pets':
-        history.push('/results/Pets');
-        // window.location.reload(false);
-        break;
-      default:
-    }
+    // switch (dept){
+    //   case 'Men' :
+    //     history.push('/results/Men');
+    //     window.location.reload();
+    //     break;
+    //   case 'Women':
+    //     history.push('/results/Women');
+    //     window.location.reload();
+    //     break;
+    //   case 'Kids':
+    //     history.push('/results/Kids');
+    //     window.location.reload();
+    //     break;
+    //   case 'Pets':
+    //     history.push('/results/Pets');
+    //     window.location.reload();
+    //     break;
+    //   default:
+    // }
   }
 
   const formCheck = (e)=>{
@@ -155,7 +156,6 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
         </Grid>
 
       </Grid>
-
       <div>
        <Modal closeAfterTransition open={modalOn} onClose={()=> setModalOn(false)}>
       <div className='login-main'>
