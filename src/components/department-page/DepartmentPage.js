@@ -9,6 +9,8 @@ import { Button, ButtonGroup } from '@material-ui/core';
 /**
  * @name DepartmentPage
  * @description fetches products from API based on department and displays products
+ * @param addToWishlist method passed on to ProductPagination
+ * @param addErrorLog method passed on to ProductPagination
  * @return component
  */
 const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
@@ -56,7 +58,7 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    * @param {*} category - category to filter results by
    */
   const selectCategory = (category) => {
-    setQuery({ ...query, categories: [category]});
+    setQuery({ ...query, categories: [category], types: []});
   }
 
   /**
@@ -97,15 +99,17 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
       </div>
       <div className={styles.products}>
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
-        <ButtonGroup variant='text' className='breadcrumb'>
+        <div className='breadcrumb'>
           <Button variant='text' onClick={resetFilter}>{dept}</Button>
+          {query.categories.length > 0 && <span>|</span>}
           {query.categories.length > 0 && query.categories.map((category, index) => (
           <Button key={index} variant='text' onClick={() => selectCategory(category)}>{category}</Button>
           ))}
+          {query.types.length > 0 && <span>|</span>}
           {query.types.length > 0 && query.types.map((type, index) => (
           <Button key={index} variant='text' onClick={() => selectType(type)}>{type}</Button>
           ))}
-        </ButtonGroup>
+        </div>
         <ProductPagination
           addToWishlist={addToWishlist}
           addErrorLog={addErrorLog}

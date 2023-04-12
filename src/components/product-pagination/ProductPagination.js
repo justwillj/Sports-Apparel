@@ -37,7 +37,10 @@ const ProductPagination = ({
   const currTime = new Date().toLocaleTimeString();
 
   useEffect(() => {
-    setStartIndex(deptIndex);
+    // lets "/" page load
+    if (query) {
+      setStartIndex(deptIndex);
+    }
   },[query])
 
   useEffect(() => {
@@ -45,23 +48,31 @@ const ProductPagination = ({
     /**
      * @name setCategoriesAndTypes
      * @description this method sets all possible category and type filters
-     * @param {*} array - array of products
+     * @param allProducts - array of products from back end/search filter
+     * used to find all available categories
+     * @param filteredProducts - array of products filtered by category
+     * used to find all available types
      */
-    const setCategoriesAndTypes = (array) => {
+    const setCategoriesAndTypes = (allProducts, filteredProducts) => {
       const tempCategories = [];
       const tempTypes = [];
       
-      array.forEach(product => {
+      allProducts.forEach(product => {
         if (!tempCategories.includes(product.category)) {
           tempCategories.push(product.category);
         }
+      });
+
+      filteredProducts.forEach(product => {
         if (!tempTypes.includes(product.type)) {
           tempTypes.push(product.type);                
         }
-      });
+      })
 
+      // keeps filter lists looking organized
       tempCategories.sort();
       tempTypes.sort();
+      // sets available filters
       setCategories(tempCategories);
       setTypes(tempTypes)
     };
@@ -73,7 +84,48 @@ const ProductPagination = ({
      */
     const sliceProducts = (array) => {
       setProducts(array.slice(startIndex, startIndex + 20));
+      setTotalProducts(array.length);
     };
+
+    /**
+     * @name categoryFilter
+     * @description this method takes a product array and filters it by query.categories
+     * @param {*} array - product array
+     * @returns - filtered product array
+     */
+    const categoryFilter = (array) => {
+      const tempProducts = [];
+
+      if (query.categories.length > 0) {
+        array.forEach(product => {
+          if (query.categories.includes(product.category)) {
+            tempProducts.push(product);
+          }
+        });
+        return tempProducts;
+      }
+    return array;
+    }
+
+    /**
+     * @name typeFilter
+     * @description this method takes a product array and filters it by query.types
+     * @param {*} array - product array
+     * @returns - filtered product array
+     */
+    const typeFilter = (array) => {
+      const finalProducts = [];
+
+      if (query.types.length > 0) {
+        array.forEach(product => {
+          if(query.types.includes(product.type)) {
+            finalProducts.push(product);
+          }
+        });
+        return finalProducts;
+      }
+    return array;
+    }
 
     /**
      * @name filterProducts
@@ -82,43 +134,30 @@ const ProductPagination = ({
      * @param {*} array - array of objects
      */
     const filterProducts = (array) => {
-      const tempProducts = [];
-      const finalProducts = [];
-
-      // check for search
-      if (searchQuery) {
-        array = searchFilter(array, searchQuery);
-      }
-
-      // check for category filters
-      if (query.categories.length > 0) {
-        array.forEach(product => {
-          if (query.categories.includes(product.category)) {
-            tempProducts.push(product);
-          }
-        });
-      }
-
-      // check for type filters
-      if (query.types.length > 0) {
-        tempProducts.forEach(product => {
-          if(query.types.includes(product.type)) {
-            finalProducts.push(product);
-          }
-        });
-        // pagination
-        sliceProducts(finalProducts);
-        setTotalProducts(finalProducts.length);
-      } else if (query.categories.length > 0) {
-        sliceProducts(tempProducts);
-        setTotalProducts(tempProducts.length);
-      } else {
+      // so "/" page still loads
+      if (!query && !searchQuery) {
         sliceProducts(array);
-        setTotalProducts(array.length);
+      } else {
+        let tempProducts = [];
+        let finalProducts = [];
+  
+        // check for search
+        if (searchQuery) {
+          array = searchFilter(array, searchQuery);
+        }
+  
+        // check for category filters
+        tempProducts = categoryFilter(array);
+  
+        // check for type filters
+        finalProducts = typeFilter(tempProducts);
+  
+        // setup page
+        sliceProducts(finalProducts);
+  
+        // sets possible category and type filters on deptartment page
+        setCategoriesAndTypes(array, tempProducts);
       }
-
-      // sets possible category and type filters on deptartment page
-      setCategoriesAndTypes(array);
     }
 
     /**
@@ -127,7 +166,7 @@ const ProductPagination = ({
      * and filters by any category or type included in query object
      */
     const fetchDeptProducts = async () => {
-      await HttpHelper(`${Constants.PRODUCT_ENDPOINT}/${query.department || ''}`, 'GET')
+      await HttpHelper(`${Constants.PRODUCT_ENDPOINT}${query ? query.department : ''}`, 'GET')
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -144,63 +183,6 @@ const ProductPagination = ({
     // function call
     fetchDeptProducts();
 
-    /**
-     * all old below here, not used, need to replace search functionality
-     */
-    // used for deprtment/category/type/etc pages
-    if (!searchResults) {
-      /**
-       * @name fetchProductPage
-       * @description This get request fetches a page worth of products from the api
-       * @param query - query used to filter product results
-       * @param startIndex - index to start retreiving products from
-       * @returns - setsProducts
-       */
-      const fetchProductPage = async () => {
-        // await HttpHelper(`${Constants.PRODUCT_PAGE}/${startIndex}${query || ''}`, 'GET')
-        await HttpHelper(`${Constants.PRODUCT_ENDPOINT}/${query || ''}`, 'GET')
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error(Constants.API_ERROR);
-          })
-          // .then(setProducts)
-          .then(sliceProducts)
-          .catch((err) => {
-            addErrorLog(currDate +" "+  currTime + " " + err.message)
-            setApiError(true);
-          });
-      };
-      // call to fetch products
-      // fetchProductPage();
-
-      /**
-      * @name countProducts
-      * @description This get request counts the total number of products available
-      * @param query - query used to filter count results
-      * @returns - setsTotalProducts
-      */
-      const countProducts = async () => {
-        await HttpHelper(`${Constants.COUNT_PRODUCTS}${query || ''}`, 'GET')
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error(Constants.API_ERROR);
-          })
-          .then(setTotalProducts)
-          .catch(() => {
-            setApiError(true);
-          });
-      };
-      // call to count products
-      // countProducts();
-    } else {
-      // used for SearchResults
-      setProducts(searchFilter(searchResults, query).slice(startIndex, startIndex + 20));
-      setTotalProducts(searchFilter(searchResults, query).length);
-    }
   }, [startIndex, query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
