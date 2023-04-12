@@ -43,25 +43,25 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
   };
 
   const refresh = (dept) => {
-    switch (dept){
-      case 'Men' :
-        history.push('/results/Men');
-        // window.location.reload(false);
-        break;
-      case 'Women':
-        history.push('/results/Women');
-        // window.location.reload(false);
-        break;
-      case 'Kids':
-        history.push('/results/Kids');
-        // window.location.reload(false);
-        break;
-      case 'Pets':
-        history.push('/results/Pets');
-        // window.location.reload(false);
-        break;
-      default:
-    }
+    // switch (dept){
+    //   case 'Men' :
+    //     history.push('/results/Men');
+    //     window.location.reload();
+    //     break;
+    //   case 'Women':
+    //     history.push('/results/Women');
+    //     window.location.reload();
+    //     break;
+    //   case 'Kids':
+    //     history.push('/results/Kids');
+    //     window.location.reload();
+    //     break;
+    //   case 'Pets':
+    //     history.push('/results/Pets');
+    //     window.location.reload();
+    //     break;
+    //   default:
+    // }
   }
 
   const formCheck = (e)=>{

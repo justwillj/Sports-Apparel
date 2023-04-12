@@ -110,7 +110,7 @@ const ProductCard = ({ product, onClick }) => {
         <IconButton aria-label="open modal" onClick={openProductModal}>
             <RemoveRedEyeRounded />
           </IconButton>
-          <IconButton aria-label="add to favorites" onClick={() => onClick(product)}>
+          <IconButton className='wishlist' aria-label="add to favorites" onClick={() => onClick(product)}>
             <FavoriteIcon />
           </IconButton>
         <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
