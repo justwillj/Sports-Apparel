@@ -46,21 +46,25 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
   };
 
   const refresh = (dept) => {
-    switch (dept){
-      case 'Men' :
-        history.push('/results/Men');
-        break;
-      case 'Women':
-        history.push('/results/Women');
-        break;
-      case 'Kids':
-        history.push('/results/Kids');
-        break;
-      case 'Pets':
-        history.push('/results/Pets');
-        break;
-      default:
-    }
+    // switch (dept){
+    //   case 'Men' :
+    //     history.push('/results/Men');
+    //     window.location.reload();
+    //     break;
+    //   case 'Women':
+    //     history.push('/results/Women');
+    //     window.location.reload();
+    //     break;
+    //   case 'Kids':
+    //     history.push('/results/Kids');
+    //     window.location.reload();
+    //     break;
+    //   case 'Pets':
+    //     history.push('/results/Pets');
+    //     window.location.reload();
+    //     break;
+    //   default:
+    // }
   }
 
   const formCheck = (e)=>{
