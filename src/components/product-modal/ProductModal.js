@@ -72,6 +72,7 @@ const ProductModal = ({ open,  product, close, onClick }) => {
         category: item.category,
         type: item.type,
         price: item.price,
+        imageUrl: item.imageUrl,
         quantity: 1
       }
     });

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Divider, List, ListItem } from '@material-ui/core';
-import Constants from '../../utils/constants';
 import './ShoppingCartItem.css';
 
 /**
@@ -12,7 +11,7 @@ const ShoppingCartItem = ({ product }) => (
   <List>
     <ListItem>
       <div>
-        <img src={Constants.PLACEHOLDER_IMAGE} className="photo" alt="product iamge" />
+        <img src={product.imageUrl} className="photo" alt="product" />
       </div>
       <div>
         <b>

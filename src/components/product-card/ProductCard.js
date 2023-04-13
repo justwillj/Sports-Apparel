@@ -14,8 +14,6 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { RemoveRedEyeRounded } from '@material-ui/icons';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Constants from '../../utils/constants';
 import ProductModal from '../product-modal/ProductModal';
 import { useCartDispatch } from '../checkout-page/CartContext';
 import './ProductCard.css';
@@ -71,6 +69,7 @@ const ProductCard = ({ product, onClick }) => {
       category: item.category,
       type: item.type,
       price: item.price,
+      imageUrl: item.imageUrl,
       quantity: 1
       }
     });
@@ -102,7 +101,7 @@ const ProductCard = ({ product, onClick }) => {
           image={product.imageUrl}
           title="placeholder"
         />
-           {console.log(product.imageUrl)}
+           {/* {console.log(product.imageUrl)} */}
         <CardContent>
           <Typography variant="body2" color="textSecondary" component="p">
             {product.description}
