@@ -2,7 +2,6 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { amber } from '@mui/material/colors';
-import styles from './WishlistIcon.module.css';
 
 /**
  * @name WishlistIcon
@@ -10,7 +9,7 @@ import styles from './WishlistIcon.module.css';
  * @return component
  */
 const WishlistIcon = () => (
-  <div className={styles.wishlist}>
+  <div>
     <IconButton aria-label="wishlist">
       <FavoriteBorderIcon sx={{ color: amber[100] }} />
     </IconButton>

@@ -7,7 +7,6 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import Constants from '../../utils/constants';
 import { useCartDispatch } from '../checkout-page/CartContext';
 
 /**
@@ -55,19 +54,31 @@ const useStyles = makeStyles((theme) => ({
  */
 const WishlistCard = ({ product }) => {
   const classes = useStyles();
-
   const dispatch = useCartDispatch();
 
   const addToCart = (item) => {
     // console.log(item);
-    dispatch({ type: 'add', item });
+    dispatch({
+      type: 'add',
+      product: {
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        demographic: item.demographic,
+        category: item.category,
+        type: item.type,
+        price: item.price,
+        imageUrl: item.imageUrl,
+        quantity: 1
+      }
+    });
   };
 
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={Constants.PLACEHOLDER_IMAGE}
+        image={product.imageUrl}
         title="placeholder"
       />
       <CardContent className={classes.row}>
@@ -84,7 +95,7 @@ const WishlistCard = ({ product }) => {
         <div className={classes.column}>
           <div className={classes.icon}>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
+              <IconButton className="shoppingcart" aria-label="add to shopping cart" onClick={() => addToCart(product)}>
                 <AddShoppingCartIcon />
               </IconButton>
             </CardActions>

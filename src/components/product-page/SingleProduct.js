@@ -1,5 +1,5 @@
 import React from 'react';
 
-const SingleProduct = () => <h1>Product Page Under Construction</h1>;
+const SingleProduct = () => <main className="body"><h1 className="message">Product Page Under Construction</h1></main>;
 
 export default SingleProduct;

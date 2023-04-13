@@ -14,8 +14,6 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { RemoveRedEyeRounded } from '@material-ui/icons';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Constants from '../../utils/constants';
 import ProductModal from '../product-modal/ProductModal';
 import { useCartDispatch } from '../checkout-page/CartContext';
 import './ProductCard.css';
@@ -62,8 +60,19 @@ const ProductCard = ({ product, onClick }) => {
   const dispatch = useCartDispatch();
 
   const addToCart = (item) => {
-    // console.log(item);
-    dispatch({ type: 'add', item });
+    console.log(item);
+    dispatch({ type: 'add', product: {
+      id: item.id,
+      name: item.name,
+      description: item.description,
+      demographic: item.demographic,
+      category: item.category,
+      type: item.type,
+      price: item.price,
+      imageUrl: item.imageUrl,
+      quantity: 1
+      }
+    });
   };
 
   const openProductModal = () => {
@@ -75,7 +84,7 @@ const ProductCard = ({ product, onClick }) => {
 
   return (
     <div>
-      <ProductModal open={productModal} product={product} close={closeProductModal} />
+      <ProductModal open={productModal} product={product} close={closeProductModal} onClick={() => onClick(product)} />
       <Card className={classes.root}>
         <CardHeader
           avatar={(
