@@ -1,13 +1,22 @@
 .photo {
     float: left;
     padding: 10px;
-    width: 150px;
+    width: 300px;
 }
 
-.text {
-    margin-left: 10px;
+.name {
+    font-size: xx-large;
 }
 
-.item-name {
-    font-size: 75%;
+.dept-category-type {
+    font-size: x-large;
+}
+
+.amount {
+    float: right;
+    font-weight: bold;
+}
+
+.length {
+    width: 100%;
 }

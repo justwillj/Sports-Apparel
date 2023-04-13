@@ -23,6 +23,7 @@ const ShoppingCartPage = () => {
   }
   return (
     <main className="body">
+      <h1 className="title">Shopping Cart</h1>
       {items.map((item) => (<ShoppingCartItem key={item.id} product={item} />))}
     </main>
   );

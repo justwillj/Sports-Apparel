@@ -13,12 +13,12 @@ const ShoppingCartItem = ({ product }) => (
       <div>
         <img src={product.imageUrl} className="photo" alt="product" />
       </div>
-      <div>
-        <b>
+      <div className="length">
+        <b className="name">
           {product.name}
         </b>
         <br />
-        <i>
+        <i className="dept-category-type">
           {product.demographic}
           {' '}
           {product.category}
@@ -28,9 +28,15 @@ const ShoppingCartItem = ({ product }) => (
         <br />
         {product.description}
         <br />
-        Price:
+        <span className="amount">$10.99</span>
         {' '}
         {product.price}
+        <br />
+        Quantity:
+        {' '}
+        {product.quantity}
+        <br />
+        <i>Delete</i>
       </div>
     </ListItem>
     <Divider />
