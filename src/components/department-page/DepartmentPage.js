@@ -25,7 +25,7 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    */
   useEffect(() => {
     setQuery({ ...query, department: `?demographic=${dept}`, categories: [], types: [] });
-  },[dept]);
+  },[dept, sessionStorage.getItem('userSearch')]);
 
   /**
    * @name addCategory
@@ -104,14 +104,16 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
       <div className={styles.products}>
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
         <div className={styles.breadcrumb}>
-          <Button variant='text' onClick={resetFilter}>{dept === 'Search' ? `${dept} results for ${sessionStorage.getItem('userSearch')}` : dept }</Button>
+          <Button variant='text' onClick={resetFilter}>
+            {dept === 'Search' ? `${dept} results for ${sessionStorage.getItem('userSearch')}` : dept }
+          </Button>
           {query.categories.length > 0 && <span>|</span>}
           {query.categories.length > 0 && query.categories.map((category, index) => (
-          <Button key={index} variant='text' onClick={() => selectCategory(category)}>{category}</Button>
+            <Button key={index} variant='text' onClick={() => selectCategory(category)}>{category}</Button>
           ))}
           {query.types.length > 0 && <span>|</span>}
           {query.types.length > 0 && query.types.map((type, index) => (
-          <Button key={index} variant='text' onClick={() => selectType(type)}>{type}</Button>
+            <Button key={index} variant='text' onClick={() => selectType(type)}>{type}</Button>
           ))}
         </div>
         {query.department && <ProductPagination

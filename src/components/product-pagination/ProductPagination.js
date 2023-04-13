@@ -61,12 +61,23 @@ const ProductPagination = ({
       const tempCategories = [];
       const tempTypes = [];
       
+      // finds available categories to filter by
       allProducts.forEach(product => {
         if (!tempCategories.includes(product.category)) {
-          tempCategories.push(product.category);
+          // if there is a type filter, uses that to find available categories
+          if (query.types.length > 0) {
+            if (query.types.includes(product.type)) {
+              tempCategories.push(product.category);
+            }
+          } else {
+            // if no type filter, add category
+            tempCategories.push(product.category);
+          }
         }
       });
 
+      // uses product array filtered by any category filters to find
+      // available types to filter by
       filteredProducts.forEach(product => {
         if (!tempTypes.includes(product.type)) {
           tempTypes.push(product.type);                
@@ -85,11 +96,11 @@ const ProductPagination = ({
     /**
      * @name sliceProducts
      * @description this method slices a product array into a page of 20 products
-     * @param {*} array - filtered array of products
+     * @param ProductArray - array of products
      */
-    const sliceProducts = (array) => {
-      setPage(array.slice(startIndex, startIndex + 20));
-      setTotalProducts(array.length);
+    const sliceProducts = (productArray) => {
+      setPage(productArray.slice(startIndex, startIndex + 20));
+      setTotalProducts(productArray.length);
     };
 
     /**
@@ -101,14 +112,17 @@ const ProductPagination = ({
     const categoryFilter = (productArray) => {
       const tempProducts = [];
 
+      // filters product by any active category filters
       if (query.categories.length > 0) {
         productArray.forEach(product => {
           if (query.categories.includes(product.category)) {
             tempProducts.push(product);
           }
         });
+        // returns filtered array
         return tempProducts;
       }
+    // if no active category filter, return array as is 
     return productArray;
     }
 
@@ -121,14 +135,17 @@ const ProductPagination = ({
     const typeFilter = (productArray) => {
       const finalProducts = [];
 
+      // filters product by any active type filters
       if (query.types.length > 0) {
         productArray.forEach(product => {
           if(query.types.includes(product.type)) {
             finalProducts.push(product);
           }
         });
+        // returns filtered array
         return finalProducts;
       }
+      // if no active type filter, return array as is
       return productArray;
     }
 
@@ -136,7 +153,7 @@ const ProductPagination = ({
      * @name filterProducts
      * @description this method takes a product array and filters by any
      * query.categories or query.types. If no filters are included, returns all products.
-     * @param productArray - array of objects
+     * @param productArray - array of products
      */
     const filterProducts = (productArray) => {
       // so "/" page still loads
@@ -149,9 +166,11 @@ const ProductPagination = ({
         let tempProducts = [];
         let finalProducts = [];
 
+        // uses search filter if returning search results
         if (query.department === '?demographic=Search') {
           searchArray = searchFilter(productArray, sessionStorage.getItem('userSearch'));
         } else {
+          // if not returning search results, keeps original products
           searchArray = [...productArray];
         }
   
@@ -166,7 +185,12 @@ const ProductPagination = ({
   
         // sets possible category and type filters on deptartment page
         setCategoriesAndTypes(searchArray, tempProducts);
-        setLoading(false);
+        /* PRESSON
+        setTimeout is for a special case, only shows one api call when page refreshes twice
+        i.e. when switching departments when startIndex != 0
+        trying to fix repetitious api calls but at least it looks right for now
+        */
+        setTimeout(() => {setLoading(false)}, 75);
       }
     }
 
@@ -189,6 +213,7 @@ const ProductPagination = ({
         .catch((err) => {
           addErrorLog(currDate +" "+  currTime + " " + err.message)
           setApiError(true);
+          setLoading(false);
         });
     }
     // function call
