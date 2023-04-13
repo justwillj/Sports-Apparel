@@ -1,12 +1,22 @@
-.footer {
+.footer-container {
+  display: flex;
   height: 70px;
   width: 100%;
-  background-color: #fdf5ca;
-  padding-bottom: 20px;
+  background-color: #FDFAEA;
+  padding-bottom: 45px;
 }
 
-.footer h2 {
-  font-size: 30px;
-  text-align: center;
-  vertical-align: middle;
+.nav-links {
+  color: #1C2964;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.title {
+  color: #1C2964;
+  font-size: 15px;
+}
+
+.footer-logo {
+  width: 7rem;
 }

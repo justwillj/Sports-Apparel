@@ -75,7 +75,7 @@ const ProductCard = ({ product, onClick }) => {
 
   return (
     <div>
-      <ProductModal open={productModal} product={product} close={closeProductModal} />
+      <ProductModal open={productModal} product={product} close={closeProductModal} onClick={() => onClick(product)} />
       <Card className={classes.root}>
         <CardHeader
           avatar={(

@@ -73,8 +73,8 @@
   
   .name {
     color: #1C2964;
-    font-weight: 500;
-    margin-top: 0%;
+    font-weight: 700;
+    margin-top: 7%;
     margin-left: -5px;
   }
   
@@ -85,6 +85,7 @@
   }
   
   .swatchHeader {
+    color: #1C2964;
     font-weight: 600;
     padding: 0%;
     margin-top: -5%;
@@ -131,8 +132,8 @@
   .wishlist {
     justify-self: right;
     float: right;
-    margin-right: 30px;
-    margin-top: -5%;
+    margin-right: 10px;
+    margin-top: -38px;
   }
 
   .wishlist:hover {
