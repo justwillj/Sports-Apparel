@@ -1,0 +1,31 @@
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper {
+    background-color: #1C2964 !important;
+}
+
+.side-nav-profile {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.side-nav-name {
+    margin-top: -5rem;
+    margin-left: 7rem;
+    color: #fdf5ca;
+    font-size: 1.3rem;
+    /* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; */
+}
+
+.setting-icon {
+    fill: currentColor !important;
+    color: #fdf5ca !important;
+}
+
+.side-nav-address {
+    margin-top: -1rem;
+    margin-left: 7rem;
+    color: #fdf5ca;
+    font-size: 1rem;
+}

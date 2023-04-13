@@ -67,13 +67,13 @@ const addErrorLog = (message) =>{
       <Header user={user} setUser={setUser} logout={logoutForm} email={email} setEmail={setEmail} addErrorLog={addErrorLog} />
       {/* <Header /> */}
       <Switch>
-        <Route exact path="/" render={() => <ProductPage addToWishlist={updateWishlist} />} />
+        <Route exact path="/" render={() => <ProductPage addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} />
         <Route exact path="/checkout" render={() => <CheckoutPage />} />
         <Route exact path="/confirmation" render={() => <ConfirmationPage />} />
         <Route exact path="/home" render={() => <HomePage addErrorLog={addErrorLog} />} />
         <Route exact path="/products/:id" render={() => <SingleProduct />} />
         <Route exact path="/ads/:id" render={() => <AdPage />} />
-        <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} />
+        {/* <Route exact path="/search-results" render={() => <SearchResults addToWishlist={updateWishlist} addErrorLog={addErrorLog} />} /> */}
         <Route exact path="/Men/Running" render={() => <CategoryPage department={"Men"} category={"Running"} />} />
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         <Route exact path="/shoppingcart" render={() => <ShoppingCartPage />} />
@@ -81,7 +81,6 @@ const addErrorLog = (message) =>{
         <Route exact path="/wishlist" render={() => <WishlistPage list={wishlist} />} />
         <Route exact path="/error-logging" render={() => <LoggingErrorPage list={errorLog} />} />
         {/* <Route exact path="/test" render={() => <TestSearchInput />} /> */}
-        {/* <Route exact path="/pageTest" render={() => <ProductPagination addToWishlist={updateWishlist} />} /> */}
       </Switch>
       <Footer />
     </BrowserRouter>

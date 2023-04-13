@@ -1,12 +1,11 @@
 .productPage {
-  margin-top: 2em;
   margin-bottom: 2em;
 }
 
 .productPage .cards {
   display: grid;
   grid-gap: 15px;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(4, auto);
   justify-content: space-evenly;
   margin: 20px;
 }

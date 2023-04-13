@@ -18,7 +18,7 @@ const PaginationInterface = ({
   nextButton
 }) => (
   <div className="pageInterface">
-    <span>{`SHOWING ITEMS ${startIndex + 1} - ${startIndex + 20 > totalProducts ? totalProducts : startIndex + 20} OUT OF ${totalProducts}`}</span>
+    <span>{`${startIndex + 1} - ${startIndex + 20 > totalProducts ? totalProducts : startIndex + 20} out of ${totalProducts}`}</span>
     <ButtonGroup variant="text" aria-label="top button group">
       {startIndex > 0 && <Button onClick={prevButton}>{'< PREV'}</Button>}
       {startIndex < (totalProducts - 20) && <Button onClick={nextButton}>{'NEXT >'}</Button>}
