@@ -17,6 +17,7 @@ import { RemoveRedEyeRounded } from '@material-ui/icons';
 import ProductModal from '../product-modal/ProductModal';
 import { useCartDispatch } from '../checkout-page/CartContext';
 import './ProductCard.css';
+import axios from 'axios';
 
 
 /**
@@ -73,6 +74,17 @@ const ProductCard = ({ product, onClick }) => {
       quantity: 1
       }
     });
+
+    axios
+    .post(
+      'http://localhost:8085/shopping-cart',
+      {
+        customerId: 1,
+        productId: item.id,
+      } 
+    )
+    .then(() => {
+    })
   };
 
   const openProductModal = () => {

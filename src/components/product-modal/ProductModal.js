@@ -21,6 +21,7 @@ import { useCart } from '../checkout-page/CartContext';
 /* eslint-disable */
 import './ProductModal.css';
 import { useCartDispatch } from '../checkout-page/CartContext';
+import axios from 'axios';
 
 // Design:
 // White Background with darkgrey bar at top, light grey bar at bottom
@@ -76,6 +77,18 @@ const ProductModal = ({ open,  product, close, onClick }) => {
         quantity: 1
       }
     });
+
+    axios
+      .post(
+        'http://localhost:8085/shopping-cart',
+        {
+          customerId: 1,
+          productId: item.id,
+  
+        } 
+      )
+      .then(() => {
+      })
   };
 
   return (
