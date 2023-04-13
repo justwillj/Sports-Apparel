@@ -6,7 +6,6 @@ import HttpHelper from '../../utils/HttpHelper';
 import Constants from '../../utils/constants';
 import PaginationInterface from './PaginationInterface';
 import searchFilter from '../../utils/utilFunctions';
-/* eslint-disable */
 
 /**
  * @name ProductPagination
@@ -41,7 +40,7 @@ const ProductPagination = ({
     if (query) {
       setStartIndex(0);
     }
-  },[query]);
+  }, [query]);
 
   // sets filtered products
   useEffect(() => {
@@ -57,9 +56,9 @@ const ProductPagination = ({
     const setCategoriesAndTypes = (allProducts, filteredProducts) => {
       const tempCategories = [];
       const tempTypes = [];
-      
+
       // finds available categories to filter by
-      allProducts.forEach(product => {
+      allProducts.forEach((product) => {
         if (!tempCategories.includes(product.category)) {
           // if there is a type filter, uses that to find available categories
           if (query.types.length > 0) {
@@ -75,18 +74,18 @@ const ProductPagination = ({
 
       // uses product array filtered by any category filters to find
       // available types to filter by
-      filteredProducts.forEach(product => {
+      filteredProducts.forEach((product) => {
         if (!tempTypes.includes(product.type)) {
-          tempTypes.push(product.type);                
+          tempTypes.push(product.type);
         }
-      })
+      });
 
       // keeps filter lists looking organized
       tempCategories.sort();
       tempTypes.sort();
-      
+
       // sets available filters
-      setFilters({categories: tempCategories, types: tempTypes});
+      setFilters({ categories: tempCategories, types: tempTypes });
     };
 
     /**
@@ -110,7 +109,7 @@ const ProductPagination = ({
 
       // filters product by any active category filters
       if (query.categories.length > 0) {
-        productArray.forEach(product => {
+        productArray.forEach((product) => {
           if (query.categories.includes(product.category)) {
             tempProducts.push(product);
           }
@@ -118,9 +117,9 @@ const ProductPagination = ({
         // returns filtered array
         return tempProducts;
       }
-    // if no active category filter, return array as is 
-    return productArray;
-    }
+      // if no active category filter, return array as is
+      return productArray;
+    };
 
     /**
      * @name typeFilter
@@ -133,8 +132,8 @@ const ProductPagination = ({
 
       // filters product by any active type filters
       if (query.types.length > 0) {
-        productArray.forEach(product => {
-          if(query.types.includes(product.type)) {
+        productArray.forEach((product) => {
+          if (query.types.includes(product.type)) {
             finalProducts.push(product);
           }
         });
@@ -143,7 +142,7 @@ const ProductPagination = ({
       }
       // if no active type filter, return array as is
       return productArray;
-    }
+    };
 
     /**
      * @name filterProducts
@@ -154,7 +153,6 @@ const ProductPagination = ({
     const filterProducts = (productArray) => {
       // so "/" page still loads
       if (!query) {
-        console.log('huh');
         sliceProducts(productArray);
         setLoading(false);
       } else {
@@ -169,16 +167,16 @@ const ProductPagination = ({
           // if not returning search results, keeps original products
           searchArray = [...productArray];
         }
-  
+
         // check for category filters
         tempProducts = categoryFilter(searchArray);
-  
+
         // check for type filters
         finalProducts = typeFilter(tempProducts);
-  
+
         // setup page
         sliceProducts(finalProducts);
-  
+
         // sets possible category and type filters on deptartment page
         setCategoriesAndTypes(searchArray, tempProducts);
         /* PRESSON
@@ -186,9 +184,9 @@ const ProductPagination = ({
         i.e. when switching departments when startIndex != 0
         trying to fix repetitious api calls but at least it looks right for now
         */
-        setTimeout(() => {setLoading(false)}, 75);
+        setTimeout(() => { setLoading(false); }, 75);
       }
-    }
+    };
 
     /**
      * @name fetchDeptProducts
@@ -206,14 +204,13 @@ const ProductPagination = ({
         // filter by category or type
         .then(filterProducts)
         .catch((err) => {
-          addErrorLog(currDate +" "+  currTime + " " + err.message)
+          addErrorLog(`${currDate} ${currTime} ${err.message}`);
           setApiError(true);
           setLoading(false);
         });
-    }
+    };
     // function call
     fetchDeptProducts();
-
   }, [startIndex, sessionStorage.getItem('userSearch'), query]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
@@ -244,32 +241,32 @@ const ProductPagination = ({
 
   return (
     <div>
-    {loading && (
-      <div className={styles.ldsContainer}>
-        <div className={styles.ldsDualRing} />
-      </div>
-    )}
-    {!loading && (
-      <div className="productPage">
-        <PaginationInterface
-          startIndex={startIndex}
-          totalProducts={totalProducts}
-          nextButton={nextPage}
-          prevButton={prevPage}
-        />
-        <div className="cards">
-          {page.length > 0 && page.map((product) => (
-            <ProductCard key={product.id} product={product} onClick={addToWishlist} />
-          ))}
+      {loading && (
+        <div className={styles.ldsContainer}>
+          <div className={styles.ldsDualRing} />
         </div>
-        <PaginationInterface
-          startIndex={startIndex}
-          totalProducts={totalProducts}
-          nextButton={nextPage}
-          prevButton={prevPage}
-        />
-      </div>
-    )}
+      )}
+      {!loading && (
+        <div className="productPage">
+          <PaginationInterface
+            startIndex={startIndex}
+            totalProducts={totalProducts}
+            nextButton={nextPage}
+            prevButton={prevPage}
+          />
+          <div className="cards">
+            {page.length > 0 && page.map((product) => (
+              <ProductCard key={product.id} product={product} onClick={addToWishlist} />
+            ))}
+          </div>
+          <PaginationInterface
+            startIndex={startIndex}
+            totalProducts={totalProducts}
+            nextButton={nextPage}
+            prevButton={prevPage}
+          />
+        </div>
+      )}
     </div>
   );
 };

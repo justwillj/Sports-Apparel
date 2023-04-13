@@ -1,10 +1,9 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import styles from './DepartmentPage.module.css';
 import Constants from '../../utils/constants';
 import ProductPagination from '../product-pagination/ProductPagination';
-import { Button } from '@material-ui/core';
 
 /**
  * @name DepartmentPage
@@ -15,7 +14,7 @@ import { Button } from '@material-ui/core';
  */
 const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
   const [apiError, setApiError] = useState(false);
-  const [filters, setFilters] = useState({ categories:[], types: [] })
+  const [filters, setFilters] = useState({ categories: [], types: [] });
   const [query, setQuery] = useState({ department: '', categories: [], types: [] });
   const { dept } = useParams();
 
@@ -23,8 +22,13 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    * useEffect sets the department name when switching params
    */
   useEffect(() => {
-    setQuery({ ...query, department: `?demographic=${dept}`, categories: [], types: [] });
-  },[dept, sessionStorage.getItem('userSearch')]);
+    setQuery({
+      ...query,
+      department: `?demographic=${dept}`,
+      categories: [],
+      types: []
+    });
+  }, [dept, sessionStorage.getItem('userSearch')]); // eslint-disable-line react-hooks/exhaustive-deps
 
   /**
    * @name addCategory
@@ -37,8 +41,8 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
     if (!query.categories.includes(category)) {
       newCategories.push(category);
     }
-    setQuery({...query, categories: newCategories});
-  }
+    setQuery({ ...query, categories: newCategories });
+  };
 
   /**
    * @name addType
@@ -51,8 +55,8 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
     if (!query.types.includes(type)) {
       newTypes.push(type);
     }
-    setQuery({...query, types: newTypes});
-  }
+    setQuery({ ...query, types: newTypes });
+  };
 
   /**
    * @name selectCategory
@@ -61,8 +65,8 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    * @param {*} category - category to filter results by
    */
   const selectCategory = (category) => {
-    setQuery({ ...query, categories: [category], types: []});
-  }
+    setQuery({ ...query, categories: [category], types: [] });
+  };
 
   /**
    * @name selectType
@@ -71,8 +75,8 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    * @param {*} type - type to filter results by
    */
   const selectType = (type) => {
-    setQuery({ ...query, types: [type]});
-  }
+    setQuery({ ...query, types: [type] });
+  };
 
   /**
    * @name resetFilter
@@ -81,21 +85,21 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    */
   const resetFilter = () => {
     setQuery({ ...query, types: [], categories: [] });
-  }
+  };
 
   return (
     <div className={styles.page}>
       <br />
       <div className={styles.filterList}>
         <h2>{dept === 'Pets' ? 'Breed' : 'Categories'}</h2>
-        {filters.categories && filters.categories.map((category, index) => (
-          <div key={index}>
+        {filters.categories && filters.categories.map((category) => (
+          <div key={filters.categories.indexOf(category)}>
             <Button variant="text" onClick={() => addCategory(category)}>{category}</Button>
           </div>
         ))}
         <h2>Types</h2>
-        {filters.types && filters.types.map((type, index) => (
-          <div key={index}>
+        {filters.types && filters.types.map((type) => (
+          <div key={filters.types.indexOf(type)}>
             <Button variant="text" onClick={() => addType(type)}>{type}</Button>
           </div>
         ))}
@@ -103,25 +107,27 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
       <div className={styles.products}>
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
         <div className={styles.breadcrumb}>
-          <Button variant='text' onClick={resetFilter}>
+          <Button variant="text" onClick={resetFilter}>
             {dept === 'Search' ? `${dept} results for "${sessionStorage.getItem('userSearch')}"` : dept }
           </Button>
           {query.categories.length > 0 && <span>|</span>}
-          {query.categories.length > 0 && query.categories.map((category, index) => (
-            <Button key={index} variant='text' onClick={() => selectCategory(category)}>{category}</Button>
+          {query.categories.length > 0 && query.categories.map((category) => (
+            <Button key={filters.categories.indexOf(category)} variant="text" onClick={() => selectCategory(category)}>{category}</Button>
           ))}
           {query.types.length > 0 && <span>|</span>}
-          {query.types.length > 0 && query.types.map((type, index) => (
-            <Button key={index} variant='text' onClick={() => selectType(type)}>{type}</Button>
+          {query.types.length > 0 && query.types.map((type) => (
+            <Button key={filters.types.indexOf(type)} variant="text" onClick={() => selectType(type)}>{type}</Button>
           ))}
         </div>
-        {query.department && <ProductPagination
-          addToWishlist={addToWishlist}
-          addErrorLog={addErrorLog}
-          setApiError={setApiError}
-          setFilters={setFilters}
-          query={query}
-        />}
+        {query.department && (
+          <ProductPagination
+            addToWishlist={addToWishlist}
+            addErrorLog={addErrorLog}
+            setApiError={setApiError}
+            setFilters={setFilters}
+            query={query}
+          />
+        )}
       </div>
     </div>
   );
