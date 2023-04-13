@@ -14,8 +14,7 @@ import searchFilter from '../../utils/utilFunctions';
  * @param query - query value to filter products
  * @param setApiError - function passthrough to set error message
  * @param addToWishlist - fuction passthrough to ProductCard
- * @param setCategories - function to set available category filters
- * @param setTypes - function to set available type filters
+ * @param setFilters - function to set available category and type filters
  * @param addErrorLog - function to log front end errors
  * @returns - a div of product cards with UI to navigate back and forth
  * between pages of products
@@ -24,13 +23,11 @@ const ProductPagination = ({
   query,
   setApiError,
   addToWishlist,
-  setCategories,
-  setTypes,
+  setFilters,
   addErrorLog
 }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [totalProducts, setTotalProducts] = useState(0);
-  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState([]);
 
@@ -89,8 +86,7 @@ const ProductPagination = ({
       tempTypes.sort();
       
       // sets available filters
-      setCategories(tempCategories);
-      setTypes(tempTypes)
+      setFilters({categories: tempCategories, types: tempTypes});
     };
 
     /**
@@ -197,13 +193,12 @@ const ProductPagination = ({
     /**
      * @name fetchDeptProducts
      * @description this method fetches all products by query department
-     * and filters by any category or type included in query object
+     * if no query, it fetches all products
      */
     const fetchDeptProducts = async () => {
       await HttpHelper(`${query ? `${Constants.PRODUCT_ENDPOINT}${query.department !== '?demographic=Search' ? query.department : ''}` : `${Constants.PRODUCT_ENDPOINT}`}`, 'GET')
         .then((response) => {
           if (response.ok) {
-            console.log(response);
             return response.json();
           }
           throw new Error(Constants.API_ERROR);

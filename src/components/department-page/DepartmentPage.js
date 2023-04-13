@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import styles from './DepartmentPage.module.css';
 import Constants from '../../utils/constants';
 import ProductPagination from '../product-pagination/ProductPagination';
-import { Button, ButtonGroup } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 /**
  * @name DepartmentPage
@@ -15,8 +15,7 @@ import { Button, ButtonGroup } from '@material-ui/core';
  */
 const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
   const [apiError, setApiError] = useState(false);
-  const [categories, setCategories] = useState([]);
-  const [types, setTypes] = useState([]);
+  const [filters, setFilters] = useState({ categories:[], types: [] })
   const [query, setQuery] = useState({ department: '', categories: [], types: [] });
   const { dept } = useParams();
 
@@ -81,7 +80,7 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
    * used in department breadcrumb
    */
   const resetFilter = () => {
-    setQuery({ ...query, types: [], categories: []});
+    setQuery({ ...query, types: [], categories: [] });
   }
 
   return (
@@ -89,13 +88,13 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
       <br />
       <div className={styles.filterList}>
         <h2>{dept === 'Pets' ? 'Breed' : 'Categories'}</h2>
-        {categories && categories.map((category, index) => (
+        {filters.categories && filters.categories.map((category, index) => (
           <div key={index}>
             <Button variant="text" onClick={() => addCategory(category)}>{category}</Button>
           </div>
         ))}
         <h2>Types</h2>
-        {types && types.map((type, index) => (
+        {filters.types && filters.types.map((type, index) => (
           <div key={index}>
             <Button variant="text" onClick={() => addType(type)}>{type}</Button>
           </div>
@@ -105,7 +104,7 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
         {apiError && <p className={styles.errMsg} data-testid="errMsg">{Constants.API_ERROR}</p>}
         <div className={styles.breadcrumb}>
           <Button variant='text' onClick={resetFilter}>
-            {dept === 'Search' ? `${dept} results for ${sessionStorage.getItem('userSearch')}` : dept }
+            {dept === 'Search' ? `${dept} results for "${sessionStorage.getItem('userSearch')}"` : dept }
           </Button>
           {query.categories.length > 0 && <span>|</span>}
           {query.categories.length > 0 && query.categories.map((category, index) => (
@@ -120,8 +119,7 @@ const DepartmentPage = ({ addToWishlist, addErrorLog }) => {
           addToWishlist={addToWishlist}
           addErrorLog={addErrorLog}
           setApiError={setApiError}
-          setCategories={setCategories}
-          setTypes={setTypes}
+          setFilters={setFilters}
           query={query}
         />}
       </div>

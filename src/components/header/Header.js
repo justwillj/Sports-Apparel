@@ -37,6 +37,7 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
     // if (pathName === '/search-results') {
     //   window.location.reload(false);
     // }
+    // PRESSON changed to show results in department page
     history.push('/results/Search');
   };
   const handleClick = () => {

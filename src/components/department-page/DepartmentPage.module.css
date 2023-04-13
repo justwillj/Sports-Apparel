@@ -28,6 +28,7 @@
 
 .filterList button span {
   justify-content: left;
+  text-transform: none;
 }
 
 .breadcrumb {
@@ -38,4 +39,5 @@
 .breadcrumb span {
   font-weight: bolder;
   font-size: large;
+  text-transform: none;
 }
