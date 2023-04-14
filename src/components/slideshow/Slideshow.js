@@ -106,7 +106,7 @@ const Slideshow = ({ setApiError, addErrorLog }) => {
     // clear timeout, used in case where user clicks prev or next button
     resetTimer();
     // timer moves slideshow to next ad every 10 seconds
-    slideTimeRef.current = setTimeout(() => { nextSlide(); }, 10000);
+    slideTimeRef.current = setTimeout(() => { nextSlide(); }, 3000);
   }, [slideIndex]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -119,7 +119,7 @@ const Slideshow = ({ setApiError, addErrorLog }) => {
               <div className="slide" style={{ transform: `translateX(-${slideIndex * 100}%)` }}>
                 {products.map((product) => (
                   <NavLink to={`/ads/${product.id}`} key={product.id}>
-                    <img width="600" height="400" alt="Advertisement" src={`${product.imageURL}`} />
+                    <img width="1920" height="400" alt="Advertisement" src={require(`${product.imageURL}`)} />
                     <div className="text">
                       <p>{`${product.name ? product.name : 'Placeholder Name'}`}</p>
                       <p>{`${product.discount}% Off!`}</p>
