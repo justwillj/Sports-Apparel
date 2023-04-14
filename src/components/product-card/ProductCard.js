@@ -14,11 +14,10 @@ import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { RemoveRedEyeRounded } from '@material-ui/icons';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Constants from '../../utils/constants';
 import ProductModal from '../product-modal/ProductModal';
 import { useCartDispatch } from '../checkout-page/CartContext';
 import './ProductCard.css';
+import axios from 'axios';
 
 
 /**
@@ -62,8 +61,30 @@ const ProductCard = ({ product, onClick }) => {
   const dispatch = useCartDispatch();
 
   const addToCart = (item) => {
-    // console.log(item);
-    dispatch({ type: 'add', item });
+    console.log(item);
+    dispatch({ type: 'add', product: {
+      id: item.id,
+      name: item.name,
+      description: item.description,
+      demographic: item.demographic,
+      category: item.category,
+      type: item.type,
+      price: item.price,
+      imageUrl: item.imageUrl,
+      quantity: 1
+      }
+    });
+
+    axios
+    .post(
+      'http://localhost:8085/shopping-cart',
+      {
+        customerId: sessionStorage.getItem("customerId"),
+        productId: item.id,
+      } 
+    )
+    .then(() => {
+    })
   };
 
   const openProductModal = () => {

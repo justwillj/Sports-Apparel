@@ -21,6 +21,7 @@ import { useCart } from '../checkout-page/CartContext';
 /* eslint-disable */
 import './ProductModal.css';
 import { useCartDispatch } from '../checkout-page/CartContext';
+import axios from 'axios';
 
 // Design:
 // White Background with darkgrey bar at top, light grey bar at bottom
@@ -64,8 +65,31 @@ const ProductModal = ({ open,  product, close, onClick }) => {
     const dispatch = useCartDispatch();
 
     const addToCart = (item) => {
-      dispatch({ type: 'add', item });
-    };
+      dispatch({ type: 'add', product: {
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        demographic: item.demographic,
+        category: item.category,
+        type: item.type,
+        price: item.price,
+        imageUrl: item.imageUrl,
+        quantity: 1
+      }
+    });
+
+    axios
+      .post(
+        'http://localhost:8085/shopping-cart',
+        {
+          customerId: sessionStorage.getItem("customerId"),
+          productId: item.id,
+  
+        } 
+      )
+      .then(() => {
+      })
+  };
 
   return (
   <Modal open={open} onClose={close}>

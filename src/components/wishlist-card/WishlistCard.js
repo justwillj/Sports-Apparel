@@ -7,8 +7,8 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import Constants from '../../utils/constants';
 import { useCartDispatch } from '../checkout-page/CartContext';
+import './WishlistCard.css';
 
 /**
  * @name useStyles
@@ -17,23 +17,19 @@ import { useCartDispatch } from '../checkout-page/CartContext';
  */
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345
+    width: '300px'
   },
   row: {
     display: 'flex'
   },
-  column: {
-    flex: '50%',
-    position: 'relative'
-  },
   icon: {
-    position: 'absolute',
-    bottom: '0',
-    right: '0'
+    position: 'relative',
+    bottom: '20px',
+    left: '165px'
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%'
+    height: 40,
+    paddingTop: '75%'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -55,33 +51,47 @@ const useStyles = makeStyles((theme) => ({
  */
 const WishlistCard = ({ product }) => {
   const classes = useStyles();
-
   const dispatch = useCartDispatch();
 
   const addToCart = (item) => {
     // console.log(item);
-    dispatch({ type: 'add', item });
+    dispatch({
+      type: 'add',
+      product: {
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        demographic: item.demographic,
+        category: item.category,
+        type: item.type,
+        price: item.price,
+        imageUrl: item.imageUrl,
+        quantity: 1
+      }
+    });
   };
 
   return (
     <Card className={classes.root}>
       <CardMedia
         className={classes.media}
-        image={Constants.PLACEHOLDER_IMAGE}
+        image={product.imageUrl}
         title="placeholder"
       />
-      <CardContent className={classes.row}>
-        <div className={classes.column}>
+      <CardContent>
+        <div className={classes.row}>
           <Typography variant="body2" color="textSecondary" component="p">
-            {`${product.demographic} ${product.category} ${product.type}`}
+            <b className="color">
+              {`${product.demographic} ${product.category} ${product.type}`}
+            </b>
           </Typography>
           <br />
+        </div>
+        <div className={classes.row}>
           <Typography variant="body2" color="textSecondary" component="p">
             Price: $
             {product.price}
           </Typography>
-        </div>
-        <div className={classes.column}>
           <div className={classes.icon}>
             <CardActions disableSpacing>
               <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>

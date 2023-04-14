@@ -57,8 +57,8 @@ const Footer = () => {
       </Grid>
 
       <Grid item xs={2} container direction="row" justify="center" alignItems="flex-end">
-        <Grid item className="title">
-          <h2 className="title">
+        <Grid item className="inc">
+          <h2 className="inc">
             {`${year} Sports Apparel Inc `}
             &#169;
           </h2>

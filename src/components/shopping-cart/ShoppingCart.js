@@ -4,7 +4,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@mui/material/Badge';
 import { amber } from '@mui/material/colors';
 import { useCart } from '../checkout-page/CartContext';
-import styles from './ShoppingCart.module.css';
 
 /**
  * @name ShoppingCart
@@ -15,7 +14,7 @@ const ShoppingCart = () => {
   const items = useCart();
 
   return (
-    <div className={styles.shoppingCart}>
+    <div>
       <IconButton aria-label="cart">
         <Badge badgeContent={items.length} color="error">
           <ShoppingCartOutlinedIcon sx={{ color: amber[100] }} />

@@ -4,8 +4,19 @@
 
 .productPage .cards {
   display: grid;
-  grid-gap: 15px;
+  grid-gap: 35px;
   grid-template-columns: repeat(4, auto);
   justify-content: space-evenly;
   margin: 20px;
+}
+
+@media screen and (min-width:1500px) {
+  .productPage .cards {
+    display: grid;
+    grid-gap: 35px;
+    grid-template-columns: repeat(5, auto);
+    justify-content: space-evenly;
+    margin: 20px;
+  }
+
 }

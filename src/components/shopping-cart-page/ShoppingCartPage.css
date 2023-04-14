@@ -1,0 +1,15 @@
+.message {
+    text-align: center;
+}
+
+.body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    color: #1C2964;
+    font-size: x-large;
+    margin-left: 2%;
+}
