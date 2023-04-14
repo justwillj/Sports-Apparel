@@ -89,10 +89,12 @@ const Header = ({ user, setUser,email,setEmail,logout,addErrorLog }) => {
       setError(false);
       history.push("/home")
       sessionStorage.setItem("email",email);
+      sessionStorage.setItem("customerId",1);
     }
   }
   const logoutButton = ()=>{
     sessionStorage.setItem("email","");
+    sessionStorage.setItem("customerId",0);
     setEmail("");
     history.push("/home");
   }
