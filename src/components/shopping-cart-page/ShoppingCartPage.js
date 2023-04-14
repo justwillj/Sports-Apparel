@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect} from 'react';
 import './ShoppingCartPage.css';
-import { useCart } from '../checkout-page/CartContext';
 import ShoppingCartItem from '../shopping-cart-item/ShoppingCartItem';
 
 /**
@@ -10,7 +9,6 @@ import ShoppingCartItem from '../shopping-cart-item/ShoppingCartItem';
  * @return component
  */
 const ShoppingCartPage = () => {
-  const items = useCart();
   const [shoppingCart, setShoppingCart] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -47,18 +45,17 @@ const ShoppingCartPage = () => {
   console.log(shoppingCart);
   console.log(products);
 
+  // const totalPrice = shoppingCart.reduce((total, x) => total + x.price, 0);
 
-  // console.log(items);
-  // const totalPrice = items.reduce((total, x) => total + x.price, 0);
+  if (shoppingCart.length === 0) {
+    return (
+      <main className="body">
+        <br />
+        <h2 className="message">Nothing to see here. Add products to your cart to get started</h2>
+      </main>
+    );
+  }
 
-  // // if (items.length === 0) {
-  // //   return (
-  // //     <main className="body">
-  // //       <br />
-  // //       <h2 className="message">Nothing to see here. Add products to your cart to get started</h2>
-  // //     </main>
-  // //   );
-  // }
   return (
     <main className="body">
       <h1 className="title">Shopping Cart</h1>
@@ -71,7 +68,6 @@ const ShoppingCartPage = () => {
           )}
          </div>
     ))}
-      {/* {items.map((item) => (<ShoppingCartItem key={item.id} product={item} />))} */}
     </main>
   );
 };

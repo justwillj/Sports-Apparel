@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { useCartDispatch } from '../checkout-page/CartContext';
+import axios from 'axios';
 import './WishlistCard.css';
 
 /**
@@ -69,6 +70,18 @@ const WishlistCard = ({ product }) => {
         quantity: 1
       }
     });
+
+    axios
+    .post(
+      'http://localhost:8085/shopping-cart',
+      {
+        customerId: sessionStorage.getItem("customerId"),
+        productId: item.id,
+
+      } 
+    )
+    .then(() => {
+    })
   };
 
   return (
