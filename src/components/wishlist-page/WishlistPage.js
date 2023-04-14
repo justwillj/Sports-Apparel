@@ -9,6 +9,7 @@ import styles from './WishlistPage.module.css';
  */
 const WishlistPage = ({ list }) => (
   <div className={styles.body}>
+    <h2 className={styles.wishlistTitle}>Wish List</h2>
     <div className={styles.app}>
       {list.map((item) => (
         <div key={item.id}>

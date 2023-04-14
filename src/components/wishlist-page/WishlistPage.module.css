@@ -1,7 +1,7 @@
 .app {
   display: grid;
-  column-gap: 15px;
-  row-gap: 30px;
+  column-gap: 40px;
+  row-gap: 40px;
   grid-template-columns: repeat(4, auto);
   justify-content: stretch;
   margin: 20px;
@@ -9,6 +9,11 @@
 
 .body {
   min-height: 100vh;
+  margin: auto;
   display: flex;
   flex-direction: column;
+}
+
+.wishlistTitle {
+  color: #1C2964;
 }
