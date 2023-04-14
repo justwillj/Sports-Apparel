@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { useCartDispatch } from '../checkout-page/CartContext';
+import './WishlistCard.css';
 
 /**
  * @name useStyles
@@ -16,23 +17,19 @@ import { useCartDispatch } from '../checkout-page/CartContext';
  */
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 345
+    width: '300px'
   },
   row: {
     display: 'flex'
   },
-  column: {
-    flex: '50%',
-    position: 'relative'
-  },
   icon: {
-    position: 'absolute',
-    bottom: '0',
-    right: '0'
+    position: 'relative',
+    bottom: '20px',
+    left: '165px'
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%'
+    height: 40,
+    paddingTop: '75%'
   },
   expand: {
     transform: 'rotate(0deg)',
@@ -81,21 +78,23 @@ const WishlistCard = ({ product }) => {
         image={product.imageUrl}
         title="placeholder"
       />
-      <CardContent className={classes.row}>
-        <div className={classes.column}>
+      <CardContent>
+        <div className={classes.row}>
           <Typography variant="body2" color="textSecondary" component="p">
-            {`${product.demographic} ${product.category} ${product.type}`}
+            <b className="color">
+              {`${product.demographic} ${product.category} ${product.type}`}
+            </b>
           </Typography>
           <br />
+        </div>
+        <div className={classes.row}>
           <Typography variant="body2" color="textSecondary" component="p">
             Price: $
             {product.price}
           </Typography>
-        </div>
-        <div className={classes.column}>
           <div className={classes.icon}>
             <CardActions disableSpacing>
-              <IconButton className="shoppingcart" aria-label="add to shopping cart" onClick={() => addToCart(product)}>
+              <IconButton aria-label="add to shopping cart" onClick={() => addToCart(product)}>
                 <AddShoppingCartIcon />
               </IconButton>
             </CardActions>
