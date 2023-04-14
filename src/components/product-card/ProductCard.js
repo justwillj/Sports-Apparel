@@ -79,7 +79,7 @@ const ProductCard = ({ product, onClick }) => {
     .post(
       'http://localhost:8085/shopping-cart',
       {
-        customerId: 1,
+        customerId: sessionStorage.getItem("customerId"),
         productId: item.id,
       } 
     )

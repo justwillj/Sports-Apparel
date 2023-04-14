@@ -12,24 +12,28 @@ import ShoppingCartItem from '../shopping-cart-item/ShoppingCartItem';
 const ShoppingCartPage = () => {
   const items = useCart();
   const [shoppingCart, setShoppingCart] = useState([]);
+  const [products, setProducts] = useState([]);
+
 
   const getAllData = () => {
     // Link that helped me with this
     // https://medium.com/@jdhawks/make-fetch-s-happen-5022fcc2ddae
-    fetch('http://localhost:8085/shopping-cart', {
-    })
-      .then((res) => {
-        if (!res.ok) {
+    Promise.all([
+      fetch('http://localhost:8085/products', {
+      }),
+      fetch('http://localhost:8085/shopping-cart', {
+      })
+    ])
+      .then(([resProd, resShop]) => {
+        if (!resProd.ok || !resShop.ok) {
           throw Error;
         }
-        return res.json();
+        return Promise.all([resProd.json(), resShop.json()]);
       })
-      .then((data) => {
-        setShoppingCart(data);
-    
+      .then(([dataProd, dataShop]) => {
+        setProducts(dataProd);
+        setShoppingCart(dataShop);
       })
-      .catch(() => {
-      });
   };
 
   /**
@@ -41,22 +45,33 @@ const ShoppingCartPage = () => {
   }, []);
 
   console.log(shoppingCart);
+  console.log(products);
+
 
   // console.log(items);
   // const totalPrice = items.reduce((total, x) => total + x.price, 0);
 
-  if (items.length === 0) {
-    return (
-      <main className="body">
-        <br />
-        <h2 className="message">Nothing to see here. Add products to your cart to get started</h2>
-      </main>
-    );
-  }
+  // // if (items.length === 0) {
+  // //   return (
+  // //     <main className="body">
+  // //       <br />
+  // //       <h2 className="message">Nothing to see here. Add products to your cart to get started</h2>
+  // //     </main>
+  // //   );
+  // }
   return (
     <main className="body">
       <h1 className="title">Shopping Cart</h1>
-      {items.map((item) => (<ShoppingCartItem key={item.id} product={item} />))}
+      {shoppingCart.map((shop)=>(
+               <div>
+        {products.map((product)=>
+        <div>
+          {shop.customerId == sessionStorage.getItem("customerId") && shop.productId === product.id ? <ShoppingCartItem key={product.id} product={product} /> :null} 
+      </div>
+          )}
+         </div>
+    ))}
+      {/* {items.map((item) => (<ShoppingCartItem key={item.id} product={item} />))} */}
     </main>
   );
 };
