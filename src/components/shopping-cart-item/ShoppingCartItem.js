@@ -14,29 +14,37 @@ const ShoppingCartItem = ({ product }) => (
         <img src={product.imageUrl} className="photo" alt="product" />
       </div>
       <div className="length">
-        <b className="name">
+        <b className="product-name">
           {product.name}
         </b>
-        <br />
-        <i className="dept-category-type">
-          {product.demographic}
-          {' '}
-          {product.category}
-          {' '}
-          {product.type}
-        </i>
-        <br />
-        {product.description}
-        <br />
         <span className="amount">$10.99</span>
         {' '}
         {product.price}
         <br />
-        Quantity:
-        {' '}
-        {product.quantity}
-        <br />
-        <i>Delete</i>
+        <span className="spacing">
+          <i className="dept-category-type">
+            {product.demographic}
+            {' '}
+            {product.category}
+            {' '}
+            {product.type}
+          </i>
+          <br />
+          {product.description}
+          <br />
+          <br />
+          <b>
+            Quantity:
+            {' '}
+            {product.quantity}
+            &nbsp;
+            &nbsp;
+            |
+            &nbsp;
+            &nbsp;
+            Delete
+          </b>
+        </span>
       </div>
     </ListItem>
     <Divider />
