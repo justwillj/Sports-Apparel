@@ -36,7 +36,7 @@ const ShoppingCartItem = ({ product }) => (
           <b>
             Quantity:
             {' '}
-            {product.quantity}
+            1
             &nbsp;
             &nbsp;
             |
