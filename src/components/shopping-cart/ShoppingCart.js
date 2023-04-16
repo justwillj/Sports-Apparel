@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState
+  // useEffect
+} from 'react';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@mui/material/Badge';
@@ -12,7 +15,9 @@ import { useCart } from '../checkout-page/CartContext';
  */
 const ShoppingCart = () => {
   const items = useCart();
+  // eslint-disable-next-line
   const [shoppingCart, setShoppingCart] = useState([]);
+  // eslint-disable-next-line
   const [products, setProducts] = useState([]);
 
   // Work on over the weekend to not make continuous API calls

@@ -7,8 +7,8 @@ import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import { useCartDispatch } from '../checkout-page/CartContext';
 import axios from 'axios';
+import { useCartDispatch } from '../checkout-page/CartContext';
 import './WishlistCard.css';
 
 /**
@@ -72,16 +72,16 @@ const WishlistCard = ({ product }) => {
     });
 
     axios
-    .post(
-      'http://localhost:8085/shopping-cart',
-      {
-        customerId: sessionStorage.getItem("customerId"),
-        productId: item.id,
+      .post(
+        'http://localhost:8085/shopping-cart',
+        {
+          customerId: sessionStorage.getItem('customerId'),
+          productId: item.id
 
-      } 
-    )
-    .then(() => {
-    })
+        }
+      )
+      .then(() => {
+      });
   };
 
   return (
